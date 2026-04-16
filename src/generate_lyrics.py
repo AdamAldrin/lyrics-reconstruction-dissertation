@@ -67,14 +67,19 @@ def main():
         df = df.head(MAX_ROWS)
 
     required_columns = [
-        "title",
-        "artist",
-        "genre",
-        "valence",
-        "arousal",
-        "mood_label",
-        "reproduction_prompt",
-        "extension_prompt",
+    "song_id",
+    "title",
+    "artist",
+    "genre",
+    "valence",
+    "arousal",
+    "mood_label",
+    "bow_keywords",
+    "reference_lyrics",
+    "tags",
+    "release",
+    "reproduction_prompt",
+    "extension_prompt",
     ]
     missing = [col for col in required_columns if col not in df.columns]
     if missing:
@@ -119,6 +124,7 @@ def main():
         time.sleep(SLEEP_BETWEEN_CALLS)
 
         result = {
+            "song_id": row.get("song_id", ""),
             "title": row["title"],
             "artist": row["artist"],
             "genre": row["genre"],
@@ -126,6 +132,9 @@ def main():
             "arousal": row["arousal"],
             "mood_label": row["mood_label"],
             "bow_keywords": row.get("bow_keywords", ""),
+            "reference_lyrics": row.get("reference_lyrics", ""),
+            "tags": row.get("tags", ""),
+            "release": row.get("release", ""),
             "model_name": MODEL_NAME,
             "generation_timestamp_utc": datetime.now(timezone.utc).isoformat(),
             "reproduction_prompt_version": "lycon_repro_v1",

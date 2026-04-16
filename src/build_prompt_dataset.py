@@ -4,18 +4,13 @@ import math
 import pandas as pd
 from pathlib import Path
 
-INPUT_FILE = Path("data/samples/lycon_sample_with_prompt_inputs.csv")
+INPUT_FILE = Path("data/samples/music4all_sample_with_prompt_inputs.csv")
 OUTPUT_FILE = Path("data/processed/prompt_dataset.csv")
 
 
 def mood_from_valence_arousal(valence: float, arousal: float) -> str:
     """
     Map valence/arousal to a mood label using the angle theta in [0, 2pi).
-
-    Note:
-    The LyCon paper defines mood categories from valence-arousal angle ranges.
-    This implementation uses four angle sectors. If you want exact replication,
-    align the boundaries with Figure 1 from the paper. :contentReference[oaicite:1]{index=1}
     """
     theta = math.atan2(arousal, valence)
     if theta < 0:
@@ -32,22 +27,18 @@ def mood_from_valence_arousal(valence: float, arousal: float) -> str:
 
 
 def normalize_bow_keywords(value) -> str:
-    """
-    Ensure the vocabulary field becomes a clean string.
+    if pd.isna(value):
+        return ""
+    return str(value).strip()
 
-    Assumes the input column already contains keywords sorted by descending
-    frequency upstream, which is what the paper describes for the vocabulary
-    list. Verify this in your dataset construction. :contentReference[oaicite:2]{index=2}
-    """
+
+def clean_text(value) -> str:
     if pd.isna(value):
         return ""
     return str(value).strip()
 
 
 def build_reproduction_prompt(row: pd.Series) -> str:
-    """
-    Prompt close to the LyCon paper formulation.
-    """
     mood = mood_from_valence_arousal(row["valence"], row["arousal"])
     vocab = normalize_bow_keywords(row["bow_keywords"])
 
@@ -59,9 +50,6 @@ def build_reproduction_prompt(row: pd.Series) -> str:
 
 
 def build_extension_prompt(row: pd.Series) -> str:
-    """
-    Your extension prompt: adds structure and stricter constraints.
-    """
     mood = mood_from_valence_arousal(row["valence"], row["arousal"])
     vocab = normalize_bow_keywords(row["bow_keywords"])
 
@@ -91,12 +79,36 @@ Vocabulary:
 def main():
     df = pd.read_csv(INPUT_FILE).copy()
 
-    required_columns = ["title", "artist", "genre", "valence", "arousal", "bow_keywords"]
+    required_columns = [
+        "song_id",
+        "title",
+        "artist",
+        "genre",
+        "valence",
+        "arousal",
+        "bow_keywords",
+        "reference_lyrics",
+        "tags",
+        "release",
+    ]
     missing = [col for col in required_columns if col not in df.columns]
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
+    df["song_id"] = df["song_id"].apply(clean_text)
+    df["title"] = df["title"].apply(clean_text)
+    df["artist"] = df["artist"].apply(clean_text)
+    df["genre"] = df["genre"].apply(clean_text)
+    df["reference_lyrics"] = df["reference_lyrics"].apply(clean_text)
+    df["tags"] = df["tags"].apply(clean_text)
+    df["release"] = df["release"].apply(clean_text)
     df["bow_keywords"] = df["bow_keywords"].apply(normalize_bow_keywords)
+
+    df["valence"] = pd.to_numeric(df["valence"], errors="coerce")
+    df["arousal"] = pd.to_numeric(df["arousal"], errors="coerce")
+
+    df = df.dropna(subset=["valence", "arousal"])
+
     df["mood_label"] = df.apply(
         lambda row: mood_from_valence_arousal(row["valence"], row["arousal"]),
         axis=1,
@@ -105,14 +117,39 @@ def main():
     df["reproduction_prompt"] = df.apply(build_reproduction_prompt, axis=1)
     df["extension_prompt"] = df.apply(build_extension_prompt, axis=1)
 
+    output_columns = [
+        "song_id",
+        "title",
+        "artist",
+        "genre",
+        "valence",
+        "arousal",
+        "mood_label",
+        "bow_keywords",
+        "reference_lyrics",
+        "tags",
+        "release",
+        "reproduction_prompt",
+        "extension_prompt",
+    ]
+
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUTPUT_FILE, index=False)
+    df[output_columns].to_csv(OUTPUT_FILE, index=False)
 
     print(f"Saved prompt dataset to: {OUTPUT_FILE}")
     print("\nColumns:")
-    print(df.columns.tolist())
+    print(df[output_columns].columns.tolist())
     print("\nSample preview:")
-    preview_cols = ["title", "artist", "genre", "valence", "arousal", "mood_label"]
+    preview_cols = [
+        "song_id",
+        "title",
+        "artist",
+        "genre",
+        "valence",
+        "arousal",
+        "mood_label",
+        "release",
+    ]
     print(df[preview_cols].head().to_string(index=False))
 
 
