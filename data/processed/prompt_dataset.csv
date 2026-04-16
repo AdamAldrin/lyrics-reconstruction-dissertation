@@ -1,64 +1,617 @@
-title,artist,genre,valence,arousal,bow_keywords,mood_label,reproduction_prompt,extension_prompt
-The Wind Blows,The All-American Rejects,Pop_Rock,-0.738470814392,0.25551961524,i i i i i i i i the the the the the the the the the you you you you you you you you you you you you you you you you you you to to to to to to to to to and and and and and and and and a a a a a a me me me me me me me me me it it it it in is of of of of of of your your your your your your your that that that that that that do do on on are are we we will all all all be be be be be love love so so know know but but but but but but just just just when when when when when when when when when time time can can can can can come there there there there there there go go go go go go go go up oh was was see see got got never from from feel let let say say take take take take take as day away by by by night our thing caus through through wanna wanna find then everi wait wait leav leav leav leav leav leav leav leav home had walk ever ever face stay stay left new play thought should chorus chorus chorus boy mine someon someon rememb breath breath breath breath breath togeth ask ask wind wind wind wind wind wind wind told goe goe goe pass pass pass pass pass pass late late blind lay scream scream final final shake sad sad blow blow blow blow blow blow blow veri slow slow slow sinc sign window window window window window outsid outsid outsid outsid outsid worth everywher suppos echo echo threw imposs imposs solitud hardest,tense and emotional,"Compose Pop_Rock lyrics, in a style reminiscent of The All-American Rejects which represents a tense and emotional mood under the title of ""The Wind Blows"" using the following vocabulary: i i i i i i i i the the the the the the the the the you you you you you you you you you you you you you you you you you you to to to to to to to to to and and and and and and and and a a a a a a me me me me me me me me me it it it it in is of of of of of of your your your your your your your that that that that that that do do on on are are we we will all all all be be be be be love love so so know know but but but but but but just just just when when when when when when when when when time time can can can can can come there there there there there there go go go go go go go go up oh was was see see got got never from from feel let let say say take take take take take as day away by by by night our thing caus through through wanna wanna find then everi wait wait leav leav leav leav leav leav leav leav home had walk ever ever face stay stay left new play thought should chorus chorus chorus boy mine someon someon rememb breath breath breath breath breath togeth ask ask wind wind wind wind wind wind wind told goe goe goe pass pass pass pass pass pass late late blind lay scream scream final final shake sad sad blow blow blow blow blow blow blow veri slow slow slow sinc sign window window window window window outsid outsid outsid outsid outsid worth everywher suppos echo echo threw imposs imposs solitud hardest.","Write original song lyrics with the following requirements.
+song_id,title,artist,genre,valence,arousal,theta,mood_label,bow_keywords,reference_lyrics,tags,release,reproduction_prompt,extension_prompt
+nCemAOYM4hunfFnS,I Don't Want Control of You - Remastered,Teenage Fanclub,"power pop, indie rock, power pop",0.667,0.842,1.1165491459380155,positive and energetic,every look different face feelings stronger embrace control matter heart soul places world pain sparing tear love stay same grow year tired situations mean nothing been inspirational figure,"I don't want control of you
+Doesn't matter to me
+The very heart and soul of you
+Are places I wanna see
 
-Title: ""The Wind Blows""
-Artist style inspiration: The All-American Rejects
-Genre: Pop_Rock
-Mood: tense and emotional
+Every day I look in a different face
+Feelings getting stronger with every embrace
 
-Constraints:
-1. Use the provided vocabulary naturally and make sure the important words appear clearly.
-2. Keep the lyrics coherent and emotionally consistent.
-3. Structure the lyrics into:
-   - Verse 1
-   - Chorus
-   - Verse 2
-   - Chorus
-4. Make the chorus memorable and central to the song's emotion.
-5. Keep the style consistent with the genre and artist inspiration.
-6. Do not output explanations or notes, only the lyrics.
+I don't want a world of pain
+Sparing every tear
+Don't want this love to stay the same
+But grow with every year
 
-Vocabulary:
-i i i i i i i i the the the the the the the the the you you you you you you you you you you you you you you you you you you to to to to to to to to to and and and and and and and and a a a a a a me me me me me me me me me it it it it in is of of of of of of your your your your your your your that that that that that that do do on on are are we we will all all all be be be be be love love so so know know but but but but but but just just just when when when when when when when when when time time can can can can can come there there there there there there go go go go go go go go up oh was was see see got got never from from feel let let say say take take take take take as day away by by by night our thing caus through through wanna wanna find then everi wait wait leav leav leav leav leav leav leav leav home had walk ever ever face stay stay left new play thought should chorus chorus chorus boy mine someon someon rememb breath breath breath breath breath togeth ask ask wind wind wind wind wind wind wind told goe goe goe pass pass pass pass pass pass late late blind lay scream scream final final shake sad sad blow blow blow blow blow blow blow veri slow slow slow sinc sign window window window window window outsid outsid outsid outsid outsid worth everywher suppos echo echo threw imposs imposs solitud hardest"
-Cold,Annie Lennox,Pop_Rock,0.909991610338,-0.348521467245,i i i i i i i i i i i i the the the the the the the the the the the the the the you you you you you you you you you to to to to to to to and and and a me me me me me me me me me it it it not not not not not not in in in in is is is is is is of of of of of of of of your your your your that that that that that that do do do do do do on on on are are we for for for for for be be be have love love so know know but but with with with just now now now now time can come come come come get from from from want want want want let let let way take take babi babi yeah yeah heart how could eye eye thing thing more die right tell live live onli still us us us us fall fall noth hold run hear everyth has insid god start sky sky blue tear those breath cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold done sound heaven heaven death may under under easi past apart catch catch belong slip scare winter exist glass ice less ohh given tender wrap swim swim colour colour paid frozen possess dive dive crystal crystal shiver pool pool content ribbon ohhhh glitter,positive and calm,"Compose Pop_Rock lyrics, in a style reminiscent of Annie Lennox which represents a positive and calm mood under the title of ""Cold"" using the following vocabulary: i i i i i i i i i i i i the the the the the the the the the the the the the the you you you you you you you you you to to to to to to to and and and a me me me me me me me me me it it it not not not not not not in in in in is is is is is is of of of of of of of of your your your your that that that that that that do do do do do do on on on are are we for for for for for be be be have love love so know know but but with with with just now now now now time can come come come come get from from from want want want want let let let way take take babi babi yeah yeah heart how could eye eye thing thing more die right tell live live onli still us us us us fall fall noth hold run hear everyth has insid god start sky sky blue tear those breath cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold done sound heaven heaven death may under under easi past apart catch catch belong slip scare winter exist glass ice less ohh given tender wrap swim swim colour colour paid frozen possess dive dive crystal crystal shiver pool pool content ribbon ohhhh glitter.","Write original song lyrics with the following requirements.
+Every day I look in a different face
+Feelings getting stronger with every embrace
 
-Title: ""Cold""
-Artist style inspiration: Annie Lennox
-Genre: Pop_Rock
-Mood: positive and calm
+Tired of situations
+That mean nothing to me
+You've been an inspirational figure for me
 
-Constraints:
-1. Use the provided vocabulary naturally and make sure the important words appear clearly.
-2. Keep the lyrics coherent and emotionally consistent.
-3. Structure the lyrics into:
-   - Verse 1
-   - Chorus
-   - Verse 2
-   - Chorus
-4. Make the chorus memorable and central to the song's emotion.
-5. Keep the style consistent with the genre and artist inspiration.
-6. Do not output explanations or notes, only the lyrics.
+Every day I look in a different face
+Feelings getting stronger with every embrace
 
-Vocabulary:
-i i i i i i i i i i i i the the the the the the the the the the the the the the you you you you you you you you you to to to to to to to and and and a me me me me me me me me me it it it not not not not not not in in in in is is is is is is of of of of of of of of your your your your that that that that that that do do do do do do on on on are are we for for for for for be be be have love love so know know but but with with with just now now now now time can come come come come get from from from want want want want let let let way take take babi babi yeah yeah heart how could eye eye thing thing more die right tell live live onli still us us us us fall fall noth hold run hear everyth has insid god start sky sky blue tear those breath cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold cold done sound heaven heaven death may under under easi past apart catch catch belong slip scare winter exist glass ice less ohh given tender wrap swim swim colour colour paid frozen possess dive dive crystal crystal shiver pool pool content ribbon ohhhh glitter"
-Goodbye,Asobi Seksu,Pop_Rock,1.11374291745,0.785372512445,i i i i i i i i i i i i i i i i i i i i i i i i i i the the you you you you you to to to to to and and and and and and and and and and a me me me me me me me it it it it it it it it it it it it it it it it it not not not not not not not not not in in in in my is is is is is is is is is is your that that that that that that that that that do on are we we we we we we we we we am am am will all all all all all all for for for for no no no no have have have have have have have so so so so so this this this this this this this this this this this this but but with with with with just just just now now now now now now time time time time time time time there one see from from want want want want make make make make way say take as ca ca ca ca ca at heart here here here here how how how how how need gonna right been been been think think think think think think give tri tri tri tri tri tri tri whi keep long long long long find good over over over over hand hand hand hand said said said said alway into hold face face face face has someth better should hard hard hard hard care hope free dark far myself kill kill kill kill save save set set set set set goodby goodby goodby goodby goodby reason matter matter matter matter air blind reach final clear great bleed quit treat wound bow thin grown weari doom obvious,positive and energetic,"Compose Pop_Rock lyrics, in a style reminiscent of Asobi Seksu which represents a positive and energetic mood under the title of ""Goodbye"" using the following vocabulary: i i i i i i i i i i i i i i i i i i i i i i i i i i the the you you you you you to to to to to and and and and and and and and and and a me me me me me me me it it it it it it it it it it it it it it it it it not not not not not not not not not in in in in my is is is is is is is is is is your that that that that that that that that that do on are we we we we we we we we we am am am will all all all all all all for for for for no no no no have have have have have have have so so so so so this this this this this this this this this this this this but but with with with with just just just now now now now now now time time time time time time time there one see from from want want want want make make make make way say take as ca ca ca ca ca at heart here here here here how how how how how need gonna right been been been think think think think think think give tri tri tri tri tri tri tri whi keep long long long long find good over over over over hand hand hand hand said said said said alway into hold face face face face has someth better should hard hard hard hard care hope free dark far myself kill kill kill kill save save set set set set set goodby goodby goodby goodby goodby reason matter matter matter matter air blind reach final clear great bleed quit treat wound bow thin grown weari doom obvious.","Write original song lyrics with the following requirements.
+I don't want control of you
+Doesn't matter to me
+Don't want this love to stay the same
+But grow with every year
 
-Title: ""Goodbye""
-Artist style inspiration: Asobi Seksu
-Genre: Pop_Rock
-Mood: positive and energetic
+And every day I look in a different face
+The feelings getting stronger with every embrace","power pop,indie,scottish,indie rock,alternative,power pop,indie,scottish",1997,"Compose power pop, indie rock, power pop lyrics, in a style reminiscent of Teenage Fanclub which represents a positive and energetic mood under the title of ""I Don't Want Control of You - Remastered"" using the following vocabulary every look different face feelings stronger embrace control matter heart soul places world pain sparing tear love stay same grow year tired situations mean nothing been inspirational figure.","Compose power pop, indie rock, power pop lyrics, in a style reminiscent of Teenage Fanclub, which represents a positive and energetic mood under the title of ""I Don't Want Control of You - Remastered"".
 
-Constraints:
-1. Use the provided vocabulary naturally and make sure the important words appear clearly.
-2. Keep the lyrics coherent and emotionally consistent.
-3. Structure the lyrics into:
-   - Verse 1
-   - Chorus
-   - Verse 2
-   - Chorus
-4. Make the chorus memorable and central to the song's emotion.
-5. Keep the style consistent with the genre and artist inspiration.
-6. Do not output explanations or notes, only the lyrics.
+Use the following vocabulary naturally:
+every look different face feelings stronger embrace control matter heart soul places world pain sparing tear love stay same grow year tired situations mean nothing been inspirational figure
 
-Vocabulary:
-i i i i i i i i i i i i i i i i i i i i i i i i i i the the you you you you you to to to to to and and and and and and and and and and a me me me me me me me it it it it it it it it it it it it it it it it it not not not not not not not not not in in in in my is is is is is is is is is is your that that that that that that that that that do on are we we we we we we we we we am am am will all all all all all all for for for for no no no no have have have have have have have so so so so so this this this this this this this this this this this this but but with with with with just just just now now now now now now time time time time time time time there one see from from want want want want make make make make way say take as ca ca ca ca ca at heart here here here here how how how how how need gonna right been been been think think think think think think give tri tri tri tri tri tri tri whi keep long long long long find good over over over over hand hand hand hand said said said said alway into hold face face face face has someth better should hard hard hard hard care hope free dark far myself kill kill kill kill save save set set set set set goodby goodby goodby goodby goodby reason matter matter matter matter air blind reach final clear great bleed quit treat wound bow thin grown weari doom obvious"
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+pgAQbyhPZk9GIklA,Fury,Muse,"alternative rock, rock, progressive rock",0.146,0.69,2.6489999015194963,tense and emotional,happy now burning candle both ends self loving soothes softens blows invented breathe deep cleanse sins pray god punish fuss cracks healing future soul forgives mess waste twenty years wind alone demented,"You're so happy now
+Burning the candle at both ends
+Your self loving soothes
+And softens the blows you've invented
+
+Breathe in deep
+And cleanse away our sins
+And we'll pray
+That there's no God to punish us
+And make a fuss
+
+Cracks healing up
+The future soul forgives this mess
+You waste twenty years
+And wind up alone demented
+
+Breathe in deep
+And cleanse away our sins
+And we'll pray
+That there's no God to punish us
+And make a fuss
+
+Breathe in deep
+And cleanse away our sins
+And we'll pray
+That there's no God to punish us
+And make a fuss","alternative rock,rock,alternative,progressive rock,muse,epic",2004,"Compose alternative rock, rock, progressive rock lyrics, in a style reminiscent of Muse which represents a tense and emotional mood under the title of ""Fury"" using the following vocabulary happy now burning candle both ends self loving soothes softens blows invented breathe deep cleanse sins pray god punish fuss cracks healing future soul forgives mess waste twenty years wind alone demented.","Compose alternative rock, rock, progressive rock lyrics, in a style reminiscent of Muse, which represents a tense and emotional mood under the title of ""Fury"".
+
+Use the following vocabulary naturally:
+happy now burning candle both ends self loving soothes softens blows invented breathe deep cleanse sins pray god punish fuss cracks healing future soul forgives mess waste twenty years wind alone demented
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+sU8fQyEdwjax8DWy,Devil's Night,Motionless in White,"metalcore, screamo, post-hardcore",0.197,0.991,2.123700315146078,tense and emotional,have fucking think been everything forever what stay here all single finding hope voice scare death out always inferior loud ones pushed defeated enemy life sale heart fight can when fought alive hopeless their stuck head because deserve disgusting piece shit only words give beaten every giving living dreams ahead,"Go!
+
+I am an enemy of everything
+My life is not for sale
+My heart is in this fight forever
+What can you take from me?
+When there's not a single fucking day I haven't fought to stay alive
+
+We're finding hope in the hopeless
+I am still their voice that gets stuck in your head
+
+I am me
+And I have come to scare you to death
+Because that's what you deserve
+You disgusting piece of shit
+
+I know the only words that you have for me
+Are give up and get out
+You'd like to think, that we've been beaten
+But we're here to stay, forever and always
+
+Every single day not giving up, living up all my dreams
+So go ahead and look like I'm inferior (inferior)
+
+Condescension, suffering
+Callousness and loathing
+Are the badges I have earned for my cause
+And i am finding hope within hatred
+A reason to persist to push past everything
+
+We are here, and we have come to scare you to death
+Because that's what you deserve
+You fucking fake ass hypocrites
+
+I know the only words that you have for me
+Are give up and get out
+You'd like to think, that we've been beaten
+But we're here to stay, forever and always
+So loud, we are the ones that you pushed away
+For drowning your voice out
+You'd like to think, we've been defeated
+But we're here to stay forever and always
+
+We've been through everything and we all have our scars
+We may be broken but you can't kill all of us
+
+Go!
+
+Think before you fucking speak
+I am no villain
+Think before you fucking speak
+People fear what they don't understand
+And so now beauty has become the fucking beast
+
+Maybe you didn't hear me
+I said go fuck yourself!
+
+I know the only words that you have for me
+Are give up and get out
+You'd like to think, that we've been beaten
+But we're here to stay, forever and always
+So Loud, we are the ones that you pushed away
+For drowning your voice out
+You'd like to think that we've been defeated
+But we're here to stay forever and always","metalcore,screamo,post-hardcore",2012,"Compose metalcore, screamo, post-hardcore lyrics, in a style reminiscent of Motionless in White which represents a tense and emotional mood under the title of ""Devil's Night"" using the following vocabulary have fucking think been everything forever what stay here all single finding hope voice scare death out always inferior loud ones pushed defeated enemy life sale heart fight can when fought alive hopeless their stuck head because deserve disgusting piece shit only words give beaten every giving living dreams ahead.","Compose metalcore, screamo, post-hardcore lyrics, in a style reminiscent of Motionless in White, which represents a tense and emotional mood under the title of ""Devil's Night"".
+
+Use the following vocabulary naturally:
+have fucking think been everything forever what stay here all single finding hope voice scare death out always inferior loud ones pushed defeated enemy life sale heart fight can when fought alive hopeless their stuck head because deserve disgusting piece shit only words give beaten every giving living dreams ahead
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+9ewHGB44bT6eFip3,Be Strong,Delta Goodrem,pop,0.177,0.484,3.1910878004257874,sad and reflective,all when strong feel soon have hang live swimming upstream notions blue sinking sick rain after been through what thinking can sometime will darkest hour light fades single flower whose colours turned shades grey taking each step lose spirit forget forgive how remember keep together alone defeated ohh smiling once,"Are you swimming upstream, in notions of blue?
+Do you feel like you're sinking?
+Are you sick of the rain, after all you've been through
+Well I know what you're thinking.
+When you can't take it, you can make it
+Sometime soon I know you will see,
+
+'Cause when you're in your darkest hour,
+And all of the light just fades away.
+And when you're like a single flower,
+Whose colours have turned to shades of grey,
+Well hang on
+Be strong.
+
+You're taking each step one day at a time,
+You can't lose your spirit.
+Well let live and let live,
+Forget and forgive,
+And it's all how you see it.
+And just remember, keep it together
+Don't you know you're never alone?
+
+'Cause when you're in your darkest hour,
+And all of the light just fades away.
+And when you're like a single flower,
+Whose colours have turned to shades of grey,
+Well hang on
+Be strong.
+
+No you're not defeated ohh
+And soon you'll be smiling once again.
+Then you won't have to feel it,
+Let it go with the wind.
+Time passes us by, and know that you're allowed to cry
+
+'Cause when you're in your darkest hour,
+And all of the light just fades away.
+And when you're like a single flower,
+Whose colours have turned to shades of grey,
+Well hang on
+Be strong.
+
+Oh woah huuh
+Hang on
+Hang on
+Be strong
+Da da da dn dada da
+Hold on and be strong.","inspirational,pop,medicine for the soul",2004,"Compose pop lyrics, in a style reminiscent of Delta Goodrem which represents a sad and reflective mood under the title of ""Be Strong"" using the following vocabulary all when strong feel soon have hang live swimming upstream notions blue sinking sick rain after been through what thinking can sometime will darkest hour light fades single flower whose colours turned shades grey taking each step lose spirit forget forgive how remember keep together alone defeated ohh smiling once.","Compose pop lyrics, in a style reminiscent of Delta Goodrem, which represents a sad and reflective mood under the title of ""Be Strong"".
+
+Use the following vocabulary naturally:
+all when strong feel soon have hang live swimming upstream notions blue sinking sick rain after been through what thinking can sometime will darkest hour light fades single flower whose colours turned shades grey taking each step lose spirit forget forgive how remember keep together alone defeated ohh smiling once
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+MA4OogB7wWrehsXd,Unless It's with You,Christina Aguilera,"pop, soul",0.238,0.497,3.153042534883963,sad and reflective,unless love wanted here what feel down been way people can must confess over head feeling confused losing mind life when true saying same rest days will remain weak give control guard vulnerable helpless comfortable own thinking lot about change most beautiful beginnings flames inevitable afraid rather alone white picket,"Never wanted to feel weak in love, give up control
+Never wanted to let down my guard, be vulnerable
+Never wanted to feel helpless or too comfortable
+I make it on my own, hey
+
+I've been thinking a lot about the way that people change
+The most beautiful beginnings can go down in flames
+It's inevitable, and that's what's got me so afraid
+I'd rather be alone
+
+I don't want no white picket fence
+Dozen roses and a wedding dress
+Fairy tales are fake happiness
+But here we are and I must confess
+
+Yeah, I'm in over my head feeling confused
+I'm losing my mind, don't know what to do
+'Cause I don't want to get married
+Unless it's with you, unless it's with you, ooh
+
+You came into my life when I wasn't trying to find
+Anybody to love, hiding what I felt inside
+But you opened me up and now I finally realize
+I'll be your girl for life
+
+Oh, we don't need a big audience
+Thousand people we never met
+Me and you and a couple of friends
+And here we are and I must confess
+
+Yeah, I'm in over my head feeling confused
+I'm losing my mind, don't know what to do
+'Cause I don't want to get married
+Unless it's with you, unless it's with you
+
+And oh, I know that it's scary
+But I know that it's true, I'm saying ""I do""
+'Cause I don't want to get married
+Unless it's with you, unless it's with you
+
+Beating heart and trembling hands
+Take me just the way I am
+'Cause all that I want is one and the same
+For the rest of my days, for the rest of my days
+
+You can ask me in a hundred years
+If I would still be standing here
+When we're old and gray, I'd answer the same
+Our love will remain, oh, our love will remain
+
+I was over my head feeling confused
+Been losing my mind, don't know what to do, ooh
+'Cause I don't want to get married
+Unless it's with you, unless it's with you
+
+And oh, I know that it's scary
+(But I know that it's true, I'm saying ""I do"")
+'Cause I don't want to get married
+Unless it's with you, unless it's with you, ooh
+Ey, ooh, ey ey ey, unless it's with you, you","pop,soul,rnb,best of 2018",2018,"Compose pop, soul lyrics, in a style reminiscent of Christina Aguilera which represents a sad and reflective mood under the title of ""Unless It's with You"" using the following vocabulary unless love wanted here what feel down been way people can must confess over head feeling confused losing mind life when true saying same rest days will remain weak give control guard vulnerable helpless comfortable own thinking lot about change most beautiful beginnings flames inevitable afraid rather alone white picket.","Compose pop, soul lyrics, in a style reminiscent of Christina Aguilera, which represents a sad and reflective mood under the title of ""Unless It's with You"".
+
+Use the following vocabulary naturally:
+unless love wanted here what feel down been way people can must confess over head feeling confused losing mind life when true saying same rest days will remain weak give control guard vulnerable helpless comfortable own thinking lot about change most beautiful beginnings flames inevitable afraid rather alone white picket
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+gPl2GqhKcwEGxN6p,What Took You So Long,Emma Bunton,pop,0.911,0.772,0.5846261391699877,positive and energetic,what took believe long all treat good feel fine cos honesty true give talk help work out wannabe enemy scream shout man stong have now forever touched heart start honey understand when hand everythings okay reality far had enough listen something whoa strong,"Yeah, yeah, yeah
+
+Oh talk to me, can't you see
+I'll help you work things out
+Oh don't wannabe your enemy
+And I don't wanna scream and shout
+
+Cos baby I believe in honesty
+A man that's stong and true
+I shouldn't have to say now baby
+That I believe in you
+
+What took you so long
+What took you all night
+What took you forever to see I'm right
+You know I treat you so good
+I make you feel fine
+
+And no I'll never give it up this time
+No, no, no
+Oh you touched my heart, right from the start
+You didn't know what to say
+But honey understand, when you take my hand
+Everything's okay
+
+Cos baby I believe reality
+It's never far away
+I've had enough, so listen baby
+I've got something to say
+
+What took you so long
+What took you all night
+What took you forever to see I'm right
+You know I treat you so good
+I make you feel fine
+
+You know I'll never give it up this time
+What took you so long (what took you so long)
+What took you all night (what took you all night)
+What took you forever to see I'm right
+You know I treat you so good (I treat you so good)
+I make you feel fine (I make you feel fine)
+You know I'll never give it up this time
+No, no, no
+
+(No, no, no)
+No, no, no (no, no, no)
+Oh whoa
+Oh whoa
+
+A man that's stong and true
+Baby I believe in honesty
+and then be strong and true
+
+I shouldn't have to say now baby
+That I believe in you
+What took you so long
+What took you all night
+What took you forever to see I'm right
+I make you feel fine
+You know I treat you so good
+You know I'll never give it up this time
+What took you so long (what took you so long)
+What took you all night (what took you all night)
+What took you forever to see I'm right
+I make you feel fine (I make you feel fine)
+You know I'll never give it up this time
+You know I treat you so good (I treat you so good)
+No, no, no","pop,female vocalists,emma bunton,british",2001,"Compose pop lyrics, in a style reminiscent of Emma Bunton which represents a positive and energetic mood under the title of ""What Took You So Long"" using the following vocabulary what took believe long all treat good feel fine cos honesty true give talk help work out wannabe enemy scream shout man stong have now forever touched heart start honey understand when hand everythings okay reality far had enough listen something whoa strong.","Compose pop lyrics, in a style reminiscent of Emma Bunton, which represents a positive and energetic mood under the title of ""What Took You So Long"".
+
+Use the following vocabulary naturally:
+what took believe long all treat good feel fine cos honesty true give talk help work out wannabe enemy scream shout man stong have now forever touched heart start honey understand when hand everythings okay reality far had enough listen something whoa strong
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+2hUNruuxnKGrUtAP,Think Twice,Erykah Badu,soul,0.468,0.54,2.2455372690184485,tense and emotional,think twice love maybe ought true may before start something nice sacrifice spice lives loves fire ice why really instrumental world wide underground,"Maybe
+May be
+
+Maybe we ought to think twice
+before we start something nice
+no need to sacrifice the spice in our lives... oh oh oh
+Your loves like fire and ice
+that's why we ought to think twice baby
+no need to sacrifice the spice in our lives... oh oh oh
+
+I really love you
+you know I do
+I really love you
+you know its true
+
+I really love you
+You know I do
+I really love you
+You know its true
+
+(instrumental)
+
+You know I love you baby
+you know i do
+You know I love you baby
+you know I do
+think twice
+think twice
+You know I love you baby
+you know I do
+think twice
+think twice
+you know I love you baby
+You know I do
+think twice
+think twice
+I really love you
+
+World wide underground","neo-soul,soul,female vocalists",2003,"Compose soul lyrics, in a style reminiscent of Erykah Badu which represents a tense and emotional mood under the title of ""Think Twice"" using the following vocabulary think twice love maybe ought true may before start something nice sacrifice spice lives loves fire ice why really instrumental world wide underground.","Compose soul lyrics, in a style reminiscent of Erykah Badu, which represents a tense and emotional mood under the title of ""Think Twice"".
+
+Use the following vocabulary naturally:
+think twice love maybe ought true may before start something nice sacrifice spice lives loves fire ice why really instrumental world wide underground
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+2DKWFcpWhs9w6Za2,Gimme Love,Alexia,eurodance,0.883,0.951,0.8667529740024248,positive and energetic,gimme love when boy give remember saw thought could care about had conversation couldn imagine how would spend without everything world means nothing something more real,"Gimme love, gimme love
+Gimme baby, gimme, gimme love
+
+Gimme love, gimme, gimme love
+Gimme baby, gimme, gimme love
+Gimme love, gimme, gimme love
+Baby, gimme your love
+
+Oh, gimme your love
+
+I remember when I saw you
+Never thought that you could care about me
+Then we had a conversation
+Boy, we couldn? t imagine how we would be
+
+Gimme love
+Gimme baby, gimme, gimme love
+Baby, gimme your love
+
+When I spend my time without you
+Everything in this world means nothing to me
+'Cause you give me something, baby
+Boy, this is more than I need to be real
+
+Gimme love
+Gimme baby, gimme, gimme love
+Gimme love, gimme, gimme love
+Baby, gimme your love
+Oh, gimme your love
+
+I'll need you baby, gimme your love
+I'll need you love
+
+When I spend my time without you
+Everything in this world means nothing to me
+'Cause you give me something, baby
+Boy, this is more than I need to be real
+
+Gimme love
+Gimme baby, gimme, gimme love
+Gimme love, gimme, gimme love
+Baby, gimme your love
+Oh, gimme your love
+
+Gimme love
+Gimme love, gimme love
+Gimme love, gimme love, gimme love
+Baby, give me your love
+
+Gimme love
+Gimme baby, gimme, gimme love
+Gimme love, gimme, gimme love
+Baby, gimme your love
+Oh, gimme your love
+
+Gimme love
+Gimme baby, gimme, gimme love
+Gimme love, gimme, gimme love
+Baby, gimme your love
+Oh, gimme your love
+
+Gimme love","eurodance,dance,italian",2017,"Compose eurodance lyrics, in a style reminiscent of Alexia which represents a positive and energetic mood under the title of ""Gimme Love"" using the following vocabulary gimme love when boy give remember saw thought could care about had conversation couldn imagine how would spend without everything world means nothing something more real.","Compose eurodance lyrics, in a style reminiscent of Alexia, which represents a positive and energetic mood under the title of ""Gimme Love"".
+
+Use the following vocabulary naturally:
+gimme love when boy give remember saw thought could care about had conversation couldn imagine how would spend without everything world means nothing something more real
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+fWfMlU7lpVsJniy4,Fixed,New Hope Club,"pop, rock",0.685,0.648,0.6747409422235526,positive and energetic,fixed way anywhere down anything did every even when hurts holding love can walk could everything hold shipwreck waiting rock stop storm took under before knew already anytime leave find hard breathe apart put again little undone how set stone here calling ocean ghost caught hooked chained change stuck standing,"I'm a shipwreck waiting for you
+You're the rock that stop me going
+Anywhere, anywhere
+Going anywhere, anywhere
+
+You're the storm that took me under
+Before I knew it was you
+I was already going down, going down
+I was going down, going down
+
+Anytime that you leave
+I find it hard just to breathe
+I come apart in every way
+You never put me back again
+
+Every time you go I come a little undone
+Even when it hurts, I'm holding on to your love
+Like I'm fixed, fixed, fixed
+You got me fixed on you
+You can walk away but I could never let go
+Don't know how you did it but I'm set in stone
+Like I'm fixed, fixed, fixed
+You got me fixed on you
+
+I'll be here if you ever come calling
+By the ocean I'm a ghost of everything, everything
+That we ever did, ever did
+You got me caught, got me hooked, got me fixed up
+You got me chained but I wouldn't wanna change for anything, anything
+Not for anything, anything
+
+Anytime that you leave
+I find it hard just to breathe
+I come apart in every way
+You never put me back again
+
+Every time you go I come a little undone
+Even when it hurts, I'm holding on to your love
+Like I'm fixed, fixed, fixed
+You got me fixed on you
+You can walk away but I could never let go
+Don't know how you did it but I'm set in stone
+Like I'm fixed, fixed, fixed
+You got me fixed on you
+
+Stuck standing on a cliff
+It's the way you get your kicks
+Ain't the way I wanna live
+But that's the way you got me fixed
+
+Stuck standing on a cliff
+It's the way you get your kicks
+Ain't the way I wanna live
+But that's the way you got me fixed
+
+Stuck standing on a cliff
+It's the way you get your kicks
+Ain't the way I wanna live
+But that's the way you got me fixed
+
+Stuck standing on a cliff
+It's the way you get your kicks
+Ain't the way I wanna live
+But that's the way you got me
+
+Every time you go I come a little undone
+Even when it hurts, I'm holding on to your love (hold on)
+Like I'm fixed, fixed, fixed (hold on)
+You got me fixed on you
+You can walk away but I could never let go (never let go no)
+Don't know how you did it but I'm set in stone
+Like I'm fixed, fixed, fixed
+You got me fixed on you","pop,rock,uk,under 20000 listeners",2017,"Compose pop, rock lyrics, in a style reminiscent of New Hope Club which represents a positive and energetic mood under the title of ""Fixed"" using the following vocabulary fixed way anywhere down anything did every even when hurts holding love can walk could everything hold shipwreck waiting rock stop storm took under before knew already anytime leave find hard breathe apart put again little undone how set stone here calling ocean ghost caught hooked chained change stuck standing.","Compose pop, rock lyrics, in a style reminiscent of New Hope Club, which represents a positive and energetic mood under the title of ""Fixed"".
+
+Use the following vocabulary naturally:
+fixed way anywhere down anything did every even when hurts holding love can walk could everything hold shipwreck waiting rock stop storm took under before knew already anytime leave find hard breathe apart put again little undone how set stone here calling ocean ghost caught hooked chained change stuck standing
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
+YrYMRnfJTYdnv1Hk,Take This Lonely Heart,Nothing But Thieves,"rock, alternative rock, indie rock",0.528,0.758,1.4626922915624807,positive and energetic,now end feel more all good next hole keep head looking maybe heart hunger gonna own because searching chest chance younger everyday grow less seem been trying straight where roam feels home weight world down people pulling gotten sick palm hand think itll there piece ourselves draw line sand cross,"I feel younger everyday
+The more I grow, the less I seem to know
+I've been trying to keep my head straight
+Where I roam, it never feels like home
+You feel the weight of the world coming down on your head
+These people looking at you, and now they're pulling you back
+I've gotten sick of all it, it's in the palm of my hand
+And I think it'll be there for good
+
+We take a piece of ourselves, we draw a line on the sand
+We say ""don't cross this, or else"", and then we put up a flag
+Oh, how we worship the things that we don't quite understand
+Oh, it's more dangerous than you know
+
+I've got a message that you can't ignore
+Maybe I'm just not the man I was before
+Take this from me, take this lonely heart
+'Cause I, 'cause I don't need it no more
+I've got a hunger you will never taste
+Craving a desire that won't go to waste
+Take this from me, take this lonely heart
+And I, I'm gonna make it my own
+
+Someone took my ego away
+Hate so long, I'll miss it now it's gone
+Now my youth is being replaced
+So, good night, it's gonna be alright
+
+'Cause now I drink the good wine and now I get out of bed
+And now I let myself love, and I'm not scared of the end
+I take it all on the chin, and now I'd do it again
+Because maybe it's time for a change
+I've got a pain in my neck, because I keep looking up
+I'm searching what's coming next, but it won't come from above
+And there's a hole in my chest, like there's a hole in the sun
+So tell me, what's coming next? I'm searching what's coming next
+I've got a pain in my neck, because I keep looking up
+I'm searching what's coming next, but it won't come from above
+And there's a hole in my chest and I'll make it my heart
+
+I've got a message that you can't ignore
+Maybe I'm just not the man I was before
+Take this from me, take this lonely heart
+'Cause I, 'cause I don't need it no more
+I've got a hunger you will never taste
+Craving a desire that won't go to waste
+Take this from me, take this lonely heart
+And I, I'm gonna make it my own
+
+There's a chance that you take that you risk your own fate
+When you break all the chains that you feel comfortable in
+There's a chance that I'll take so that my hunger can be free
+In the end, in the end, in the end, in the end","rock,alternative rock,indie rock,indie,alternative",2018,"Compose rock, alternative rock, indie rock lyrics, in a style reminiscent of Nothing But Thieves which represents a positive and energetic mood under the title of ""Take This Lonely Heart"" using the following vocabulary now end feel more all good next hole keep head looking maybe heart hunger gonna own because searching chest chance younger everyday grow less seem been trying straight where roam feels home weight world down people pulling gotten sick palm hand think itll there piece ourselves draw line sand cross.","Compose rock, alternative rock, indie rock lyrics, in a style reminiscent of Nothing But Thieves, which represents a positive and energetic mood under the title of ""Take This Lonely Heart"".
+
+Use the following vocabulary naturally:
+now end feel more all good next hole keep head looking maybe heart hunger gonna own because searching chest chance younger everyday grow less seem been trying straight where roam feels home weight world down people pulling gotten sick palm hand think itll there piece ourselves draw line sand cross
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Do not output explanations or notes, only the lyrics."
