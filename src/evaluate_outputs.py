@@ -17,10 +17,16 @@ SECTION_HEADERS = {
 REQUIRED_EXTENSION_ORDER = ["verse 1", "chorus", "verse 2", "chorus"]
 
 
+def clean_text(value) -> str:
+    if pd.isna(value):
+        return ""
+    return str(value).strip()
+
+
 def tokenize(text: str) -> list[str]:
     if pd.isna(text) or not str(text).strip():
         return []
-    return re.findall(r"\b\w+\b", str(text).lower())
+    return re.findall(r"\b[a-zA-Z]+\b", str(text).lower())
 
 
 def split_nonempty_lines(text: str) -> list[str]:
@@ -84,15 +90,34 @@ def repeated_line_ratio(text: str) -> float:
     return repeated_instances / len(lines)
 
 
-def parse_vocab_keywords(vocab: str) -> list[str]:
-    if pd.isna(vocab) or not str(vocab).strip():
+def parse_vocab_words(vocab: str) -> list[str]:
+    """
+    Supports:
+    - plain word strings: 'love breath wind'
+    - freq strings: 'love:2 breath:5 wind:7'
+    Returns only the word tokens.
+    """
+    text = clean_text(vocab)
+    if not text:
         return []
-    return tokenize(str(vocab))
+
+    parts = text.split()
+    words = []
+
+    for part in parts:
+        if ":" in part:
+            word = part.split(":", 1)[0].strip().lower()
+            if word:
+                words.append(word)
+        else:
+            words.extend(tokenize(part))
+
+    return words
 
 
 def keyword_coverage(text: str, vocab: str) -> float:
     text_vocab = set(tokenize(text))
-    target_vocab = set(parse_vocab_keywords(vocab))
+    target_vocab = set(parse_vocab_words(vocab))
     if not target_vocab:
         return 0.0
     return len(text_vocab & target_vocab) / len(target_vocab)
@@ -100,7 +125,7 @@ def keyword_coverage(text: str, vocab: str) -> float:
 
 def top_keyword_coverage(text: str, vocab: str, top_k: int = 10) -> float:
     text_vocab = set(tokenize(text))
-    target_vocab = parse_vocab_keywords(vocab)[:top_k]
+    target_vocab = parse_vocab_words(vocab)[:top_k]
     if not target_vocab:
         return 0.0
     return len(set(target_vocab) & text_vocab) / len(set(target_vocab))
@@ -108,7 +133,7 @@ def top_keyword_coverage(text: str, vocab: str, top_k: int = 10) -> float:
 
 def keyword_repetition_ratio(text: str, vocab: str) -> float:
     tokens = tokenize(text)
-    vocab_set = set(parse_vocab_keywords(vocab))
+    vocab_set = set(parse_vocab_words(vocab))
     if not tokens or not vocab_set:
         return 0.0
 
@@ -262,6 +287,24 @@ def summarize_metrics(per_song_df: pd.DataFrame, output_type: str) -> dict:
     return summary
 
 
+def pick_vocab_for_reproduction(row: pd.Series) -> tuple[str, str]:
+    if "bow_all_words" in row.index and clean_text(row["bow_all_words"]):
+        return "bow_all_words", clean_text(row["bow_all_words"])
+    if "bow_keywords_words" in row.index and clean_text(row["bow_keywords_words"]):
+        return "bow_keywords_words", clean_text(row["bow_keywords_words"])
+    return "bow_keywords", clean_text(row.get("bow_keywords", ""))
+
+
+def pick_vocab_for_extension(row: pd.Series) -> tuple[str, str]:
+    if "bow_keywords_words" in row.index and clean_text(row["bow_keywords_words"]):
+        return "bow_keywords_words", clean_text(row["bow_keywords_words"])
+    if "bow_keywords_freq" in row.index and clean_text(row["bow_keywords_freq"]):
+        return "bow_keywords_freq", clean_text(row["bow_keywords_freq"])
+    if "bow_all_words" in row.index and clean_text(row["bow_all_words"]):
+        return "bow_all_words", clean_text(row["bow_all_words"])
+    return "bow_keywords", clean_text(row.get("bow_keywords", ""))
+
+
 def main():
     df = pd.read_csv(INPUT_FILE).copy()
 
@@ -273,7 +316,6 @@ def main():
         "valence",
         "arousal",
         "mood_label",
-        "bow_keywords",
         "reference_lyrics",
         "reproduction_output",
         "extension_output",
@@ -285,33 +327,43 @@ def main():
     per_song_rows = []
 
     for _, row in df.iterrows():
+        repro_vocab_source, repro_vocab = pick_vocab_for_reproduction(row)
+        ext_vocab_source, ext_vocab = pick_vocab_for_extension(row)
+
         base_info = {
             "song_id": row.get("song_id", ""),
-            "title": row["title"],
-            "artist": row["artist"],
-            "genre": row.get("genre", ""),
+            "title": clean_text(row["title"]),
+            "artist": clean_text(row["artist"]),
+            "genre": clean_text(row.get("genre", "")),
             "valence": row.get("valence", ""),
             "arousal": row.get("arousal", ""),
-            "mood_label": row.get("mood_label", ""),
-            "bow_keywords": row.get("bow_keywords", ""),
-            "reference_lyrics": row.get("reference_lyrics", ""),
-            "tags": row.get("tags", ""),
-            "release": row.get("release", ""),
+            "theta": row.get("theta", ""),
+            "mood_label": clean_text(row.get("mood_label", "")),
+            "bow_all_words": clean_text(row.get("bow_all_words", "")),
+            "bow_all_freq": clean_text(row.get("bow_all_freq", "")),
+            "bow_keywords_words": clean_text(row.get("bow_keywords_words", "")),
+            "bow_keywords_freq": clean_text(row.get("bow_keywords_freq", "")),
+            "bow_keywords": clean_text(row.get("bow_keywords", "")),
+            "reference_lyrics": clean_text(row.get("reference_lyrics", "")),
+            "tags": clean_text(row.get("tags", "")),
+            "release": clean_text(row.get("release", "")),
         }
 
         repro_metrics = evaluate_text(
             text=row.get("reproduction_output", ""),
-            vocab=row.get("bow_keywords", ""),
+            vocab=repro_vocab,
             reference_text=row.get("reference_lyrics", ""),
             output_type="reproduction",
         )
+        repro_metrics["vocab_source_used"] = repro_vocab_source
 
         ext_metrics = evaluate_text(
             text=row.get("extension_output", ""),
-            vocab=row.get("bow_keywords", ""),
+            vocab=ext_vocab,
             reference_text=row.get("reference_lyrics", ""),
             output_type="extension",
         )
+        ext_metrics["vocab_source_used"] = ext_vocab_source
 
         per_song_rows.append({**base_info, **repro_metrics})
         per_song_rows.append({**base_info, **ext_metrics})

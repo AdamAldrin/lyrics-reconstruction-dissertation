@@ -12,15 +12,27 @@ from openai import OpenAI
 load_dotenv()
 
 INPUT_FILE = Path("data/processed/prompt_dataset.csv")
-OUTPUT_FILE = Path("outputs/generated/generated_outputs.csv")
+OUTPUT_FILE = Path(f"outputs/generated/generated_outputs_{MODEL_NAME}.csv")
 
 MODEL_NAME = "gpt-4o-mini"   # use "gpt-4o" for closer paper reproduction
-MAX_ROWS = None                # set to None to run all rows
+MAX_ROWS = None              # set to None to run all rows
 SLEEP_BETWEEN_CALLS = 1.0
 MAX_RETRIES = 3
 
 
-def generate_text(client: OpenAI, prompt: str, model: str = MODEL_NAME, max_retries: int = MAX_RETRIES) -> str:
+def clean_text(value) -> str:
+    if pd.isna(value):
+        return ""
+    text = str(value).strip()
+    return "" if text.lower() == "nan" else text
+
+
+def generate_text(
+    client: OpenAI,
+    prompt: str,
+    model: str = MODEL_NAME,
+    max_retries: int = MAX_RETRIES,
+) -> str:
     """
     Call the Responses API with retries.
     """
@@ -49,10 +61,39 @@ def load_existing_outputs(output_file: Path) -> pd.DataFrame:
 
 
 def build_done_key_set(existing_df: pd.DataFrame) -> set:
-    required = {"title", "artist"}
-    if existing_df.empty or not required.issubset(existing_df.columns):
+    """
+    Prefer song_id if present. Fall back to (title, artist).
+    """
+    if existing_df.empty:
         return set()
-    return set(zip(existing_df["title"], existing_df["artist"]))
+
+    if "song_id" in existing_df.columns:
+        song_ids = existing_df["song_id"].fillna("").astype(str).str.strip()
+        return set(song_ids[song_ids != ""])
+
+    required = {"title", "artist"}
+    if required.issubset(existing_df.columns):
+        return set(
+            zip(
+                existing_df["title"].fillna("").astype(str).str.strip(),
+                existing_df["artist"].fillna("").astype(str).str.strip(),
+            )
+        )
+
+    return set()
+
+
+def is_done(row: pd.Series, done_keys: set) -> bool:
+    song_id = clean_text(row.get("song_id", ""))
+    if song_id and song_id in done_keys:
+        return True
+
+    key = (clean_text(row.get("title", "")), clean_text(row.get("artist", "")))
+    return key in done_keys
+
+
+def get_optional_col(row: pd.Series, col_name: str) -> str:
+    return clean_text(row.get(col_name, ""))
 
 
 def main():
@@ -67,19 +108,15 @@ def main():
         df = df.head(MAX_ROWS)
 
     required_columns = [
-    "song_id",
-    "title",
-    "artist",
-    "genre",
-    "valence",
-    "arousal",
-    "mood_label",
-    "bow_keywords",
-    "reference_lyrics",
-    "tags",
-    "release",
-    "reproduction_prompt",
-    "extension_prompt",
+        "song_id",
+        "title",
+        "artist",
+        "genre",
+        "valence",
+        "arousal",
+        "mood_label",
+        "reproduction_prompt",
+        "extension_prompt",
     ]
     missing = [col for col in required_columns if col not in df.columns]
     if missing:
@@ -91,8 +128,7 @@ def main():
     new_rows = []
 
     for idx, row in df.iterrows():
-        key = (row["title"], row["artist"])
-        if key in done_keys:
+        if is_done(row, done_keys):
             print(f"Skipping existing row: {row['title']} - {row['artist']}")
             continue
 
@@ -124,23 +160,38 @@ def main():
         time.sleep(SLEEP_BETWEEN_CALLS)
 
         result = {
-            "song_id": row.get("song_id", ""),
-            "title": row["title"],
-            "artist": row["artist"],
-            "genre": row["genre"],
+            "song_id": get_optional_col(row, "song_id"),
+            "title": clean_text(row["title"]),
+            "artist": clean_text(row["artist"]),
+            "genre": clean_text(row["genre"]),
             "valence": row["valence"],
             "arousal": row["arousal"],
-            "mood_label": row["mood_label"],
-            "bow_keywords": row.get("bow_keywords", ""),
-            "reference_lyrics": row.get("reference_lyrics", ""),
-            "tags": row.get("tags", ""),
-            "release": row.get("release", ""),
+            "theta": row["theta"] if "theta" in row.index else "",
+            "mood_label": clean_text(row["mood_label"]),
+
+            # vocabulary views
+            "bow_all_words": get_optional_col(row, "bow_all_words"),
+            "bow_all_freq": get_optional_col(row, "bow_all_freq"),
+            "bow_keywords_words": get_optional_col(row, "bow_keywords_words"),
+            "bow_keywords_freq": get_optional_col(row, "bow_keywords_freq"),
+            "bow_keywords": get_optional_col(row, "bow_keywords"),  # backward compatibility
+
+            # metadata / references
+            "reference_lyrics": get_optional_col(row, "reference_lyrics"),
+            "tags": get_optional_col(row, "tags"),
+            "release": get_optional_col(row, "release"),
+
+            # run metadata
             "model_name": MODEL_NAME,
             "generation_timestamp_utc": datetime.now(timezone.utc).isoformat(),
-            "reproduction_prompt_version": "lycon_repro_v1",
-            "extension_prompt_version": "structured_extension_v1",
-            "reproduction_prompt": row["reproduction_prompt"],
-            "extension_prompt": row["extension_prompt"],
+            "reproduction_prompt_version": "lycon_repro_v2",
+            "extension_prompt_version": "structured_extension_v2",
+
+            # prompts
+            "reproduction_prompt": clean_text(row["reproduction_prompt"]),
+            "extension_prompt": clean_text(row["extension_prompt"]),
+
+            # outputs
             "reproduction_output": reproduction_output,
             "extension_output": extension_output,
         }
@@ -149,7 +200,7 @@ def main():
 
         combined_df = pd.concat(
             [existing_df, pd.DataFrame(new_rows)],
-            ignore_index=True
+            ignore_index=True,
         )
         OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
         combined_df.to_csv(OUTPUT_FILE, index=False)
