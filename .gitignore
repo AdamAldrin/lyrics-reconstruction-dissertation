@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+
+# DATA (IMPORTANT)
+data/raw/*
+!data/raw/.gitkeep
+
+# Outputs
+outputs/*
+!outputs/.gitkeep
