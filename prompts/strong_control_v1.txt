@@ -1,0 +1,13 @@
+Compose {genre} lyrics, in a style reminiscent of {artist}, which represents a {mood_label} mood under the title of "{title}".
+
+Use the following vocabulary clearly and prominently throughout the lyrics:
+{vocab_words}
+{vocab_frequency_block}
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics exactly into Verse 1, Chorus, Verse 2, Chorus.
+- Ensure the chorus is memorable and central to the song's emotion.
+- Make sure many of the provided vocabulary words appear explicitly in the lyrics.
+- Reuse the most important words across sections where it sounds natural.
+- Do not output explanations or notes, only the lyrics.

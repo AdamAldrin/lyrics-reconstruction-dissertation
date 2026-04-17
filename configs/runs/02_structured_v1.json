@@ -1,0 +1,37 @@
+{
+  "experiment_name": "structured-v1",
+  "dataset": {
+    "input_root": "data/raw/music4all",
+    "output_file": "data/samples/music4all_sample_with_prompt_inputs.csv",
+    "max_rows": 10,
+    "candidate_multiplier": 20,
+    "top_k_vocab": 50,
+    "english_only": true,
+    "random_seed": 42,
+    "deduplicate_lines": true,
+    "min_token_length": 3,
+    "primary_vocab_strategy": "content"
+  },
+  "prompt_dataset": {
+    "output_file": "data/processed/prompt_dataset.csv"
+  },
+  "prompt_variants": [
+    {
+      "name": "structured",
+      "template_file": "prompts/extension_v1.txt",
+      "vocab_words_column": "vocab_words",
+      "vocab_freq_column": "vocab_freq",
+      "requires_structure": true
+    }
+  ],
+  "generation": {
+    "model_name": "gpt-4o-mini",
+    "max_rows": null,
+    "sleep_between_calls": 1.0,
+    "max_retries": 3,
+    "dry_run": true
+  },
+  "evaluation": {
+    "top_keyword_k": 10
+  }
+}

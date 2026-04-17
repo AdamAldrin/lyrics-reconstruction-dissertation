@@ -1,4 +1,4 @@
-song_id,title,artist,genre,valence,arousal,tags,reference_lyrics,vocab_strategy,vocab_words,vocab_freq,vocab_words_raw,vocab_freq_raw,vocab_words_content,vocab_freq_content,lang,spotify_id,release,theta,mood_label,reproduction_prompt,extension_prompt,run_id
+song_id,title,artist,genre,valence,arousal,tags,reference_lyrics,vocab_strategy,vocab_words,vocab_freq,vocab_words_raw,vocab_freq_raw,vocab_words_content,vocab_freq_content,lang,spotify_id,release,theta,mood_label,baseline_lycon_prompt,run_id
 zKOVN7LbJArSuw96,Powerless,The Flaming Lips,noise,0.081,0.579,"psychedelic,noise","Honey, you're just paranoid
 You should do what you enjoy
 No one is ever really powerless
@@ -11,18 +11,7 @@ Pain and pleasure both get you high
 No one is ever really powerless
 That's what she said, now I can't forget
 No one is ever really powerless
-No I think I know what that really is",content,what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget,what:5 really:3 she:3 now:2 think:2 honey:1 paranoid:1 should:1 enjoy:1 powerless:1 gave:1 kiss:1 only:1 happens:1 try:1 pain:1 pleasure:1 both:1 high:1 forget:1,what i you is really she no thats said and now think know that honey youre just paranoid should do enjoy one ever powerless gave me a kiss it only happens if try pain pleasure both get high cant forget,what:5 i:5 you:4 is:3 really:3 she:3 no:2 thats:2 said:2 and:2 now:2 think:2 know:2 that:2 honey:1 youre:1 just:1 paranoid:1 should:1 do:1 enjoy:1 one:1 ever:1 powerless:1 gave:1 me:1 a:1 kiss:1 it:1 only:1 happens:1 if:1 try:1 pain:1 pleasure:1 both:1 get:1 high:1 cant:1 forget:1,what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget,what:5 really:3 she:3 now:2 think:2 honey:1 paranoid:1 should:1 enjoy:1 powerless:1 gave:1 kiss:1 only:1 happens:1 try:1 pain:1 pleasure:1 both:1 high:1 forget:1,en,0dv3L5t7Rqq3NmfptBgPZB,2009,2.955236203719897,tense and emotional,"Compose noise lyrics, in a style reminiscent of The Flaming Lips which represents a tense and emotional mood under the title of ""Powerless"" using the following vocabulary what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget.","Compose noise lyrics, in a style reminiscent of The Flaming Lips, which represents a tense and emotional mood under the title of ""Powerless"".
-
-Use the following vocabulary naturally:
-what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget
-Prioritize words roughly according to these frequencies:
-what:5 really:3 she:3 now:2 think:2 honey:1 paranoid:1 should:1 enjoy:1 powerless:1 gave:1 kiss:1 only:1 happens:1 try:1 pain:1 pleasure:1 both:1 high:1 forget:1
-
-Additional requirements:
-- Keep the lyrics coherent and emotionally consistent.
-- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
-- Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+No I think I know what that really is",content,what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget,what:5 really:3 she:3 now:2 think:2 honey:1 paranoid:1 should:1 enjoy:1 powerless:1 gave:1 kiss:1 only:1 happens:1 try:1 pain:1 pleasure:1 both:1 high:1 forget:1,what i you is really she no thats said and now think know that honey youre just paranoid should do enjoy one ever powerless gave me a kiss it only happens if try pain pleasure both get high cant forget,what:5 i:5 you:4 is:3 really:3 she:3 no:2 thats:2 said:2 and:2 now:2 think:2 know:2 that:2 honey:1 youre:1 just:1 paranoid:1 should:1 do:1 enjoy:1 one:1 ever:1 powerless:1 gave:1 me:1 a:1 kiss:1 it:1 only:1 happens:1 if:1 try:1 pain:1 pleasure:1 both:1 get:1 high:1 cant:1 forget:1,what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget,what:5 really:3 she:3 now:2 think:2 honey:1 paranoid:1 should:1 enjoy:1 powerless:1 gave:1 kiss:1 only:1 happens:1 try:1 pain:1 pleasure:1 both:1 high:1 forget:1,en,0dv3L5t7Rqq3NmfptBgPZB,2009,2.955236203719897,tense and emotional,"Compose noise lyrics, in a style reminiscent of The Flaming Lips which represents a tense and emotional mood under the title of ""Powerless"" using the following vocabulary what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget.",pipeline-baseline-check
 EAvEOmFPt4Oix7Di,Heartworms - Flipped,The Shins,"indie rock, indie pop, rock",0.632,0.806,"indie,indie rock,indie pop,alternative,rock","Well I guess I'm just here to test your patience
 'Cause you're so smart my tricks don't work at all
 Is it my lack of education?
@@ -77,18 +66,7 @@ No easy way around it
 You're the saddest dream that ever came true
 
 La-la-la-la
-La-la-la-la-la",content,can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found,can:4 there:3 aint:3 way:3 what:3 trying:3 when:3 all:2 tell:2 who:2 own:2 lines:2 look:2 out:2 gonna:2 true:2 minimize:2 damage:2 done:2 little:2 now:2 came:2 guess:1 here:1 test:1 patience:1 smart:1 tricks:1 work:1 lack:1 education:1 why:1 call:1 behind:1 symmetry:1 lies:1 fundamental:1 difference:1 mines:1 crawl:1 offense:1 between:1 reading:1 anything:1 some:1 affection:1 maybe:1 impress:1 song:1 found:1,i you la to the your me im a that so it and no in can do cause my there aint way what trying when just youre at all of tell those who own but lines look out for gonna true get minimize damage done one like little now this,i:11 you:11 la:9 to:7 the:7 your:6 me:6 im:5 a:5 that:5 so:4 it:4 and:4 no:4 in:4 can:4 do:4 cause:3 my:3 there:3 aint:3 way:3 what:3 trying:3 when:3 just:2 youre:2 at:2 all:2 of:2 tell:2 those:2 who:2 own:2 but:2 lines:2 look:2 out:2 for:2 gonna:2 true:2 get:2 minimize:2 damage:2 done:2 one:2 like:2 little:2 now:2 this:2,can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found,can:4 there:3 aint:3 way:3 what:3 trying:3 when:3 all:2 tell:2 who:2 own:2 lines:2 look:2 out:2 gonna:2 true:2 minimize:2 damage:2 done:2 little:2 now:2 came:2 guess:1 here:1 test:1 patience:1 smart:1 tricks:1 work:1 lack:1 education:1 why:1 call:1 behind:1 symmetry:1 lies:1 fundamental:1 difference:1 mines:1 crawl:1 offense:1 between:1 reading:1 anything:1 some:1 affection:1 maybe:1 impress:1 song:1 found:1,en,1doeqZA2n4xZIxG0tlHgc5,2018,1.1635404787200498,positive and energetic,"Compose indie rock, indie pop, rock lyrics, in a style reminiscent of The Shins which represents a positive and energetic mood under the title of ""Heartworms - Flipped"" using the following vocabulary can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found.","Compose indie rock, indie pop, rock lyrics, in a style reminiscent of The Shins, which represents a positive and energetic mood under the title of ""Heartworms - Flipped"".
-
-Use the following vocabulary naturally:
-can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found
-Prioritize words roughly according to these frequencies:
-can:4 there:3 aint:3 way:3 what:3 trying:3 when:3 all:2 tell:2 who:2 own:2 lines:2 look:2 out:2 gonna:2 true:2 minimize:2 damage:2 done:2 little:2 now:2 came:2 guess:1 here:1 test:1 patience:1 smart:1 tricks:1 work:1 lack:1 education:1 why:1 call:1 behind:1 symmetry:1 lies:1 fundamental:1 difference:1 mines:1 crawl:1 offense:1 between:1 reading:1 anything:1 some:1 affection:1 maybe:1 impress:1 song:1 found:1
-
-Additional requirements:
-- Keep the lyrics coherent and emotionally consistent.
-- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
-- Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+La-la-la-la-la",content,can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found,can:4 there:3 aint:3 way:3 what:3 trying:3 when:3 all:2 tell:2 who:2 own:2 lines:2 look:2 out:2 gonna:2 true:2 minimize:2 damage:2 done:2 little:2 now:2 came:2 guess:1 here:1 test:1 patience:1 smart:1 tricks:1 work:1 lack:1 education:1 why:1 call:1 behind:1 symmetry:1 lies:1 fundamental:1 difference:1 mines:1 crawl:1 offense:1 between:1 reading:1 anything:1 some:1 affection:1 maybe:1 impress:1 song:1 found:1,i you la to the your me im a that so it and no in can do cause my there aint way what trying when just youre at all of tell those who own but lines look out for gonna true get minimize damage done one like little now this,i:11 you:11 la:9 to:7 the:7 your:6 me:6 im:5 a:5 that:5 so:4 it:4 and:4 no:4 in:4 can:4 do:4 cause:3 my:3 there:3 aint:3 way:3 what:3 trying:3 when:3 just:2 youre:2 at:2 all:2 of:2 tell:2 those:2 who:2 own:2 but:2 lines:2 look:2 out:2 for:2 gonna:2 true:2 get:2 minimize:2 damage:2 done:2 one:2 like:2 little:2 now:2 this:2,can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found,can:4 there:3 aint:3 way:3 what:3 trying:3 when:3 all:2 tell:2 who:2 own:2 lines:2 look:2 out:2 gonna:2 true:2 minimize:2 damage:2 done:2 little:2 now:2 came:2 guess:1 here:1 test:1 patience:1 smart:1 tricks:1 work:1 lack:1 education:1 why:1 call:1 behind:1 symmetry:1 lies:1 fundamental:1 difference:1 mines:1 crawl:1 offense:1 between:1 reading:1 anything:1 some:1 affection:1 maybe:1 impress:1 song:1 found:1,en,1doeqZA2n4xZIxG0tlHgc5,2018,1.1635404787200498,positive and energetic,"Compose indie rock, indie pop, rock lyrics, in a style reminiscent of The Shins which represents a positive and energetic mood under the title of ""Heartworms - Flipped"" using the following vocabulary can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found.",pipeline-baseline-check
 O3z2lo3M0UpXtxYJ,Crushing the Holy,Ketzer,"thrash metal, black metal",0.102,0.982,"thrash metal,blackened thrash metal,black metal,german,germany","Mislead flock of the faithful
 With minds of peace and eyes of blind
 Praying to altars, crosses and priests
@@ -128,18 +106,7 @@ I am your servant in this satanic rite
 Crush the holy
 Asphyxiate voices of delusion
 Slay the benevolent
-Behold the true heirs of creation",content,crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation,crush:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 satanic:2 mislead:1 flock:1 faithful:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1 trace:1 asphyxiate:1 voices:1 delusion:1 slay:1 benevolent:1 behold:1 true:1 heirs:1 creation:1,the of and my to crush we in will satan kill holy terror infernal fuking force you satanic mislead flock faithful with minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down are satans brigade baptized fire blood sons damnation arise avengers breed hunting divine,the:12 of:8 and:5 my:5 to:3 crush:3 we:3 in:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 you:2 satanic:2 mislead:1 flock:1 faithful:1 with:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 are:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1,crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation,crush:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 satanic:2 mislead:1 flock:1 faithful:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1 trace:1 asphyxiate:1 voices:1 delusion:1 slay:1 benevolent:1 behold:1 true:1 heirs:1 creation:1,en,3Tl7mufmD3V50xRZcKhJIh,2009,2.261028283638378,tense and emotional,"Compose thrash metal, black metal lyrics, in a style reminiscent of Ketzer which represents a tense and emotional mood under the title of ""Crushing the Holy"" using the following vocabulary crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation.","Compose thrash metal, black metal lyrics, in a style reminiscent of Ketzer, which represents a tense and emotional mood under the title of ""Crushing the Holy"".
-
-Use the following vocabulary naturally:
-crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation
-Prioritize words roughly according to these frequencies:
-crush:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 satanic:2 mislead:1 flock:1 faithful:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1 trace:1 asphyxiate:1 voices:1 delusion:1 slay:1 benevolent:1 behold:1 true:1 heirs:1 creation:1
-
-Additional requirements:
-- Keep the lyrics coherent and emotionally consistent.
-- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
-- Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+Behold the true heirs of creation",content,crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation,crush:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 satanic:2 mislead:1 flock:1 faithful:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1 trace:1 asphyxiate:1 voices:1 delusion:1 slay:1 benevolent:1 behold:1 true:1 heirs:1 creation:1,the of and my to crush we in will satan kill holy terror infernal fuking force you satanic mislead flock faithful with minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down are satans brigade baptized fire blood sons damnation arise avengers breed hunting divine,the:12 of:8 and:5 my:5 to:3 crush:3 we:3 in:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 you:2 satanic:2 mislead:1 flock:1 faithful:1 with:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 are:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1,crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation,crush:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 satanic:2 mislead:1 flock:1 faithful:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1 trace:1 asphyxiate:1 voices:1 delusion:1 slay:1 benevolent:1 behold:1 true:1 heirs:1 creation:1,en,3Tl7mufmD3V50xRZcKhJIh,2009,2.261028283638378,tense and emotional,"Compose thrash metal, black metal lyrics, in a style reminiscent of Ketzer which represents a tense and emotional mood under the title of ""Crushing the Holy"" using the following vocabulary crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation.",pipeline-baseline-check
 AG2tWyMg6hf0vSZa,Despair In The Departure Lounge,Arctic Monkeys,"indie rock, rock, indie rock",0.284,0.306,"indie rock,british,indie,rock,arctic monkeys,indie rock,indie,british","He's pining for her
 In a people carrier
 There might be buildings & pretty things to see like that
@@ -184,10 +151,56 @@ Makes you feel a bit ill
 Despair in the departure lounge
 Is one & they'll still be around at three
 No signal & low battery
-What's happened to me?",content,might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls,might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1,the it you in a might be wont dont there to like but say got on she of your thought hes for things do although about i just feeling this when cause shes nowhere near comes closely followed by fear bit at no still pining her people carrier buildings pretty,the:16 it:8 you:7 in:5 a:5 might:5 be:5 wont:4 dont:4 there:3 to:3 like:3 but:3 say:3 got:3 on:3 she:3 of:3 your:3 thought:3 hes:2 for:2 things:2 do:2 although:2 about:2 i:2 just:2 feeling:2 this:2 when:2 cause:2 shes:2 nowhere:2 near:2 comes:2 closely:2 followed:2 by:2 fear:2 bit:2 at:2 no:2 still:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1,might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls,might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1,en,4GJKUGqq1qdqQCl3uWv6Sn,2006,3.8733836901940872,sad and reflective,"Compose indie rock, rock, indie rock lyrics, in a style reminiscent of Arctic Monkeys which represents a sad and reflective mood under the title of ""Despair In The Departure Lounge"" using the following vocabulary might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls.","Compose indie rock, rock, indie rock lyrics, in a style reminiscent of Arctic Monkeys, which represents a sad and reflective mood under the title of ""Despair In The Departure Lounge"".
+What's happened to me?",content,might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls,might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1,the it you in a might be wont dont there to like but say got on she of your thought hes for things do although about i just feeling this when cause shes nowhere near comes closely followed by fear bit at no still pining her people carrier buildings pretty,the:16 it:8 you:7 in:5 a:5 might:5 be:5 wont:4 dont:4 there:3 to:3 like:3 but:3 say:3 got:3 on:3 she:3 of:3 your:3 thought:3 hes:2 for:2 things:2 do:2 although:2 abAG2tWyMg6hf0vSZa,Despair In The Departure Lounge,Arctic Monkeys,"indie rock, rock, indie rock",0.284,0.306,"indie rock,british,indie,rock,arctic monkeys,indie rock,indie,british","He's pining for her
+In a people carrier
+There might be buildings & pretty things to see like that
+But architecture won't do
+
+Although it might say a lot about the city or town
+I don't care what they've got, keep on turning 'em down
+It don't say the funny things she does
+Don't even try & cheer him up, because
+It just won't happen
+
+He's got the feeling again
+This time on the aeroplane
+There might be tellys in the back of the seats in front
+But Rodney & Del won't do
+
+Although it might take your mind off the aches & the pains
+Laugh when he falls through the bar
+But you're feeling the same
+'Cause she isn't there to hold your hand
+She won't be waiting for you when you land
+
+It feels like she's just nowhere near
+You could well be out on your ear
+This thought comes closely followed by the fear
+& the thought of it
+Makes you feel a bit ill
+
+Yesterday I saw a girl who looked like someone you might knock about with
+& almost shouted
+& then reality kicked in within us
+
+It seems as we become the winners
+You lose a bit of summat
+& half wonder if you won it at all
+& don't say 'owt 'cause you've got no idea
+
+& she's still nowhere near
+& the thought comes closely followed by the fear
+& the thought of it
+Makes you feel a bit ill
+Despair in the departure lounge
+Is one & they'll still be around at three
+No signal & low battery
+What's happened to me?",content,might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls,might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1,the it you in a might be wont dont there to like but say got on she of your thought hes for things do although about i just feeling this when cause shes nowhere near comes closely followed by fear bit at no still pining her people carrier buildings pretty,the:16 it:8 you:7 in:5 a:5 might:5 be:5 wont:4 dont:4 there:3 to:3 like:3 but:3 say:3 got:3 on:3 she:3 of:3 your:3 thought:3 hes:2 for:2 things:2 do:2 although:2 about:2 i:2 just:2 feeling:2 this:2 when:2 cause:2 shes:2 nowhere:2 near:2 comes:2 closely:2 followed:2 by:2 fear:2 bit:2 at:2 no:2 still:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1,might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls,might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1,en,4GJKUGqq1qdqQCl3uWv6Sn,2006,3.8733836901940872,sad and reflective,"Compose indie rock, rock, indie rock lyrics, in a style reminiscent of Arctic Monkeys, which represents a sad and reflective mood under the title of ""Despair In The Departure Lounge"".
 
 Use the following vocabulary naturally:
 might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls
+
+Prioritize higher-frequency words more strongly than lower-frequency words, but keep the lyrics natural and coherent. Do not turn the output into a word list.
 Prioritize words roughly according to these frequencies:
 might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1
 
@@ -195,7 +208,8 @@ Additional requirements:
 - Keep the lyrics coherent and emotionally consistent.
 - Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
 - Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+- Reuse the most important words where it sounds natural.
+- Do not output explanations or notes, only the lyrics.",pipeline-structured-freq-check
 QqX67Rc0QP0wlOB5,Homesick,Dua Lipa,pop,0.399,0.224,"pop,ballad,2017,chris martin","Here, where the sky's falling
 I'm covered in blue
 I'm running and I'm crawling
@@ -210,51 +224,7 @@ I know, I know, I know
 It's a bittersweet feeling
 Longing, and I'm leaving
 I go, I go, I go
-But I wish I was there with you
-Oh, I wish I was there with you
-There's a crack in my window
-A bird in my room
-Angels all over that watch over you
-When I'm walking on water
-All my dreams have come true
-Still, nothing means nothing
-Without you, you
-
-You give me a reason, something to believe in
-I know, I know, I know
-You give me a meaning, something I can breathe in
-I know, I know, I know
-It's a bittersweet feeling
-Longing, and I'm leaving
-I go, I go, I go
-Tell my heart to lie, but I know deep inside it's true
-That I wish I was there with you
-That I wish I was there with you
-Oh I wish I was there with you
-
-You give me a reason, something to believe in
-I know, I know, I know
-You give me a meaning, something I can breathe in
-I know, I know, I know
-It's a bittersweet feeling
-Longing, and I'm leaving
-I go, I go, I go
-Tell my heart to lie, but I know deep inside it's true
-That I wish I was there with you
-That I wish I was there with you
-Oh, I wish I was there with you",content,wish there all when give something over true nothing here where skys falling covered blue running crawling fighting rain stops darling what will why reason believe meaning can breathe bittersweet feeling longing leaving crack window bird room angels watch walking water dreams have means without tell heart lie deep inside,wish:4 there:4 all:3 when:2 give:2 something:2 over:2 true:2 nothing:2 here:1 where:1 skys:1 falling:1 covered:1 blue:1 running:1 crawling:1 fighting:1 rain:1 stops:1 darling:1 what:1 will:1 why:1 reason:1 believe:1 meaning:1 can:1 breathe:1 bittersweet:1 feeling:1 longing:1 leaving:1 crack:1 window:1 bird:1 room:1 angels:1 watch:1 walking:1 water:1 dreams:1 have:1 means:1 without:1 tell:1 heart:1 lie:1 deep:1 inside:1,i you in im know a go wish was there with my and all but the when do give me something to its oh over that true nothing here where skys falling covered blue running crawling fighting for rain stops then darling what will why reason believe meaning can breathe,i:20 you:10 in:6 im:5 know:5 a:5 go:4 wish:4 was:4 there:4 with:4 my:4 and:3 all:3 but:3 the:2 when:2 do:2 give:2 me:2 something:2 to:2 its:2 oh:2 over:2 that:2 true:2 nothing:2 here:1 where:1 skys:1 falling:1 covered:1 blue:1 running:1 crawling:1 fighting:1 for:1 rain:1 stops:1 then:1 darling:1 what:1 will:1 why:1 reason:1 believe:1 meaning:1 can:1 breathe:1,wish there all when give something over true nothing here where skys falling covered blue running crawling fighting rain stops darling what will why reason believe meaning can breathe bittersweet feeling longing leaving crack window bird room angels watch walking water dreams have means without tell heart lie deep inside,wish:4 there:4 all:3 when:2 give:2 something:2 over:2 true:2 nothing:2 here:1 where:1 skys:1 falling:1 covered:1 blue:1 running:1 crawling:1 fighting:1 rain:1 stops:1 darling:1 what:1 will:1 why:1 reason:1 believe:1 meaning:1 can:1 breathe:1 bittersweet:1 feeling:1 longing:1 leaving:1 crack:1 window:1 bird:1 room:1 angels:1 watch:1 walking:1 water:1 dreams:1 have:1 means:1 without:1 tell:1 heart:1 lie:1 deep:1 inside:1,en,5E5MqaS6eOsbaJibl3YeMZ,2017,4.361583095888495,sad and reflective,"Compose pop lyrics, in a style reminiscent of Dua Lipa which represents a sad and reflective mood under the title of ""Homesick"" using the following vocabulary wish there all when give something over true nothing here where skys falling covered blue running crawling fighting rain stops darling what will why reason believe meaning can breathe bittersweet feeling longing leaving crack window bird room angels watch walking water dreams have means without tell heart lie deep inside.","Compose pop lyrics, in a style reminiscent of Dua Lipa, which represents a sad and reflective mood under the title of ""Homesick"".
-
-Use the following vocabulary naturally:
-wish there all when give something over true nothing here where skys falling covered blue running crawling fighting rain stops darling what will why reason believe meaning can breathe bittersweet feeling longing leaving crack window bird room angels watch walking water dreams have means without tell heart lie deep inside
-Prioritize words roughly according to these frequencies:
-wish:4 there:4 all:3 when:2 give:2 something:2 over:2 true:2 nothing:2 here:1 where:1 skys:1 falling:1 covered:1 blue:1 running:1 crawling:1 fighting:1 rain:1 stops:1 darling:1 what:1 will:1 why:1 reason:1 believe:1 meaning:1 can:1 breathe:1 bittersweet:1 feeling:1 longing:1 leaving:1 crack:1 window:1 bird:1 room:1 angels:1 watch:1 walking:1 water:1 dreams:1 have:1 means:1 without:1 tell:1 heart:1 lie:1 deep:1 inside:1
-
-Additional requirements:
-- Keep the lyrics coherent and emotionally consistent.
-- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
-- Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
-59uRghNSX1RUlUrc,Last Xmas,Allie X,pop,0.245,0.83,pop,"Last Christmas, I gave you my heart
+But I wish I was there wit59uRghNSX1RUlUrc,Last Xmas,Allie X,pop,0.245,0.83,pop,"Last Christmas, I gave you my heart
 But the very next day you gave it away
 This year, to save me from tears
 I'll give it to someone special
@@ -317,18 +287,7 @@ I'll give it to someone
 I'll give it to someone special (Special)
 Hmmm...
 Gave you my
-Aaah...",content,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,you it i a me gave special to my but ooh away someone ill give heart with now fool on christmas the very next day year from baby been and love know ive again man under cover tore apart hoo hmm last this save tears once bitten twice shy keep,you:16 it:12 i:11 a:11 me:10 gave:8 special:8 to:7 my:6 but:6 ooh:6 away:5 someone:5 ill:4 give:4 heart:3 with:3 now:3 fool:3 on:3 christmas:2 the:2 very:2 next:2 day:2 year:2 from:2 baby:2 been:2 and:2 love:2 know:2 ive:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 this:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,en,5Iylu9FEarJW7j3VXJO7UN,2018,2.228684931977107,tense and emotional,"Compose pop lyrics, in a style reminiscent of Allie X which represents a tense and emotional mood under the title of ""Last Xmas"" using the following vocabulary gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul.","Compose pop lyrics, in a style reminiscent of Allie X, which represents a tense and emotional mood under the title of ""Last Xmas"".
-
-Use the following vocabulary naturally:
-gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul
-Prioritize words roughly according to these frequencies:
-gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1
-
-Additional requirements:
-- Keep the lyrics coherent and emotionally consistent.
-- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
-- Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+Aaah...",content,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,you it i a me gave special to my but ooh away someone ill give heart with now fool on christmas the very next day year from baby been and love know ive again man under cover tore apart hoo hmm last this save tears once bitten twice shy keep,you:16 it:12 i:11 a:11 me:10 gave:8 special:8 to:7 my:6 but:6 ooh:6 away:5 someone:5 ill:4 give:4 heart:3 with:3 now:3 fool:3 on:3 christmas:2 the:2 very:2 next:2 day:2 year:2 from:2 baby:2 been:2 and:2 love:2 know:2 ive:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 this:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,en,5Iylu9FEarJW7j3VXJO7UN,2018,2.228684931977107,tense and emotional,"Compose pop lyrics, in a style reminiscent of Allie X which represents a tense and emotional mood under the title of ""Last Xmas"" using the following vocabulary gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul.",pipeline-baseline-check
 t7SuEWvnGxM0XH3F,Starstruck,Lancey Foux,"grime, uk hip hop, rap",0.689,0.564,"grime,uk hip hop,trap,rap,hip-hop,british","Lot of ice
 Lot of ice
 Lot of ice
@@ -337,74 +296,76 @@ Lot of ice
 Lot of ice
 Lot of i, ice
 
-I ain't even famous, but she saw me and was starstruck (lots of ice)
-I ain't even famous, but she saw me and was starstruck (lots of ice)
-Big pride on me, I come beg your pardon?
-A boy with a big nine on him, you don't want no problem
+I ain't even famous, but she saw me and was starstru59uRghNSX1RUlUrc,Last Xmas,Allie X,pop,0.245,0.83,pop,"Last Christmas, I gave you my heart
+But the very next day you gave it away
+This year, to save me from tears
+I'll give it to someone special
+Last Christmas, I gave you my heart
+But the very next day you gave it away (You gave it away)
+This year, to save me from tears
+I'll give it to someone special
+(Special, special, special...)
 
-Born to die, so alive
-See it in your eyes
-Cold as ice, whats your choice of p?
-Minus priced, the other one I like
-She might say she won't, but she might
-She be cocaine, wool over your eyes
-I'm doing holiday rouse, on the first night
-She gonna see me and drool, over my ice
-So la la la, ooh ooh ooh
-Is it you, is it you?
-Opposition member, we gonna shoot if it's you
-I'm present supplying, pressure on youths
-And it's true
-I'm coming heavy, if I end up in the ready with my troops
+Once bitten, twice shy
+I keep my distance, but you still catch my eye
+Tell me, baby, do you recognize me?
+Well, it's been a year, it doesn't surprise me
 
-I ain't even famous, but she saw me and was starstruck (lots of ice)
-I ain't even famous, but she saw me and was starstruck (lots of ice)
-Big pride on me, I come beg your pardon
-A boy with a big nine on him, you don't want no problem
+Merry Christmas, I wrapped it up and sent it
+With a note saying, I love you, I meant it
+Now I know what a fool I've been
+But if you kissed me now
+I know you'd fool me again
 
-Scared of what, afraid of who? (who?)
-Saint Laurent, yeah, choos beaming cool (yeah, yeah)
-Got enough from a dog, three c's, you doing the two
-Want some chat chat, want some tattoos
-Mummy said get a job, I got a clue, non saloon
-Riding around recliner, seat back
-£20 for 2
-Days in the trap, and if you gotta stick with the plan
-Get with the group
-I see my niggas, every thing around me new
-I ain't famous, she like Lancey is it you?
-Every night I long[?] for the devil, and I do not wear a suit
-New bitch, and a drink
-Sink by the blues[?]
-New grip on her, 452
+Last Christmas, I gave you my heart
+But the very next day you gave it away
+(You gave it away)
+This year, to save me from tears
+I'll give it to someone special
 
-I ain't even famous, but she saw me and was starstruck
-I ain't even famous, but she saw me and was starstruck
-Big pride on me, I come beg your pardon
-A boy with a big nine on him, you don't want no problem
+Ooh-ooh
+Oooh, baby
+Yeah!
 
-Born to die, so alive
-See it in your eyes
-Cold as ice, whats your choice of p?
-Minus priced
+A crowded room, friends with tired eyes
+I'm hiding from you and your soul of ice
+My God, I thought you were someone to rely on
+Me? I guess I was a shoulder to cry on
 
-I ain't even famous, but she saw me and was starstruck
-I ain't even famous, but she saw me and was starstruck
-Big pride on me, I come beg your pardon
-A boy with a big nine on him, you don't want no problem
-I ain't even famous, but she saw me and was starstruck",content,she ice aint famous big new lot even saw starstruck pride beg pardon eyes minus priced might over doing gonna who some chat around every lots boy nine him problem born die alive cold choice other cocaine wool holiday rouse first drool opposition member shoot present supplying pressure youths true,she:8 ice:5 aint:3 famous:3 big:3 new:3 lot:2 even:2 saw:2 starstruck:2 pride:2 beg:2 pardon:2 eyes:2 minus:2 priced:2 might:2 over:2 doing:2 gonna:2 who:2 some:2 chat:2 around:2 every:2 lots:1 boy:1 nine:1 him:1 problem:1 born:1 die:1 alive:1 cold:1 choice:1 other:1 cocaine:1 wool:1 holiday:1 rouse:1 first:1 drool:1 opposition:1 member:1 shoot:1 present:1 supplying:1 pressure:1 youths:1 true:1,i the she and a you of me on ice your with it aint famous but big want see in im my la ooh is if yeah new lot even saw was starstruck pride come beg pardon so eyes minus priced like might over doing night gonna its who got,i:12 the:9 she:8 and:7 a:7 you:7 of:6 me:6 on:6 ice:5 your:5 with:4 it:4 aint:3 famous:3 but:3 big:3 want:3 see:3 in:3 im:3 my:3 la:3 ooh:3 is:3 if:3 yeah:3 new:3 lot:2 even:2 saw:2 was:2 starstruck:2 pride:2 come:2 beg:2 pardon:2 so:2 eyes:2 minus:2 priced:2 like:2 might:2 over:2 doing:2 night:2 gonna:2 its:2 who:2 got:2,she ice aint famous big new lot even saw starstruck pride beg pardon eyes minus priced might over doing gonna who some chat around every lots boy nine him problem born die alive cold choice other cocaine wool holiday rouse first drool opposition member shoot present supplying pressure youths true,she:8 ice:5 aint:3 famous:3 big:3 new:3 lot:2 even:2 saw:2 starstruck:2 pride:2 beg:2 pardon:2 eyes:2 minus:2 priced:2 might:2 over:2 doing:2 gonna:2 who:2 some:2 chat:2 around:2 every:2 lots:1 boy:1 nine:1 him:1 problem:1 born:1 die:1 alive:1 cold:1 choice:1 other:1 cocaine:1 wool:1 holiday:1 rouse:1 first:1 drool:1 opposition:1 member:1 shoot:1 present:1 supplying:1 pressure:1 youths:1 true:1,en,0HxbRq7TvkVD60hmxIovIB,2018,0.32650487673639644,positive and energetic,"Compose grime, uk hip hop, rap lyrics, in a style reminiscent of Lancey Foux which represents a positive and energetic mood under the title of ""Starstruck"" using the following vocabulary she ice aint famous big new lot even saw starstruck pride beg pardon eyes minus priced might over doing gonna who some chat around every lots boy nine him problem born die alive cold choice other cocaine wool holiday rouse first drool opposition member shoot present supplying pressure youths true.","Compose grime, uk hip hop, rap lyrics, in a style reminiscent of Lancey Foux, which represents a positive and energetic mood under the title of ""Starstruck"".
+A face on a lover with a fire in his heart
+A man under cover but you tore me apart, ooh-hoo
+Now I've found a real love, you'll never fool me again
+
+Last Christmas, I gave you my heart
+But the very next day you gave it away
+(You gave it away)
+This year, to save me from tears
+I'll give it to someone special (Special)
+
+Last Christmas, I gave you my heart
+(I gave you my heart)
+But the very next day you gave it away
+(You gave me away, oh)
+This year, to save me from tears
+I'll give it to someone special
+(I'll give it to someone special)
+Special, ooh ooh...
+
+A face on a lover with a fire in his heart
+(I gave you my heart)
+A man under cover but you tore him apart
+Hmm-hmm, ooh-hoo
+I'll give it to someone
+I'll give it to someone special (Special)
+Hmmm...
+Gave you my
+Aaah...",content,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,you it i a me gave special to my but ooh away someone ill give heart with now fool on christmas the very next day year from baby been and love know ive again man under cover tore apart hoo hmm last this save tears once bitten twice shy keep,you:16 it:12 i:11 a:11 me:10 gave:8 special:8 to:7 my:6 but:6 ooh:6 away:5 someone:5 ill:4 give:4 heart:3 with:3 now:3 fool:3 on:3 christmas:2 the:2 very:2 next:2 day:2 year:2 from:2 baby:2 been:2 and:2 love:2 know:2 ive:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 this:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,en,5Iylu9FEarJW7j3VXJO7UN,2018,2.228684931977107,tense and emotional,"Compose pop lyrics, in a style reminiscent of Allie X, which represents a tense and emotional mood under the title of ""Last Xmas"".
 
 Use the following vocabulary naturally:
-she ice aint famous big new lot even saw starstruck pride beg pardon eyes minus priced might over doing gonna who some chat around every lots boy nine him problem born die alive cold choice other cocaine wool holiday rouse first drool opposition member shoot present supplying pressure youths true
-Prioritize words roughly according to these frequencies:
-she:8 ice:5 aint:3 famous:3 big:3 new:3 lot:2 even:2 saw:2 starstruck:2 pride:2 beg:2 pardon:2 eyes:2 minus:2 priced:2 might:2 over:2 doing:2 gonna:2 who:2 some:2 chat:2 around:2 every:2 lots:1 boy:1 nine:1 him:1 problem:1 born:1 die:1 alive:1 cold:1 choice:1 other:1 cocaine:1 wool:1 holiday:1 rouse:1 first:1 drool:1 opposition:1 member:1 shoot:1 present:1 supplying:1 pressure:1 youths:1 true:1
+gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul
 
-Additional requirements:
-- Keep the lyrics coherent and emotionally consistent.
-- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
-- Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
-xWYCYPIrpiAoXrl0,Toro,liily,"rock, alternative rock, indie rock, post-punk",0.554,0.878,"rock,alternative rock,indie rock,post-punk","Sunkissed, skin it makes me feed into your mind tricks
+Prioritize higher-frequency words more strongly than lower-frequency words, but keep the lyrics natural and coherent. Do not turn the output into a word list.
+Prioritize words roughly according toxWYCYPIrpiAoXrl0,Toro,liily,"rock, alternative rock, indie rock, post-punk",0.554,0.878,"rock,alternative rock,indie rock,post-punk","Sunkissed, skin it makes me feed into your mind tricks
 Your eyes are ocean blue but I'm sea sick
 Of all your pretty lies on your lipstick
 Cryptic so cryptic
@@ -424,18 +385,7 @@ All my life want to take it over
 All my life want to take it over
 All my life want to take it over
 All my life want to take it over
-All my life want to take it over",content,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,me your my to the love into eyes strange save it im of all cryptic look be holy ghost bless that you give a sunkissed skin makes feed mind tricks are ocean blue but sea sick pretty lies on lipstick so life want take over stranger do most baby wheres,me:12 your:6 my:6 to:5 the:4 love:4 into:3 eyes:3 strange:3 save:3 it:2 im:2 of:2 all:2 cryptic:2 look:2 be:2 holy:2 ghost:2 bless:2 that:2 you:2 give:2 a:2 sunkissed:1 skin:1 makes:1 feed:1 mind:1 tricks:1 are:1 ocean:1 blue:1 but:1 sea:1 sick:1 pretty:1 lies:1 on:1 lipstick:1 so:1 life:1 want:1 take:1 over:1 stranger:1 do:1 most:1 baby:1 wheres:1,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,en,2Uz2fB3AZEJlixkLRjsves,2019,1.4288992721907325,positive and energetic,"Compose rock, alternative rock, indie rock, post-punk lyrics, in a style reminiscent of liily which represents a positive and energetic mood under the title of ""Toro"" using the following vocabulary love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit.","Compose rock, alternative rock, indie rock, post-punk lyrics, in a style reminiscent of liily, which represents a positive and energetic mood under the title of ""Toro"".
-
-Use the following vocabulary naturally:
-love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit
-Prioritize words roughly according to these frequencies:
-love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1
-
-Additional requirements:
-- Keep the lyrics coherent and emotionally consistent.
-- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
-- Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+All my life want to take it over",content,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,me your my to the love into eyes strange save it im of all cryptic look be holy ghost bless that you give a sunkissed skin makes feed mind tricks are ocean blue but sea sick pretty lies on lipstick so life want take over stranger do most baby wheres,me:12 your:6 my:6 to:5 the:4 love:4 into:3 eyes:3 strange:3 save:3 it:2 im:2 of:2 all:2 cryptic:2 look:2 be:2 holy:2 ghost:2 bless:2 that:2 you:2 give:2 a:2 sunkissed:1 skin:1 makes:1 feed:1 mind:1 tricks:1 are:1 ocean:1 blue:1 but:1 sea:1 sick:1 pretty:1 lies:1 on:1 lipstick:1 so:1 life:1 want:1 take:1 over:1 stranger:1 do:1 most:1 baby:1 wheres:1,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,en,2Uz2fB3AZEJlixkLRjsves,2019,1.4288992721907325,positive and energetic,"Compose rock, alternative rock, indie rock, post-punk lyrics, in a style reminiscent of liily which represents a positive and energetic mood under the title of ""Toro"" using the following vocabulary love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit.",pipeline-baseline-check
 rUcvSa4S5TWMdEmo,"Chase, I Hardly Know Ya",Marietta,"emo, math rock, midwest emo",0.403,0.58,"emo,indie,math rock,midwest emo,twinkly,gang vocals","I screamed at my skin, ""Please stay younger.""
 Where did the years go when I was feeling stronger?
 
@@ -466,10 +416,77 @@ I've been thinking what you said is true,
 Our lives are reds and greens and shades of blue,
 Our colored pasts reveal what is true,
 Nothing that I said to you paints a pretty portrait of us two,
-We're different shades of blue.",content,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1,i the of my and so is in it you at was your a mind me to on skin years when right place knew before half for lay down im doesnt past call memorized that were couldve seen nothing what said true our shades blue screamed please stay younger where,i:10 the:10 of:8 my:7 and:7 so:6 is:5 in:4 it:4 you:4 at:3 was:3 your:3 a:3 mind:3 me:3 to:3 on:3 skin:2 years:2 when:2 right:2 place:2 knew:2 before:2 half:2 for:2 lay:2 down:2 im:2 doesnt:2 past:2 call:2 memorized:2 that:2 were:2 couldve:2 seen:2 nothing:2 what:2 said:2 true:2 our:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1,en,2K4h2jMvqQ8VEKPP7F7MWg,2013,2.4519459830881116,tense and emotional,"Compose emo, math rock, midwest emo lyrics, in a style reminiscent of Marietta which represents a tense and emotional mood under the title of ""Chase, I Hardly Know Ya"" using the following vocabulary mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four.","Compose emo, math rock, midwest emo lyrics, in a style reminiscent of Marietta, which represents a tense and emotional mood under the title of ""Chase, I Hardly Know Ya"".
+We're different shades of blue.",content,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1,i the of my and so is in it you at was your a mind me to on skin years when right place knew before half for lay down im doesnt past call memorized that were couldve seen nothing what said true our shades blue screamed please stay younger where,i:10 the:10 of:8 my:7 and:7 so:6 is:5 in:4 it:4 you:4 at:3 was:3 your:3 a:3 mind:3 me:3 to:3 on:3 skin:2 years:2 when:2 right:2 place:2 knew:2 before:2 half:2 for:2 lay:2 down:2 im:2 doesnt:2 past:2 call:2 memorized:2 that:2 were:2 couldve:2 seen:2 nothing:2 what:2 said:2 true:2 our:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couxWYCYPIrpiAoXrl0,Toro,liily,"rock, alternative rock, indie rock, post-punk",0.554,0.878,"rock,alternative rock,indie rock,post-punk","Sunkissed, skin it makes me feed into your mind tricks
+Your eyes are ocean blue but I'm sea sick
+Of all your pretty lies on your lipstick
+Cryptic so cryptic
+All my life want to take it over
+All my life want to take it over
+Stranger do me the most,
+look into my eyes be the holy to my Ghost, bless me your strange love
+Baby where's the dirty love that you mentioned,
+you make me start to question my own patience,
+I'm waiting ona knife to come an save me, save me, please save me
+All my life want to take it over
+Stranger do me the most,
+look into my eyes be the holy to my Ghost, give me that strange love
+Hold me give me a kiss, wake me from this dream of a never ending pit
+Bless me your strange love
+All my life want to take it over
+All my life want to take it over
+All my life want to take it over
+All my life want to take it over
+All my life want to take it over",content,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,me your my to the love into eyes strange save it im of all cryptic look be holy ghost bless that you give a sunkissed skin makes feed mind tricks are ocean blue but sea sick pretty lies on lipstick so life want take over stranger do most baby wheres,me:12 your:6 my:6 to:5 the:4 love:4 into:3 eyes:3 strange:3 save:3 it:2 im:2 of:2 all:2 cryptic:2 look:2 be:2 holy:2 ghost:2 bless:2 that:2 you:2 give:2 a:2 sunkissed:1 skin:1 makes:1 feed:1 mind:1 tricks:1 are:1 ocean:1 blue:1 but:1 sea:1 sick:1 pretty:1 lies:1 on:1 lipstick:1 so:1 life:1 want:1 take:1 over:1 stranger:1 do:1 most:1 baby:1 wheres:1,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,en,2Uz2fB3AZEJlixkLRjsves,2019,1.4288992721907325,positive and energetic,"Compose rock, alternative rock, indie rock, post-punk lyrics, in a style reminiscent of liily, which represents a positive and energetic mood under the title of ""Toro"".
+
+Use the following vocabulary naturally:
+love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit
+
+Prioritize higher-frequency words more strongly than lower-frequency words, but keep the lyrics natural and coherent. Do not turn the output into a word list.
+Prioritize words roughly according to these frequencies:
+love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
+- Make the chorus memorable and central to the song's emotion.
+- Reuse the most important words where it sounds natural.
+- Do not output explanations or notes, only the lyrics.",pipeline-structured-freq-check
+rUcvSa4S5TWMdEmo,"Chase, I Hardly Know Ya",Marietta,"emo, math rock, midwest emo",0.403,0.58,"emo,indie,math rock,midwest emo,twinkly,gang vocals","I screamed at my skin, ""Please stay younger.""
+Where did the years go when I was feeling stronger?
+
+Right out the window when I was driving your car,
+In the rear view I saw my heart.
+It spun and landed in the front yard
+Of a place I knew before.
+
+Before I knew it, distance crossed my mind.
+Divides my spirits, half for faith and half for better times.
+So how long is four years? It's an eternity I suppose.
+Infinity beckons me to a simple place to hide.
+
+Lay down and cover your eyes so bright from awful morning light.
+I'm so scared of death, not fond of life
+And facing my fears doesn't feel right so I'll carry on tonight.
+Lay down and draw the blinds, the past is always on my mind.
+
+So call me at midnight or call me anytime,
+I'm patiently waiting, the past is on my mind.
+I memorized the nuances of conversation held that night,
+I memorized every detail of your skin, we were spread so thin.
+
+Could've seen you in the basement, could've seen you in the hall.
+But it doesn't even matter, cuz it was nothing at all.
+
+I've been thinking what you said is true,
+Our lives are reds and greens and shades of blue,
+Our colored pasts reveal what is true,
+Nothing that I said to you paints a pretty portrait of us two,
+We're different shades of blue.",content,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1,i the of my and so is in it you at was your a mind me to on skin years when right place knew before half for lay down im doesnt past call memorized that were couldve seen nothing what said true our shades blue screamed please stay younger where,i:10 the:10 of:8 my:7 and:7 so:6 is:5 in:4 it:4 you:4 at:3 was:3 your:3 a:3 mind:3 me:3 to:3 on:3 skin:2 years:2 when:2 right:2 place:2 knew:2 before:2 half:2 for:2 lay:2 down:2 im:2 doesnt:2 past:2 call:2 memorized:2 that:2 were:2 couldve:2 seen:2 nothing:2 what:2 said:2 true:2 our:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1,en,2K4h2jMvqQ8VEKPP7F7MWg,2013,2.4519459830881116,tense and emotional,"Compose emo, math rock, midwest emo lyrics, in a style reminiscent of Marietta, which represents a tense and emotional mood under the title of ""Chase, I Hardly Know Ya"".
 
 Use the following vocabulary naturally:
 mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four
+
+Prioritize higher-frequency words more strongly than lower-frequency words, but keep the lyrics natural and coherent. Do not turn the output into a word list.
 Prioritize words roughly according to these frequencies:
 mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1
 
@@ -477,7 +494,8 @@ Additional requirements:
 - Keep the lyrics coherent and emotionally consistent.
 - Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
 - Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+- Reuse the most important words where it sounds natural.
+- Do not output explanations or notes, only the lyrics.",pipeline-structured-freq-check
 gNioVLaEJFxkn1Wj,We All Sleep Alone,Cher,pop,0.363,0.51,"pop,cher,80s,dance,90s","Somebody, somewhere, turns off the lights
 Somebody all alone faces the night
 You've got to be strong when you're out on your own
@@ -504,10 +522,12 @@ Yeah, yeah, we all sleep alone, yeah
 And I know, And I know how you feel
 Like I've taken what you're saying to me
 Cause we all sleep alone
-Yes, we all sleep alone",content,all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes,all:8 alone:7 sleep:6 when:3 somebody:2 sooner:2 later:2 heart:2 young:2 wait:2 feel:2 somewhere:1 turns:1 off:1 lights:1 faces:1 strong:1 out:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 possession:1 itll:1 tear:1 apart:1 may:1 have:1 lovers:1 wherever:1 roam:1 ends:1 soul:1 love:1 independence:1 has:1 promises:1 keep:1 prisoner:1 somebodys:1 needs:1 how:1 taken:1 what:1 saying:1 yes:1,the all alone we sleep you i and to when yeah somebody night be youre your cause sooner or later heart but ooh young wait feel no know somewhere turns off lights faces youve got strong out on own nobody nowhere holds key loves a possession itll tear apart may,the:8 all:8 alone:7 we:6 sleep:6 you:5 i:5 and:4 to:3 when:3 yeah:3 somebody:2 night:2 be:2 youre:2 your:2 cause:2 sooner:2 or:2 later:2 heart:2 but:2 ooh:2 young:2 wait:2 feel:2 no:2 know:2 somewhere:1 turns:1 off:1 lights:1 faces:1 youve:1 got:1 strong:1 out:1 on:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 a:1 possession:1 itll:1 tear:1 apart:1 may:1,all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes,all:8 alone:7 sleep:6 when:3 somebody:2 sooner:2 later:2 heart:2 young:2 wait:2 feel:2 somewhere:1 turns:1 off:1 lights:1 faces:1 strong:1 out:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 possession:1 itll:1 tear:1 apart:1 may:1 have:1 lovers:1 wherever:1 roam:1 ends:1 soul:1 love:1 independence:1 has:1 promises:1 keep:1 prisoner:1 somebodys:1 needs:1 how:1 taken:1 what:1 saying:1 yes:1,en,3ZW8YDbgZBkqu8Wt0jzf4H,1987,3.0687291734627933,tense and emotional,"Compose pop lyrics, in a style reminiscent of Cher which represents a tense and emotional mood under the title of ""We All Sleep Alone"" using the following vocabulary all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes.","Compose pop lyrics, in a style reminiscent of Cher, which represents a tense and emotional mood under the title of ""We All Sleep Alone"".
+Yes, we all sleep alone",content,all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes,all:8 alone:7 sleep:6 when:3 somebody:2 sooner:2 later:2 heart:2 young:2 wait:2 feel:2 somewhere:1 turns:1 off:1 lights:1 faces:1 strong:1 out:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 possession:1 itll:1 tear:1 apart:1 may:1 have:1 lovers:1 wherever:1 roam:1 ends:1 soul:1 love:1 independence:1 has:1 promises:1 keep:1 prisoner:1 somebodys:1 needs:1 how:1 taken:1 what:1 saying:1 yes:1,the all alone we sleep you i and to when yeah somebody night be youre your cause sooner or later heart but ooh young wait feel no know somewhere turns off lights faces youve got strong out on own nobody nowhere holds key loves a possession itll tear apart may,the:8 all:8 alone:7 we:6 sleep:6 you:5 i:5 and:4 to:3 when:3 yeah:3 somebody:2 night:2 be:2 youre:2 your:2 cause:2 sooner:2 or:2 later:2 heart:2 but:2 ooh:2 young:2 wait:2 feel:2 no:2 know:2 somewhere:1 turns:1 off:1 lights:1 faces:1 youve:1 got:1 strong:1 out:1 on:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 a:1 possession:1 itll:1 tear:1 apart:1 may:1,all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes,all:8 alone:7 sleep:6 when:3 somebody:2 sooner:2 later:2 heart:2 young:2 wait:2 feel:2 somewhere:1 turns:1 off:1 lights:1 faces:1 strong:1 out:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 possession:1 itll:1 tear:1 apart:1 may:1 have:1 lovers:1 wherever:1 roam:1 ends:1 soul:1 love:1 independence:1 has:1 promises:1 keep:1 prisoner:1 somebodys:1 needs:1 how:1 taken:1 what:1 saying:1 yes:1,en,3ZW8YDbgZBkqu8Wt0jzf4H,1987,3.0687291734627933,tense and emotional,"Compose pop lyrics, in a style reminiscent of Cher, which represents a tense and emotional mood under the title of ""We All Sleep Alone"".
 
 Use the following vocabulary naturally:
 all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes
+
+Prioritize higher-frequency words more strongly than lower-frequency words, but keep the lyrics natural and coherent. Do not turn the output into a word list.
 Prioritize words roughly according to these frequencies:
 all:8 alone:7 sleep:6 when:3 somebody:2 sooner:2 later:2 heart:2 young:2 wait:2 feel:2 somewhere:1 turns:1 off:1 lights:1 faces:1 strong:1 out:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 possession:1 itll:1 tear:1 apart:1 may:1 have:1 lovers:1 wherever:1 roam:1 ends:1 soul:1 love:1 independence:1 has:1 promises:1 keep:1 prisoner:1 somebodys:1 needs:1 how:1 taken:1 what:1 saying:1 yes:1
 
@@ -515,4 +535,5 @@ Additional requirements:
 - Keep the lyrics coherent and emotionally consistent.
 - Structure the lyrics into Verse 1, Chorus, Verse 2, Chorus.
 - Make the chorus memorable and central to the song's emotion.
-- Do not output explanations or notes, only the lyrics.",dry-run-check
+- Reuse the most important words where it sounds natural.
+- Do not output explanations or notes, only the lyrics.",pipeline-structured-freq-check

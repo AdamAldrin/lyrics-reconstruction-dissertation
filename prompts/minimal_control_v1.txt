@@ -1,0 +1,9 @@
+Compose {genre} lyrics, in a style reminiscent of {artist}, which represents a {mood_label} mood under the title of "{title}".
+
+If helpful, you may draw lightly from the following vocabulary for inspiration:
+{vocab_words}
+
+Additional requirements:
+- Keep the lyrics coherent and emotionally consistent.
+- Do not force the vocabulary if it makes the lyrics sound unnatural.
+- Do not output explanations or notes, only the lyrics.
