@@ -18,7 +18,7 @@
   "prompt_variants": [
     {
       "name": "baseline_top100",
-      "template_file": "prompts/baseline_top100_v1.txt",
+      "template_file": "prompts/07_baseline_top100_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "",
       "requires_structure": false

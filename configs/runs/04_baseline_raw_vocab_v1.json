@@ -18,7 +18,7 @@
   "prompt_variants": [
     {
       "name": "baseline_raw_vocab",
-      "template_file": "prompts/baseline_raw_vocab_v1.txt",
+      "template_file": "prompts/04_baseline_raw_vocab_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "",
       "requires_structure": false

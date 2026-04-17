@@ -18,7 +18,7 @@
   "prompt_variants": [
     {
       "name": "structured",
-      "template_file": "prompts/extension_v1.txt",
+      "template_file": "prompts/02_extension_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "vocab_freq",
       "requires_structure": true

@@ -18,7 +18,7 @@
   "prompt_variants": [
     {
       "name": "structured_freq",
-      "template_file": "prompts/extension_freq_v1.txt",
+      "template_file": "prompts/03_extension_freq_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "vocab_freq",
       "requires_structure": true

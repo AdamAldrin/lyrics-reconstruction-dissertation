@@ -18,7 +18,7 @@
   "prompt_variants": [
     {
       "name": "strong_control",
-      "template_file": "prompts/strong_control_v1.txt",
+      "template_file": "prompts/09_strong_control_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "vocab_freq",
       "requires_structure": true

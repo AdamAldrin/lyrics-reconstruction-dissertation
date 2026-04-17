@@ -18,14 +18,14 @@
   "prompt_variants": [
     {
       "name": "reproduction",
-      "template_file": "prompts/reproduction_v1.txt",
+      "template_file": "prompts/01_reproduction_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "",
       "requires_structure": false
     },
     {
       "name": "extension",
-      "template_file": "prompts/extension_v1.txt",
+      "template_file": "prompts/02_extension_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "vocab_freq",
       "requires_structure": true

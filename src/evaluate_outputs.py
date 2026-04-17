@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import re
 from collections import Counter
+from math import isnan
 from pathlib import Path
 
 import pandas as pd
@@ -98,6 +99,24 @@ def parse_vocab_words(vocab: str) -> list[str]:
     return [word for word in words if word]
 
 
+def parse_vocab_freq_map(vocab: str) -> dict[str, int]:
+    text = clean_text(vocab)
+    if not text:
+        return {}
+
+    freq_map: dict[str, int] = {}
+    for part in text.split():
+        if ":" not in part:
+            continue
+        word, count = part.split(":", 1)
+        word = word.strip().lower()
+        try:
+            freq_map[word] = int(count)
+        except ValueError:
+            continue
+    return freq_map
+
+
 def keyword_coverage(text: str, vocab: str) -> float:
     text_vocab = set(tokenize(text))
     target_vocab = set(parse_vocab_words(vocab))
@@ -135,6 +154,80 @@ def keyword_density(text: str, vocab: str) -> float:
         return 0.0
     vocab_set = set(parse_vocab_words(vocab))
     return sum(1 for token in tokens if token in vocab_set) / len(tokens)
+
+
+def weighted_keyword_coverage(text: str, vocab_freq: str, fallback_vocab: str) -> float:
+    freq_map = parse_vocab_freq_map(vocab_freq)
+    if not freq_map:
+        return keyword_coverage(text, fallback_vocab)
+
+    text_vocab = set(tokenize(text))
+    total_weight = sum(freq_map.values())
+    if total_weight == 0:
+        return 0.0
+
+    matched_weight = sum(weight for word, weight in freq_map.items() if word in text_vocab)
+    return matched_weight / total_weight
+
+
+def weighted_top_keyword_coverage(text: str, vocab_freq: str, top_k: int) -> float:
+    freq_map = parse_vocab_freq_map(vocab_freq)
+    if not freq_map:
+        return 0.0
+
+    ranked_items = sorted(freq_map.items(), key=lambda item: (-item[1], item[0]))[:top_k]
+    total_weight = sum(weight for _, weight in ranked_items)
+    if total_weight == 0:
+        return 0.0
+
+    text_vocab = set(tokenize(text))
+    matched_weight = sum(weight for word, weight in ranked_items if word in text_vocab)
+    return matched_weight / total_weight
+
+
+def rank_order_correlation(values_a: list[float], values_b: list[float]) -> float:
+    if len(values_a) != len(values_b) or len(values_a) < 2:
+        return 0.0
+
+    def rank(values: list[float]) -> list[float]:
+        indexed = sorted(enumerate(values), key=lambda item: item[1])
+        ranks = [0.0] * len(values)
+        idx = 0
+        while idx < len(indexed):
+            end = idx
+            while end + 1 < len(indexed) and indexed[end + 1][1] == indexed[idx][1]:
+                end += 1
+            avg_rank = (idx + end + 2) / 2.0
+            for pos in range(idx, end + 1):
+                ranks[indexed[pos][0]] = avg_rank
+            idx = end + 1
+        return ranks
+
+    rank_a = rank(values_a)
+    rank_b = rank(values_b)
+    mean_a = sum(rank_a) / len(rank_a)
+    mean_b = sum(rank_b) / len(rank_b)
+    cov = sum((a - mean_a) * (b - mean_b) for a, b in zip(rank_a, rank_b))
+    var_a = sum((a - mean_a) ** 2 for a in rank_a)
+    var_b = sum((b - mean_b) ** 2 for b in rank_b)
+    if var_a == 0 or var_b == 0:
+        return 0.0
+    return cov / ((var_a ** 0.5) * (var_b ** 0.5))
+
+
+def keyword_frequency_rank_correlation(text: str, vocab_freq: str, top_k: int) -> float:
+    freq_map = parse_vocab_freq_map(vocab_freq)
+    if not freq_map:
+        return 0.0
+
+    ranked_items = sorted(freq_map.items(), key=lambda item: (-item[1], item[0]))[:top_k]
+    if len(ranked_items) < 2:
+        return 0.0
+
+    generated_counts = Counter(tokenize(text))
+    target_values = [weight for _, weight in ranked_items]
+    generated_values = [generated_counts.get(word, 0) for word, _ in ranked_items]
+    return rank_order_correlation(target_values, generated_values)
 
 
 def structure_score(text: str) -> int:
@@ -210,6 +303,7 @@ def evaluate_text(
     text: str,
     *,
     vocab: str,
+    vocab_freq: str,
     reference_text: str,
     title: str,
     top_keyword_k: int,
@@ -231,6 +325,9 @@ def evaluate_text(
         "repeated_line_ratio": repeated_line_ratio(text),
         "keyword_coverage": keyword_coverage(text, vocab),
         "top_keyword_coverage": top_keyword_coverage(text, vocab, top_keyword_k),
+        "weighted_keyword_coverage": weighted_keyword_coverage(text, vocab_freq, vocab),
+        "weighted_top_keyword_coverage": weighted_top_keyword_coverage(text, vocab_freq, top_keyword_k),
+        "keyword_frequency_rank_correlation": keyword_frequency_rank_correlation(text, vocab_freq, top_keyword_k),
         "keyword_repetition_ratio": keyword_repetition_ratio(text, vocab),
         "keyword_density": keyword_density(text, vocab),
         "title_token_coverage": title_token_coverage(text, title),
@@ -263,6 +360,9 @@ def summarize_metrics(per_song_df: pd.DataFrame) -> dict:
         "repeated_line_ratio",
         "keyword_coverage",
         "top_keyword_coverage",
+        "weighted_keyword_coverage",
+        "weighted_top_keyword_coverage",
+        "keyword_frequency_rank_correlation",
         "keyword_repetition_ratio",
         "keyword_density",
         "title_token_coverage",
@@ -322,9 +422,11 @@ def evaluate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, pd.DataFr
             name = clean_text(variant["name"])
             prompt_col = f"{name}_prompt"
             output_col = f"{name}_output"
+            vocab_freq_column = clean_text(variant.get("vocab_freq_column", "")) or "vocab_freq"
             metrics = evaluate_text(
                 clean_text(row.get(output_col, "")),
                 vocab=clean_text(row.get(variant.get("vocab_words_column", "vocab_words"), "")),
+                vocab_freq=clean_text(row.get(vocab_freq_column, "")),
                 reference_text=clean_text(row.get("reference_lyrics", "")),
                 title=clean_text(row.get("title", "")),
                 top_keyword_k=top_keyword_k,

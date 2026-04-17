@@ -18,7 +18,7 @@
   "prompt_variants": [
     {
       "name": "baseline_lycon",
-      "template_file": "prompts/reproduction_v1.txt",
+      "template_file": "prompts/01_reproduction_v1.txt",
       "vocab_words_column": "vocab_words",
       "vocab_freq_column": "",
       "requires_structure": false
@@ -29,7 +29,7 @@
     "max_rows": 1,
     "sleep_between_calls": 1.0,
     "max_retries": 3,
-    "dry_run": false
+    "dry_run": true
   },
   "evaluation": {
     "top_keyword_k": 10
