@@ -1,26 +1,26 @@
-# src/evaluate_outputs.py
+from __future__ import annotations
 
-from pathlib import Path
+import argparse
 import re
 from collections import Counter
+from pathlib import Path
+
 import pandas as pd
 
-INPUT_FILE = Path("outputs/generated/generated_outputs.csv")
-SUMMARY_OUTPUT_FILE = Path("outputs/evaluation/evaluation_summary.csv")
-PER_SONG_OUTPUT_FILE = Path("outputs/evaluation/per_song_evaluation.csv")
+from experiment_utils import clean_text, get_prompt_variants, get_run_dir, get_run_id, load_config
 
 
 SECTION_HEADERS = {
-    "verse", "chorus", "bridge", "intro", "outro", "pre-chorus", "hook", "refrain"
+    "verse",
+    "chorus",
+    "bridge",
+    "intro",
+    "outro",
+    "pre-chorus",
+    "hook",
+    "refrain",
 }
-
 REQUIRED_EXTENSION_ORDER = ["verse 1", "chorus", "verse 2", "chorus"]
-
-
-def clean_text(value) -> str:
-    if pd.isna(value):
-        return ""
-    return str(value).strip()
 
 
 def tokenize(text: str) -> list[str]:
@@ -40,20 +40,14 @@ def count_lines(text: str) -> int:
 
 
 def normalize_section_line(line: str) -> str:
-    return (
-        line.strip()
-        .lower()
-        .replace("[", "")
-        .replace("]", "")
-        .replace(":", "")
-    )
+    return line.strip().lower().replace("[", "").replace("]", "").replace(":", "")
 
 
 def extract_section_labels(text: str) -> list[str]:
     labels = []
     for line in split_nonempty_lines(text):
         clean = normalize_section_line(line)
-        if clean in SECTION_HEADERS or any(clean.startswith(h) for h in SECTION_HEADERS):
+        if clean in SECTION_HEADERS or any(clean.startswith(header) for header in SECTION_HEADERS):
             labels.append(clean)
     return labels
 
@@ -91,28 +85,17 @@ def repeated_line_ratio(text: str) -> float:
 
 
 def parse_vocab_words(vocab: str) -> list[str]:
-    """
-    Supports:
-    - plain word strings: 'love breath wind'
-    - freq strings: 'love:2 breath:5 wind:7'
-    Returns only the word tokens.
-    """
     text = clean_text(vocab)
     if not text:
         return []
 
-    parts = text.split()
     words = []
-
-    for part in parts:
+    for part in text.split():
         if ":" in part:
-            word = part.split(":", 1)[0].strip().lower()
-            if word:
-                words.append(word)
+            words.append(part.split(":", 1)[0].strip().lower())
         else:
             words.extend(tokenize(part))
-
-    return words
+    return [word for word in words if word]
 
 
 def keyword_coverage(text: str, vocab: str) -> float:
@@ -123,7 +106,7 @@ def keyword_coverage(text: str, vocab: str) -> float:
     return len(text_vocab & target_vocab) / len(target_vocab)
 
 
-def top_keyword_coverage(text: str, vocab: str, top_k: int = 10) -> float:
+def top_keyword_coverage(text: str, vocab: str, top_k: int) -> float:
     text_vocab = set(tokenize(text))
     target_vocab = parse_vocab_words(vocab)[:top_k]
     if not target_vocab:
@@ -137,7 +120,7 @@ def keyword_repetition_ratio(text: str, vocab: str) -> float:
     if not tokens or not vocab_set:
         return 0.0
 
-    keyword_tokens = [tok for tok in tokens if tok in vocab_set]
+    keyword_tokens = [token for token in tokens if token in vocab_set]
     if not keyword_tokens:
         return 0.0
 
@@ -146,34 +129,31 @@ def keyword_repetition_ratio(text: str, vocab: str) -> float:
     return repeated / len(keyword_tokens)
 
 
-def structure_score_extension(text: str) -> int:
-    """
-    Score from 0 to 4 based on whether the extension output includes:
-    Verse 1, Chorus, Verse 2, Chorus
-    """
-    labels = extract_section_labels(text)
-    normalized = [label.lower() for label in labels]
+def keyword_density(text: str, vocab: str) -> float:
+    tokens = tokenize(text)
+    if not tokens:
+        return 0.0
+    vocab_set = set(parse_vocab_words(vocab))
+    return sum(1 for token in tokens if token in vocab_set) / len(tokens)
 
+
+def structure_score(text: str) -> int:
+    labels = [label.lower() for label in extract_section_labels(text)]
     score = 0
     for required in REQUIRED_EXTENSION_ORDER:
-        if required in normalized:
+        if required in labels:
             score += 1
     return score
 
 
 def structure_order_match(text: str) -> int:
-    """
-    Returns 1 if Verse 1 -> Chorus -> Verse 2 -> Chorus appears in order, else 0.
-    """
-    labels = extract_section_labels(text)
-    normalized = [label.lower() for label in labels]
-
+    labels = [label.lower() for label in extract_section_labels(text)]
     try:
-        i1 = normalized.index("verse 1")
-        i2 = normalized.index("chorus", i1 + 1)
-        i3 = normalized.index("verse 2", i2 + 1)
-        i4 = normalized.index("chorus", i3 + 1)
-        return 1 if i1 < i2 < i3 < i4 else 0
+        i1 = labels.index("verse 1")
+        i2 = labels.index("chorus", i1 + 1)
+        i3 = labels.index("verse 2", i2 + 1)
+        i4 = labels.index("chorus", i3 + 1)
+        return int(i1 < i2 < i3 < i4)
     except ValueError:
         return 0
 
@@ -187,70 +167,89 @@ def jaccard_similarity(text_a: str, text_b: str) -> float:
 
 
 def unigram_precision(candidate: str, reference: str) -> float:
-    cand_tokens = tokenize(candidate)
-    ref_vocab = set(tokenize(reference))
-    if not cand_tokens:
+    candidate_tokens = tokenize(candidate)
+    reference_vocab = set(tokenize(reference))
+    if not candidate_tokens:
         return 0.0
-    return sum(1 for tok in cand_tokens if tok in ref_vocab) / len(cand_tokens)
+    return sum(1 for token in candidate_tokens if token in reference_vocab) / len(candidate_tokens)
 
 
 def unigram_recall(candidate: str, reference: str) -> float:
-    cand_vocab = set(tokenize(candidate))
-    ref_vocab = set(tokenize(reference))
-    if not ref_vocab:
+    candidate_vocab = set(tokenize(candidate))
+    reference_vocab = set(tokenize(reference))
+    if not reference_vocab:
         return 0.0
-    return len(cand_vocab & ref_vocab) / len(ref_vocab)
+    return len(candidate_vocab & reference_vocab) / len(reference_vocab)
 
 
 def bigram_overlap(candidate: str, reference: str) -> float:
-    cand_bigrams = set(get_ngrams(tokenize(candidate), 2))
-    ref_bigrams = set(get_ngrams(tokenize(reference), 2))
-    if not ref_bigrams:
+    candidate_bigrams = set(get_ngrams(tokenize(candidate), 2))
+    reference_bigrams = set(get_ngrams(tokenize(reference), 2))
+    if not reference_bigrams:
         return 0.0
-    return len(cand_bigrams & ref_bigrams) / len(ref_bigrams)
+    return len(candidate_bigrams & reference_bigrams) / len(reference_bigrams)
 
 
 def length_ratio_vs_reference(candidate: str, reference: str) -> float:
-    cand_len = len(tokenize(candidate))
-    ref_len = len(tokenize(reference))
-    if ref_len == 0:
+    candidate_len = len(tokenize(candidate))
+    reference_len = len(tokenize(reference))
+    if reference_len == 0:
         return 0.0
-    return cand_len / ref_len
+    return candidate_len / reference_len
 
 
-def evaluate_text(text: str, vocab: str, reference_text: str, output_type: str) -> dict:
+def title_token_coverage(text: str, title: str) -> float:
+    title_tokens = set(tokenize(title))
+    if not title_tokens:
+        return 0.0
+    text_tokens = set(tokenize(text))
+    return len(title_tokens & text_tokens) / len(title_tokens)
+
+
+def evaluate_text(
+    text: str,
+    *,
+    vocab: str,
+    reference_text: str,
+    title: str,
+    top_keyword_k: int,
+    requires_structure: bool,
+) -> dict:
     tokens = tokenize(text)
-    all_bigrams = get_ngrams(tokens, 2)
-    all_trigrams = get_ngrams(tokens, 3)
-
-    return {
-        "output_type": output_type,
+    bigrams = get_ngrams(tokens, 2)
+    trigrams = get_ngrams(tokens, 3)
+    metrics = {
         "word_count": len(tokens),
         "line_count": count_lines(text),
         "section_count": count_sections(text),
         "unique_unigrams": len(set(tokens)),
-        "unique_bigrams": len(set(all_bigrams)),
-        "unique_trigrams": len(set(all_trigrams)),
+        "unique_bigrams": len(set(bigrams)),
+        "unique_trigrams": len(set(trigrams)),
         "distinct_1": distinct_n(tokens, 1),
         "distinct_2": distinct_n(tokens, 2),
         "type_token_ratio": type_token_ratio(tokens),
         "repeated_line_ratio": repeated_line_ratio(text),
         "keyword_coverage": keyword_coverage(text, vocab),
-        "top10_keyword_coverage": top_keyword_coverage(text, vocab, top_k=10),
+        "top_keyword_coverage": top_keyword_coverage(text, vocab, top_keyword_k),
         "keyword_repetition_ratio": keyword_repetition_ratio(text, vocab),
+        "keyword_density": keyword_density(text, vocab),
+        "title_token_coverage": title_token_coverage(text, title),
         "reference_jaccard": jaccard_similarity(text, reference_text),
         "reference_unigram_precision": unigram_precision(text, reference_text),
         "reference_unigram_recall": unigram_recall(text, reference_text),
         "reference_bigram_overlap": bigram_overlap(text, reference_text),
         "length_ratio_vs_reference": length_ratio_vs_reference(text, reference_text),
-        "structure_score_extension": structure_score_extension(text) if output_type == "extension" else None,
-        "structure_order_match": structure_order_match(text) if output_type == "extension" else None,
     }
+    if requires_structure:
+        metrics["structure_score"] = structure_score(text)
+        metrics["structure_order_match"] = structure_order_match(text)
+    else:
+        metrics["structure_score"] = None
+        metrics["structure_order_match"] = None
+    return metrics
 
 
-def summarize_metrics(per_song_df: pd.DataFrame, output_type: str) -> dict:
-    sub = per_song_df[per_song_df["output_type"] == output_type].copy()
-
+def summarize_metrics(per_song_df: pd.DataFrame) -> dict:
     numeric_cols = [
         "word_count",
         "line_count",
@@ -263,125 +262,111 @@ def summarize_metrics(per_song_df: pd.DataFrame, output_type: str) -> dict:
         "type_token_ratio",
         "repeated_line_ratio",
         "keyword_coverage",
-        "top10_keyword_coverage",
+        "top_keyword_coverage",
         "keyword_repetition_ratio",
+        "keyword_density",
+        "title_token_coverage",
         "reference_jaccard",
         "reference_unigram_precision",
         "reference_unigram_recall",
         "reference_bigram_overlap",
         "length_ratio_vs_reference",
+        "structure_score",
+        "structure_order_match",
     ]
-
     summary = {
-        "output_type": output_type,
-        "num_songs": len(sub),
+        "run_id": clean_text(per_song_df["run_id"].iloc[0]) if len(per_song_df) else "",
+        "output_type": clean_text(per_song_df["output_type"].iloc[0]) if len(per_song_df) else "",
+        "num_songs": len(per_song_df),
     }
-
-    for col in numeric_cols:
-        summary[f"avg_{col}"] = sub[col].mean() if len(sub) else 0.0
-
-    if output_type == "extension":
-        summary["avg_structure_score_extension"] = sub["structure_score_extension"].mean() if len(sub) else 0.0
-        summary["structure_order_match_rate"] = sub["structure_order_match"].mean() if len(sub) else 0.0
-
+    for column in numeric_cols:
+        if column in per_song_df.columns:
+            summary[f"avg_{column}"] = per_song_df[column].mean()
     return summary
 
 
-def pick_vocab_for_reproduction(row: pd.Series) -> tuple[str, str]:
-    if "bow_all_words" in row.index and clean_text(row["bow_all_words"]):
-        return "bow_all_words", clean_text(row["bow_all_words"])
-    if "bow_keywords_words" in row.index and clean_text(row["bow_keywords_words"]):
-        return "bow_keywords_words", clean_text(row["bow_keywords_words"])
-    return "bow_keywords", clean_text(row.get("bow_keywords", ""))
+def evaluate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, pd.DataFrame, Path, Path]:
+    run_dir = get_run_dir(run_id)
+    input_file = run_dir / "generated_outputs.csv"
+    if not input_file.exists():
+        raise FileNotFoundError(f"Generated outputs not found at {input_file}.")
 
+    per_song_output_file = run_dir / "per_song_evaluation.csv"
+    summary_output_file = run_dir / "evaluation_summary.csv"
 
-def pick_vocab_for_extension(row: pd.Series) -> tuple[str, str]:
-    if "bow_keywords_words" in row.index and clean_text(row["bow_keywords_words"]):
-        return "bow_keywords_words", clean_text(row["bow_keywords_words"])
-    if "bow_keywords_freq" in row.index and clean_text(row["bow_keywords_freq"]):
-        return "bow_keywords_freq", clean_text(row["bow_keywords_freq"])
-    if "bow_all_words" in row.index and clean_text(row["bow_all_words"]):
-        return "bow_all_words", clean_text(row["bow_all_words"])
-    return "bow_keywords", clean_text(row.get("bow_keywords", ""))
-
-
-def main():
-    df = pd.read_csv(INPUT_FILE).copy()
-
-    required_columns = [
-        "song_id",
-        "title",
-        "artist",
-        "genre",
-        "valence",
-        "arousal",
-        "mood_label",
-        "reference_lyrics",
-        "reproduction_output",
-        "extension_output",
-    ]
-    missing = [col for col in required_columns if col not in df.columns]
-    if missing:
-        raise ValueError(f"Missing required columns: {missing}")
+    evaluation_config = config.get("evaluation", {})
+    top_keyword_k = int(evaluation_config.get("top_keyword_k", 10))
+    prompt_variants = get_prompt_variants(config)
+    df = pd.read_csv(input_file).copy()
 
     per_song_rows = []
-
     for _, row in df.iterrows():
-        repro_vocab_source, repro_vocab = pick_vocab_for_reproduction(row)
-        ext_vocab_source, ext_vocab = pick_vocab_for_extension(row)
-
         base_info = {
-            "song_id": row.get("song_id", ""),
-            "title": clean_text(row["title"]),
-            "artist": clean_text(row["artist"]),
+            "run_id": clean_text(row.get("run_id", run_id)),
+            "song_id": clean_text(row.get("song_id", "")),
+            "title": clean_text(row.get("title", "")),
+            "artist": clean_text(row.get("artist", "")),
             "genre": clean_text(row.get("genre", "")),
             "valence": row.get("valence", ""),
             "arousal": row.get("arousal", ""),
             "theta": row.get("theta", ""),
             "mood_label": clean_text(row.get("mood_label", "")),
-            "bow_all_words": clean_text(row.get("bow_all_words", "")),
-            "bow_all_freq": clean_text(row.get("bow_all_freq", "")),
-            "bow_keywords_words": clean_text(row.get("bow_keywords_words", "")),
-            "bow_keywords_freq": clean_text(row.get("bow_keywords_freq", "")),
-            "bow_keywords": clean_text(row.get("bow_keywords", "")),
             "reference_lyrics": clean_text(row.get("reference_lyrics", "")),
-            "tags": clean_text(row.get("tags", "")),
-            "release": clean_text(row.get("release", "")),
+            "vocab_strategy": clean_text(row.get("vocab_strategy", "")),
+            "vocab_words": clean_text(row.get("vocab_words", "")),
+            "vocab_freq": clean_text(row.get("vocab_freq", "")),
+            "model_name": clean_text(row.get("model_name", "")),
         }
 
-        repro_metrics = evaluate_text(
-            text=row.get("reproduction_output", ""),
-            vocab=repro_vocab,
-            reference_text=row.get("reference_lyrics", ""),
-            output_type="reproduction",
-        )
-        repro_metrics["vocab_source_used"] = repro_vocab_source
-
-        ext_metrics = evaluate_text(
-            text=row.get("extension_output", ""),
-            vocab=ext_vocab,
-            reference_text=row.get("reference_lyrics", ""),
-            output_type="extension",
-        )
-        ext_metrics["vocab_source_used"] = ext_vocab_source
-
-        per_song_rows.append({**base_info, **repro_metrics})
-        per_song_rows.append({**base_info, **ext_metrics})
+        for variant in prompt_variants:
+            name = clean_text(variant["name"])
+            prompt_col = f"{name}_prompt"
+            output_col = f"{name}_output"
+            metrics = evaluate_text(
+                clean_text(row.get(output_col, "")),
+                vocab=clean_text(row.get(variant.get("vocab_words_column", "vocab_words"), "")),
+                reference_text=clean_text(row.get("reference_lyrics", "")),
+                title=clean_text(row.get("title", "")),
+                top_keyword_k=top_keyword_k,
+                requires_structure=bool(variant.get("requires_structure", False)),
+            )
+            per_song_rows.append(
+                {
+                    **base_info,
+                    "output_type": name,
+                    "prompt_version": Path(variant["template_file"]).stem,
+                    "prompt_text": clean_text(row.get(prompt_col, "")),
+                    "generated_text": clean_text(row.get(output_col, "")),
+                    **metrics,
+                }
+            )
 
     per_song_df = pd.DataFrame(per_song_rows)
+    summary_df = pd.DataFrame(
+        [summarize_metrics(per_song_df[per_song_df["output_type"] == clean_text(variant["name"])]) for variant in prompt_variants]
+    )
 
-    summaries = [
-        summarize_metrics(per_song_df, "reproduction"),
-        summarize_metrics(per_song_df, "extension"),
-    ]
-    summary_df = pd.DataFrame(summaries)
+    per_song_output_file.parent.mkdir(parents=True, exist_ok=True)
+    per_song_df.to_csv(per_song_output_file, index=False)
+    summary_df.to_csv(summary_output_file, index=False)
+    return per_song_df, summary_df, per_song_output_file, summary_output_file
 
-    SUMMARY_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    per_song_df.to_csv(PER_SONG_OUTPUT_FILE, index=False)
-    summary_df.to_csv(SUMMARY_OUTPUT_FILE, index=False)
 
-    print(f"Saved per-song evaluation to: {PER_SONG_OUTPUT_FILE}")
-    print(f"Saved evaluation summary to: {SUMMARY_OUTPUT_FILE}")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Evaluate generated lyric outputs.")
+    parser.add_argument("--config", default=None, help="Path to experiment JSON config.")
+    parser.add_argument("--run-id", default=None, help="Reusable run identifier for saving outputs.")
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    config = load_config(args.config)
+    run_id = get_run_id(config, args.run_id)
+    _, summary_df, per_song_output_file, summary_output_file = evaluate_outputs(config, run_id)
+
+    print(f"Saved per-song evaluation to: {per_song_output_file}")
+    print(f"Saved evaluation summary to: {summary_output_file}")
     print("\nSummary:")
     print(summary_df.to_string(index=False))
 

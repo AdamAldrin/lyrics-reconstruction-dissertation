@@ -1,527 +1,408 @@
-song_id,title,artist,genre,valence,arousal,tags,reference_lyrics,bow_keywords,bow_keywords_base,bow_keywords_with_freq,lang,spotify_id,release
-nCemAOYM4hunfFnS,I Don't Want Control of You - Remastered,Teenage Fanclub,"power pop, indie rock, power pop",0.667,0.842,"power pop,indie,scottish,indie rock,alternative,power pop,indie,scottish","I don't want control of you
-Doesn't matter to me
-The very heart and soul of you
-Are places I wanna see
-
-Every day I look in a different face
-Feelings getting stronger with every embrace
-
-I don't want a world of pain
-Sparing every tear
-Don't want this love to stay the same
-But grow with every year
-
-Every day I look in a different face
-Feelings getting stronger with every embrace
-
-Tired of situations
-That mean nothing to me
-You've been an inspirational figure for me
-
-Every day I look in a different face
-Feelings getting stronger with every embrace
-
-I don't want control of you
-Doesn't matter to me
-Don't want this love to stay the same
-But grow with every year
-
-And every day I look in a different face
-The feelings getting stronger with every embrace",every look different face feelings stronger embrace control matter heart soul places world pain sparing tear love stay same grow year tired situations mean nothing been inspirational figure,every look different face feelings stronger embrace control matter heart soul places world pain sparing tear love stay same grow year tired situations mean nothing been inspirational figure,every:6 look:2 different:2 face:2 feelings:2 stronger:2 embrace:2 control:1 matter:1 heart:1 soul:1 places:1 world:1 pain:1 sparing:1 tear:1 love:1 stay:1 same:1 grow:1 year:1 tired:1 situations:1 mean:1 nothing:1 been:1 inspirational:1 figure:1,en,111u5fg74ftDxTHfeIn8h1,1997
-pgAQbyhPZk9GIklA,Fury,Muse,"alternative rock, rock, progressive rock",0.146,0.69,"alternative rock,rock,alternative,progressive rock,muse,epic","You're so happy now
-Burning the candle at both ends
-Your self loving soothes
-And softens the blows you've invented
-
-Breathe in deep
-And cleanse away our sins
-And we'll pray
-That there's no God to punish us
-And make a fuss
-
-Cracks healing up
-The future soul forgives this mess
-You waste twenty years
-And wind up alone demented
-
-Breathe in deep
-And cleanse away our sins
-And we'll pray
-That there's no God to punish us
-And make a fuss
-
-Breathe in deep
-And cleanse away our sins
-And we'll pray
-That there's no God to punish us
-And make a fuss",happy now burning candle both ends self loving soothes softens blows invented breathe deep cleanse sins pray god punish fuss cracks healing future soul forgives mess waste twenty years wind alone demented,happy now burning candle both ends self loving soothes softens blows invented breathe deep cleanse sins pray god punish fuss cracks healing future soul forgives mess waste twenty years wind alone demented,happy:1 now:1 burning:1 candle:1 both:1 ends:1 self:1 loving:1 soothes:1 softens:1 blows:1 invented:1 breathe:1 deep:1 cleanse:1 sins:1 pray:1 god:1 punish:1 fuss:1 cracks:1 healing:1 future:1 soul:1 forgives:1 mess:1 waste:1 twenty:1 years:1 wind:1 alone:1 demented:1,en,5Lwp4ZWFVxvCtcpfP22Jvm,2004
-sU8fQyEdwjax8DWy,Devil's Night,Motionless in White,"metalcore, screamo, post-hardcore",0.197,0.991,"metalcore,screamo,post-hardcore","Go!
-
-I am an enemy of everything
-My life is not for sale
-My heart is in this fight forever
-What can you take from me?
-When there's not a single fucking day I haven't fought to stay alive
-
-We're finding hope in the hopeless
-I am still their voice that gets stuck in your head
-
-I am me
-And I have come to scare you to death
-Because that's what you deserve
-You disgusting piece of shit
-
-I know the only words that you have for me
-Are give up and get out
-You'd like to think, that we've been beaten
-But we're here to stay, forever and always
-
-Every single day not giving up, living up all my dreams
-So go ahead and look like I'm inferior (inferior)
-
-Condescension, suffering
-Callousness and loathing
-Are the badges I have earned for my cause
-And i am finding hope within hatred
-A reason to persist to push past everything
-
-We are here, and we have come to scare you to death
-Because that's what you deserve
-You fucking fake ass hypocrites
-
-I know the only words that you have for me
-Are give up and get out
-You'd like to think, that we've been beaten
-But we're here to stay, forever and always
-So loud, we are the ones that you pushed away
-For drowning your voice out
-You'd like to think, we've been defeated
-But we're here to stay forever and always
-
-We've been through everything and we all have our scars
-We may be broken but you can't kill all of us
-
-Go!
-
-Think before you fucking speak
-I am no villain
-Think before you fucking speak
-People fear what they don't understand
-And so now beauty has become the fucking beast
-
-Maybe you didn't hear me
-I said go fuck yourself!
-
-I know the only words that you have for me
-Are give up and get out
-You'd like to think, that we've been beaten
-But we're here to stay, forever and always
-So Loud, we are the ones that you pushed away
-For drowning your voice out
-You'd like to think that we've been defeated
-But we're here to stay forever and always",have fucking think been everything forever what stay here all single finding hope voice scare death out always inferior loud ones pushed defeated enemy life sale heart fight can when fought alive hopeless their stuck head because deserve disgusting piece shit only words give beaten every giving living dreams ahead,have fucking think been everything forever what stay here all single finding hope voice scare death out always inferior loud ones pushed defeated enemy life sale heart fight can when fought alive hopeless their stuck head because deserve disgusting piece shit only words give beaten every giving living dreams ahead,have:5 fucking:4 think:4 been:4 everything:3 forever:3 what:3 stay:3 here:3 all:3 single:2 finding:2 hope:2 voice:2 scare:2 death:2 out:2 always:2 inferior:2 loud:2 ones:2 pushed:2 defeated:2 enemy:1 life:1 sale:1 heart:1 fight:1 can:1 when:1 fought:1 alive:1 hopeless:1 their:1 stuck:1 head:1 because:1 deserve:1 disgusting:1 piece:1 shit:1 only:1 words:1 give:1 beaten:1 every:1 giving:1 living:1 dreams:1 ahead:1,en,79SZRWIbDwQeuGvgsAA0EC,2012
-9ewHGB44bT6eFip3,Be Strong,Delta Goodrem,pop,0.177,0.484,"inspirational,pop,medicine for the soul","Are you swimming upstream, in notions of blue?
-Do you feel like you're sinking?
-Are you sick of the rain, after all you've been through
-Well I know what you're thinking.
-When you can't take it, you can make it
-Sometime soon I know you will see,
-
-'Cause when you're in your darkest hour,
-And all of the light just fades away.
-And when you're like a single flower,
-Whose colours have turned to shades of grey,
-Well hang on
-Be strong.
-
-You're taking each step one day at a time,
-You can't lose your spirit.
-Well let live and let live,
-Forget and forgive,
-And it's all how you see it.
-And just remember, keep it together
-Don't you know you're never alone?
-
-'Cause when you're in your darkest hour,
-And all of the light just fades away.
-And when you're like a single flower,
-Whose colours have turned to shades of grey,
-Well hang on
-Be strong.
-
-No you're not defeated ohh
-And soon you'll be smiling once again.
-Then you won't have to feel it,
-Let it go with the wind.
-Time passes us by, and know that you're allowed to cry
-
-'Cause when you're in your darkest hour,
-And all of the light just fades away.
-And when you're like a single flower,
-Whose colours have turned to shades of grey,
-Well hang on
-Be strong.
-
-Oh woah huuh
-Hang on
-Hang on
-Be strong
-Da da da dn dada da
-Hold on and be strong.",all when strong feel soon have hang live swimming upstream notions blue sinking sick rain after been through what thinking can sometime will darkest hour light fades single flower whose colours turned shades grey taking each step lose spirit forget forgive how remember keep together alone defeated ohh smiling once,all when strong feel soon have hang live swimming upstream notions blue sinking sick rain after been through what thinking can sometime will darkest hour light fades single flower whose colours turned shades grey taking each step lose spirit forget forgive how remember keep together alone defeated ohh smiling once,all:3 when:3 strong:3 feel:2 soon:2 have:2 hang:2 live:2 swimming:1 upstream:1 notions:1 blue:1 sinking:1 sick:1 rain:1 after:1 been:1 through:1 what:1 thinking:1 can:1 sometime:1 will:1 darkest:1 hour:1 light:1 fades:1 single:1 flower:1 whose:1 colours:1 turned:1 shades:1 grey:1 taking:1 each:1 step:1 lose:1 spirit:1 forget:1 forgive:1 how:1 remember:1 keep:1 together:1 alone:1 defeated:1 ohh:1 smiling:1 once:1,en,1DJ0VhYrietyUDRF7H1lUo,2004
-MA4OogB7wWrehsXd,Unless It's with You,Christina Aguilera,"pop, soul",0.238,0.497,"pop,soul,rnb,best of 2018","Never wanted to feel weak in love, give up control
-Never wanted to let down my guard, be vulnerable
-Never wanted to feel helpless or too comfortable
-I make it on my own, hey
-
-I've been thinking a lot about the way that people change
-The most beautiful beginnings can go down in flames
-It's inevitable, and that's what's got me so afraid
-I'd rather be alone
-
-I don't want no white picket fence
-Dozen roses and a wedding dress
-Fairy tales are fake happiness
-But here we are and I must confess
-
-Yeah, I'm in over my head feeling confused
-I'm losing my mind, don't know what to do
-'Cause I don't want to get married
-Unless it's with you, unless it's with you, ooh
-
-You came into my life when I wasn't trying to find
-Anybody to love, hiding what I felt inside
-But you opened me up and now I finally realize
-I'll be your girl for life
-
-Oh, we don't need a big audience
-Thousand people we never met
-Me and you and a couple of friends
-And here we are and I must confess
-
-Yeah, I'm in over my head feeling confused
-I'm losing my mind, don't know what to do
-'Cause I don't want to get married
-Unless it's with you, unless it's with you
-
-And oh, I know that it's scary
-But I know that it's true, I'm saying ""I do""
-'Cause I don't want to get married
-Unless it's with you, unless it's with you
-
-Beating heart and trembling hands
-Take me just the way I am
-'Cause all that I want is one and the same
-For the rest of my days, for the rest of my days
-
-You can ask me in a hundred years
-If I would still be standing here
-When we're old and gray, I'd answer the same
-Our love will remain, oh, our love will remain
-
-I was over my head feeling confused
-Been losing my mind, don't know what to do, ooh
-'Cause I don't want to get married
-Unless it's with you, unless it's with you
-
-And oh, I know that it's scary
-(But I know that it's true, I'm saying ""I do"")
-'Cause I don't want to get married
-Unless it's with you, unless it's with you, ooh
-Ey, ooh, ey ey ey, unless it's with you, you",unless love wanted here what feel down been way people can must confess over head feeling confused losing mind life when true saying same rest days will remain weak give control guard vulnerable helpless comfortable own thinking lot about change most beautiful beginnings flames inevitable afraid rather alone white picket,unless love wanted here what feel down been way people can must confess over head feeling confused losing mind life when true saying same rest days will remain weak give control guard vulnerable helpless comfortable own thinking lot about change most beautiful beginnings flames inevitable afraid rather alone white picket,unless:5 love:4 wanted:3 here:3 what:3 feel:2 down:2 been:2 way:2 people:2 can:2 must:2 confess:2 over:2 head:2 feeling:2 confused:2 losing:2 mind:2 life:2 when:2 true:2 saying:2 same:2 rest:2 days:2 will:2 remain:2 weak:1 give:1 control:1 guard:1 vulnerable:1 helpless:1 comfortable:1 own:1 thinking:1 lot:1 about:1 change:1 most:1 beautiful:1 beginnings:1 flames:1 inevitable:1 afraid:1 rather:1 alone:1 white:1 picket:1,en,7fklxl8AxKiGz5fFZEglIm,2018
-gPl2GqhKcwEGxN6p,What Took You So Long,Emma Bunton,pop,0.911,0.772,"pop,female vocalists,emma bunton,british","Yeah, yeah, yeah
-
-Oh talk to me, can't you see
-I'll help you work things out
-Oh don't wannabe your enemy
-And I don't wanna scream and shout
-
-Cos baby I believe in honesty
-A man that's stong and true
-I shouldn't have to say now baby
-That I believe in you
-
-What took you so long
-What took you all night
-What took you forever to see I'm right
-You know I treat you so good
-I make you feel fine
-
-And no I'll never give it up this time
-No, no, no
-Oh you touched my heart, right from the start
-You didn't know what to say
-But honey understand, when you take my hand
-Everything's okay
-
-Cos baby I believe reality
-It's never far away
-I've had enough, so listen baby
-I've got something to say
-
-What took you so long
-What took you all night
-What took you forever to see I'm right
-You know I treat you so good
-I make you feel fine
-
-You know I'll never give it up this time
-What took you so long (what took you so long)
-What took you all night (what took you all night)
-What took you forever to see I'm right
-You know I treat you so good (I treat you so good)
-I make you feel fine (I make you feel fine)
-You know I'll never give it up this time
-No, no, no
-
-(No, no, no)
-No, no, no (no, no, no)
-Oh whoa
-Oh whoa
-
-A man that's stong and true
-Baby I believe in honesty
-and then be strong and true
-
-I shouldn't have to say now baby
-That I believe in you
-What took you so long
-What took you all night
-What took you forever to see I'm right
-I make you feel fine
-You know I treat you so good
-You know I'll never give it up this time
-What took you so long (what took you so long)
-What took you all night (what took you all night)
-What took you forever to see I'm right
-I make you feel fine (I make you feel fine)
-You know I'll never give it up this time
-You know I treat you so good (I treat you so good)
-No, no, no",what took believe long all treat good feel fine cos honesty true give talk help work out wannabe enemy scream shout man stong have now forever touched heart start honey understand when hand everythings okay reality far had enough listen something whoa strong,what took believe long all treat good feel fine cos honesty true give talk help work out wannabe enemy scream shout man stong have now forever touched heart start honey understand when hand everythings okay reality far had enough listen something whoa strong,what:8 took:7 believe:4 long:3 all:3 treat:3 good:3 feel:3 fine:3 cos:2 honesty:2 true:2 give:2 talk:1 help:1 work:1 out:1 wannabe:1 enemy:1 scream:1 shout:1 man:1 stong:1 have:1 now:1 forever:1 touched:1 heart:1 start:1 honey:1 understand:1 when:1 hand:1 everythings:1 okay:1 reality:1 far:1 had:1 enough:1 listen:1 something:1 whoa:1 strong:1,en,6WJtzSaXumGZ7pIa0z7QIP,2001
-2hUNruuxnKGrUtAP,Think Twice,Erykah Badu,soul,0.468,0.54,"neo-soul,soul,female vocalists","Maybe
-May be
-
-Maybe we ought to think twice
-before we start something nice
-no need to sacrifice the spice in our lives... oh oh oh
-Your loves like fire and ice
-that's why we ought to think twice baby
-no need to sacrifice the spice in our lives... oh oh oh
-
-I really love you
-you know I do
-I really love you
-you know its true
-
-I really love you
-You know I do
-I really love you
-You know its true
-
-(instrumental)
-
-You know I love you baby
-you know i do
-You know I love you baby
-you know I do
-think twice
-think twice
-You know I love you baby
-you know I do
-think twice
-think twice
-you know I love you baby
-You know I do
-think twice
-think twice
-I really love you
-
-World wide underground",think twice love maybe ought true may before start something nice sacrifice spice lives loves fire ice why really instrumental world wide underground,think twice love maybe ought true may before start something nice sacrifice spice lives loves fire ice why really instrumental world wide underground,think:3 twice:3 love:3 maybe:2 ought:2 true:2 may:1 before:1 start:1 something:1 nice:1 sacrifice:1 spice:1 lives:1 loves:1 fire:1 ice:1 why:1 really:1 instrumental:1 world:1 wide:1 underground:1,en,20kTcoOe7jB8lYOejYIkjv,2003
-2DKWFcpWhs9w6Za2,Gimme Love,Alexia,eurodance,0.883,0.951,"eurodance,dance,italian","Gimme love, gimme love
-Gimme baby, gimme, gimme love
-
-Gimme love, gimme, gimme love
-Gimme baby, gimme, gimme love
-Gimme love, gimme, gimme love
-Baby, gimme your love
-
-Oh, gimme your love
-
-I remember when I saw you
-Never thought that you could care about me
-Then we had a conversation
-Boy, we couldn? t imagine how we would be
-
-Gimme love
-Gimme baby, gimme, gimme love
-Baby, gimme your love
-
-When I spend my time without you
-Everything in this world means nothing to me
-'Cause you give me something, baby
-Boy, this is more than I need to be real
-
-Gimme love
-Gimme baby, gimme, gimme love
-Gimme love, gimme, gimme love
-Baby, gimme your love
-Oh, gimme your love
-
-I'll need you baby, gimme your love
-I'll need you love
-
-When I spend my time without you
-Everything in this world means nothing to me
-'Cause you give me something, baby
-Boy, this is more than I need to be real
-
-Gimme love
-Gimme baby, gimme, gimme love
-Gimme love, gimme, gimme love
-Baby, gimme your love
-Oh, gimme your love
-
-Gimme love
-Gimme love, gimme love
-Gimme love, gimme love, gimme love
-Baby, give me your love
-
-Gimme love
-Gimme baby, gimme, gimme love
-Gimme love, gimme, gimme love
-Baby, gimme your love
-Oh, gimme your love
-
-Gimme love
-Gimme baby, gimme, gimme love
-Gimme love, gimme, gimme love
-Baby, gimme your love
-Oh, gimme your love
-
-Gimme love",gimme love when boy give remember saw thought could care about had conversation couldn imagine how would spend without everything world means nothing something more real,gimme love when boy give remember saw thought could care about had conversation couldn imagine how would spend without everything world means nothing something more real,gimme:15 love:14 when:2 boy:2 give:2 remember:1 saw:1 thought:1 could:1 care:1 about:1 had:1 conversation:1 couldn:1 imagine:1 how:1 would:1 spend:1 without:1 everything:1 world:1 means:1 nothing:1 something:1 more:1 real:1,en,0HpKiHLs905QJ8jYveKF4s,2017
-fWfMlU7lpVsJniy4,Fixed,New Hope Club,"pop, rock",0.685,0.648,"pop,rock,uk,under 20000 listeners","I'm a shipwreck waiting for you
-You're the rock that stop me going
-Anywhere, anywhere
-Going anywhere, anywhere
-
-You're the storm that took me under
-Before I knew it was you
-I was already going down, going down
-I was going down, going down
-
-Anytime that you leave
-I find it hard just to breathe
-I come apart in every way
-You never put me back again
-
-Every time you go I come a little undone
-Even when it hurts, I'm holding on to your love
-Like I'm fixed, fixed, fixed
-You got me fixed on you
-You can walk away but I could never let go
-Don't know how you did it but I'm set in stone
-Like I'm fixed, fixed, fixed
-You got me fixed on you
-
-I'll be here if you ever come calling
-By the ocean I'm a ghost of everything, everything
-That we ever did, ever did
-You got me caught, got me hooked, got me fixed up
-You got me chained but I wouldn't wanna change for anything, anything
-Not for anything, anything
-
-Anytime that you leave
-I find it hard just to breathe
-I come apart in every way
-You never put me back again
-
-Every time you go I come a little undone
-Even when it hurts, I'm holding on to your love
-Like I'm fixed, fixed, fixed
-You got me fixed on you
-You can walk away but I could never let go
-Don't know how you did it but I'm set in stone
-Like I'm fixed, fixed, fixed
-You got me fixed on you
-
-Stuck standing on a cliff
-It's the way you get your kicks
-Ain't the way I wanna live
-But that's the way you got me fixed
-
-Stuck standing on a cliff
-It's the way you get your kicks
-Ain't the way I wanna live
-But that's the way you got me fixed
-
-Stuck standing on a cliff
-It's the way you get your kicks
-Ain't the way I wanna live
-But that's the way you got me fixed
-
-Stuck standing on a cliff
-It's the way you get your kicks
-Ain't the way I wanna live
-But that's the way you got me
-
-Every time you go I come a little undone
-Even when it hurts, I'm holding on to your love (hold on)
-Like I'm fixed, fixed, fixed (hold on)
-You got me fixed on you
-You can walk away but I could never let go (never let go no)
-Don't know how you did it but I'm set in stone
-Like I'm fixed, fixed, fixed
-You got me fixed on you",fixed way anywhere down anything did every even when hurts holding love can walk could everything hold shipwreck waiting rock stop storm took under before knew already anytime leave find hard breathe apart put again little undone how set stone here calling ocean ghost caught hooked chained change stuck standing,fixed way anywhere down anything did every even when hurts holding love can walk could everything hold shipwreck waiting rock stop storm took under before knew already anytime leave find hard breathe apart put again little undone how set stone here calling ocean ghost caught hooked chained change stuck standing,fixed:9 way:5 anywhere:4 down:4 anything:4 did:3 every:2 even:2 when:2 hurts:2 holding:2 love:2 can:2 walk:2 could:2 everything:2 hold:2 shipwreck:1 waiting:1 rock:1 stop:1 storm:1 took:1 under:1 before:1 knew:1 already:1 anytime:1 leave:1 find:1 hard:1 breathe:1 apart:1 put:1 again:1 little:1 undone:1 how:1 set:1 stone:1 here:1 calling:1 ocean:1 ghost:1 caught:1 hooked:1 chained:1 change:1 stuck:1 standing:1,en,2X8ls8BFKQkKijAhGWOAPR,2017
-YrYMRnfJTYdnv1Hk,Take This Lonely Heart,Nothing But Thieves,"rock, alternative rock, indie rock",0.528,0.758,"rock,alternative rock,indie rock,indie,alternative","I feel younger everyday
-The more I grow, the less I seem to know
-I've been trying to keep my head straight
-Where I roam, it never feels like home
-You feel the weight of the world coming down on your head
-These people looking at you, and now they're pulling you back
-I've gotten sick of all it, it's in the palm of my hand
-And I think it'll be there for good
-
-We take a piece of ourselves, we draw a line on the sand
-We say ""don't cross this, or else"", and then we put up a flag
-Oh, how we worship the things that we don't quite understand
-Oh, it's more dangerous than you know
-
-I've got a message that you can't ignore
-Maybe I'm just not the man I was before
-Take this from me, take this lonely heart
-'Cause I, 'cause I don't need it no more
-I've got a hunger you will never taste
-Craving a desire that won't go to waste
-Take this from me, take this lonely heart
-And I, I'm gonna make it my own
-
-Someone took my ego away
-Hate so long, I'll miss it now it's gone
-Now my youth is being replaced
-So, good night, it's gonna be alright
-
-'Cause now I drink the good wine and now I get out of bed
-And now I let myself love, and I'm not scared of the end
-I take it all on the chin, and now I'd do it again
-Because maybe it's time for a change
-I've got a pain in my neck, because I keep looking up
-I'm searching what's coming next, but it won't come from above
-And there's a hole in my chest, like there's a hole in the sun
-So tell me, what's coming next? I'm searching what's coming next
-I've got a pain in my neck, because I keep looking up
-I'm searching what's coming next, but it won't come from above
-And there's a hole in my chest and I'll make it my heart
-
-I've got a message that you can't ignore
-Maybe I'm just not the man I was before
-Take this from me, take this lonely heart
-'Cause I, 'cause I don't need it no more
-I've got a hunger you will never taste
-Craving a desire that won't go to waste
-Take this from me, take this lonely heart
-And I, I'm gonna make it my own
-
-There's a chance that you take that you risk your own fate
-When you break all the chains that you feel comfortable in
-There's a chance that I'll take so that my hunger can be free
-In the end, in the end, in the end, in the end",now end feel more all good next hole keep head looking maybe heart hunger gonna own because searching chest chance younger everyday grow less seem been trying straight where roam feels home weight world down people pulling gotten sick palm hand think itll there piece ourselves draw line sand cross,now end feel more all good next hole keep head looking maybe heart hunger gonna own because searching chest chance younger everyday grow less seem been trying straight where roam feels home weight world down people pulling gotten sick palm hand think itll there piece ourselves draw line sand cross,now:7 end:5 feel:3 more:3 all:3 good:3 next:3 hole:3 keep:2 head:2 looking:2 maybe:2 heart:2 hunger:2 gonna:2 own:2 because:2 searching:2 chest:2 chance:2 younger:1 everyday:1 grow:1 less:1 seem:1 been:1 trying:1 straight:1 where:1 roam:1 feels:1 home:1 weight:1 world:1 down:1 people:1 pulling:1 gotten:1 sick:1 palm:1 hand:1 think:1 itll:1 there:1 piece:1 ourselves:1 draw:1 line:1 sand:1 cross:1,en,4E3WT2j2DDQG3QPVCevYEK,2018
+song_id,title,artist,genre,valence,arousal,tags,reference_lyrics,vocab_strategy,vocab_words,vocab_freq,vocab_words_raw,vocab_freq_raw,vocab_words_content,vocab_freq_content,lang,spotify_id,release
+zKOVN7LbJArSuw96,Powerless,The Flaming Lips,noise,0.081,0.579,"psychedelic,noise","Honey, you're just paranoid
+You should do what you enjoy
+No one is ever really powerless
+That's what she said and she gave me a kiss
+No one is ever really powerless
+Now I think I know what that really is
+
+It only happens if you try
+Pain and pleasure both get you high
+No one is ever really powerless
+That's what she said, now I can't forget
+No one is ever really powerless
+No I think I know what that really is",content,what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget,what:5 really:3 she:3 now:2 think:2 honey:1 paranoid:1 should:1 enjoy:1 powerless:1 gave:1 kiss:1 only:1 happens:1 try:1 pain:1 pleasure:1 both:1 high:1 forget:1,what i you is really she no thats said and now think know that honey youre just paranoid should do enjoy one ever powerless gave me a kiss it only happens if try pain pleasure both get high cant forget,what:5 i:5 you:4 is:3 really:3 she:3 no:2 thats:2 said:2 and:2 now:2 think:2 know:2 that:2 honey:1 youre:1 just:1 paranoid:1 should:1 do:1 enjoy:1 one:1 ever:1 powerless:1 gave:1 me:1 a:1 kiss:1 it:1 only:1 happens:1 if:1 try:1 pain:1 pleasure:1 both:1 get:1 high:1 cant:1 forget:1,what really she now think honey paranoid should enjoy powerless gave kiss only happens try pain pleasure both high forget,what:5 really:3 she:3 now:2 think:2 honey:1 paranoid:1 should:1 enjoy:1 powerless:1 gave:1 kiss:1 only:1 happens:1 try:1 pain:1 pleasure:1 both:1 high:1 forget:1,en,0dv3L5t7Rqq3NmfptBgPZB,2009
+EAvEOmFPt4Oix7Di,Heartworms - Flipped,The Shins,"indie rock, indie pop, rock",0.632,0.806,"indie,indie rock,indie pop,alternative,rock","Well I guess I'm just here to test your patience
+'Cause you're so smart my tricks don't work at all
+Is it my lack of education?
+Just tell me why you never call
+
+Behind your symmetry lies a fundamental difference
+There are those who own the mines and those who crawl
+No offense but, in between the lines I'm reading
+You look out for your own
+And you ain't gonna look at me that way
+
+And it's true
+So what can I do?
+
+Anything to get some of your affection
+(What can I do?)
+Maybe impress you with a song
+(What can I do?)
+I'm trying to minimize the damage
+done 'cause there ain't no one like you
+
+I found the postcard from that trip you took to Thailand
+I remember studyin' all the words written in your pretty hand
+The little lines and little curves that held a sacred meaning
+Or so I thought
+But I had it wrong
+
+Now I'm trying to figure out when it was you gave me these heartworms
+I feel them wriggling in my blood, you gonna do me harm
+Right now I'd rather lose this losing
+feeling
+That came on when you cooled off
+Started treating me in this friendly way
+
+And it's true
+So what can I do?
+
+Oh won't you be still for a moment
+(What can I do?)
+So I can push a feather through your heart
+(What can I do?)
+I'm trying to minimize damage done cause there ain't no one like you
+
+Tell me what can I do?
+
+(What can I do?)
+When I get lonely to distraction
+(What can I do?)
+Maybe impress you with a song
+(What can I do?)
+No easy way around it
+You're the saddest dream that ever came true
+
+La-la-la-la
+La-la-la-la-la",content,can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found,can:4 there:3 aint:3 way:3 what:3 trying:3 when:3 all:2 tell:2 who:2 own:2 lines:2 look:2 out:2 gonna:2 true:2 minimize:2 damage:2 done:2 little:2 now:2 came:2 guess:1 here:1 test:1 patience:1 smart:1 tricks:1 work:1 lack:1 education:1 why:1 call:1 behind:1 symmetry:1 lies:1 fundamental:1 difference:1 mines:1 crawl:1 offense:1 between:1 reading:1 anything:1 some:1 affection:1 maybe:1 impress:1 song:1 found:1,i you la to the your me im a that so it and no in can do cause my there aint way what trying when just youre at all of tell those who own but lines look out for gonna true get minimize damage done one like little now this,i:11 you:11 la:9 to:7 the:7 your:6 me:6 im:5 a:5 that:5 so:4 it:4 and:4 no:4 in:4 can:4 do:4 cause:3 my:3 there:3 aint:3 way:3 what:3 trying:3 when:3 just:2 youre:2 at:2 all:2 of:2 tell:2 those:2 who:2 own:2 but:2 lines:2 look:2 out:2 for:2 gonna:2 true:2 get:2 minimize:2 damage:2 done:2 one:2 like:2 little:2 now:2 this:2,can there aint way what trying when all tell who own lines look out gonna true minimize damage done little now came guess here test patience smart tricks work lack education why call behind symmetry lies fundamental difference mines crawl offense between reading anything some affection maybe impress song found,can:4 there:3 aint:3 way:3 what:3 trying:3 when:3 all:2 tell:2 who:2 own:2 lines:2 look:2 out:2 gonna:2 true:2 minimize:2 damage:2 done:2 little:2 now:2 came:2 guess:1 here:1 test:1 patience:1 smart:1 tricks:1 work:1 lack:1 education:1 why:1 call:1 behind:1 symmetry:1 lies:1 fundamental:1 difference:1 mines:1 crawl:1 offense:1 between:1 reading:1 anything:1 some:1 affection:1 maybe:1 impress:1 song:1 found:1,en,1doeqZA2n4xZIxG0tlHgc5,2018
+O3z2lo3M0UpXtxYJ,Crushing the Holy,Ketzer,"thrash metal, black metal",0.102,0.982,"thrash metal,blackened thrash metal,black metal,german,germany","Mislead flock of the faithful
+With minds of peace and eyes of blind
+Praying to altars, crosses and priests
+Satan my master, unleash the beast!
+Kill Christ!
+Crush the Holy!
+Nail him down!
+We are Satan's Terror Brigade
+
+Baptized in fire and blood
+Sons of damnation arise
+Avengers of infernal breed
+Hunting the divine fuking trace
+Crush the holy
+Asphyxiate voices of delusion
+Slay the benevolent
+Behold the true heirs of creation
+Hate, my weapon to kill
+Wrath, my force, diabolical will
+Evil, my courage, my spell
+bich revenge, you will die in hell
+Enter the infernal
+
+War command, destroying force
+We take our power from the hellish source
+burn the churches, trample the grave
+Satanic terror, you fuking slaves!
+Kill Christ!
+Crush the Holy!
+Nail him down!
+We are Satan's Terror Brigade
+Christian capture put to an end
+Satan will rise and crush the land
+We by his side full of honour and pride
+I am your servant in this satanic rite
+
+Crush the holy
+Asphyxiate voices of delusion
+Slay the benevolent
+Behold the true heirs of creation",content,crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation,crush:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 satanic:2 mislead:1 flock:1 faithful:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1 trace:1 asphyxiate:1 voices:1 delusion:1 slay:1 benevolent:1 behold:1 true:1 heirs:1 creation:1,the of and my to crush we in will satan kill holy terror infernal fuking force you satanic mislead flock faithful with minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down are satans brigade baptized fire blood sons damnation arise avengers breed hunting divine,the:12 of:8 and:5 my:5 to:3 crush:3 we:3 in:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 you:2 satanic:2 mislead:1 flock:1 faithful:1 with:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 are:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1,crush will satan kill holy terror infernal fuking force satanic mislead flock faithful minds peace eyes blind praying altars crosses priests master unleash beast christ nail him down satans brigade baptized fire blood sons damnation arise avengers breed hunting divine trace asphyxiate voices delusion slay benevolent behold true heirs creation,crush:3 will:3 satan:2 kill:2 holy:2 terror:2 infernal:2 fuking:2 force:2 satanic:2 mislead:1 flock:1 faithful:1 minds:1 peace:1 eyes:1 blind:1 praying:1 altars:1 crosses:1 priests:1 master:1 unleash:1 beast:1 christ:1 nail:1 him:1 down:1 satans:1 brigade:1 baptized:1 fire:1 blood:1 sons:1 damnation:1 arise:1 avengers:1 breed:1 hunting:1 divine:1 trace:1 asphyxiate:1 voices:1 delusion:1 slay:1 benevolent:1 behold:1 true:1 heirs:1 creation:1,en,3Tl7mufmD3V50xRZcKhJIh,2009
+AG2tWyMg6hf0vSZa,Despair In The Departure Lounge,Arctic Monkeys,"indie rock, rock, indie rock",0.284,0.306,"indie rock,british,indie,rock,arctic monkeys,indie rock,indie,british","He's pining for her
+In a people carrier
+There might be buildings & pretty things to see like that
+But architecture won't do
+
+Although it might say a lot about the city or town
+I don't care what they've got, keep on turning 'em down
+It don't say the funny things she does
+Don't even try & cheer him up, because
+It just won't happen
+
+He's got the feeling again
+This time on the aeroplane
+There might be tellys in the back of the seats in front
+But Rodney & Del won't do
+
+Although it might take your mind off the aches & the pains
+Laugh when he falls through the bar
+But you're feeling the same
+'Cause she isn't there to hold your hand
+She won't be waiting for you when you land
+
+It feels like she's just nowhere near
+You could well be out on your ear
+This thought comes closely followed by the fear
+& the thought of it
+Makes you feel a bit ill
+
+Yesterday I saw a girl who looked like someone you might knock about with
+& almost shouted
+& then reality kicked in within us
+
+It seems as we become the winners
+You lose a bit of summat
+& half wonder if you won it at all
+& don't say 'owt 'cause you've got no idea
+
+& she's still nowhere near
+& the thought comes closely followed by the fear
+& the thought of it
+Makes you feel a bit ill
+Despair in the departure lounge
+Is one & they'll still be around at three
+No signal & low battery
+What's happened to me?",content,might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls,might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1,the it you in a might be wont dont there to like but say got on she of your thought hes for things do although about i just feeling this when cause shes nowhere near comes closely followed by fear bit at no still pining her people carrier buildings pretty,the:16 it:8 you:7 in:5 a:5 might:5 be:5 wont:4 dont:4 there:3 to:3 like:3 but:3 say:3 got:3 on:3 she:3 of:3 your:3 thought:3 hes:2 for:2 things:2 do:2 although:2 about:2 i:2 just:2 feeling:2 this:2 when:2 cause:2 shes:2 nowhere:2 near:2 comes:2 closely:2 followed:2 by:2 fear:2 bit:2 at:2 no:2 still:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1,might there she thought although about feeling when nowhere near closely followed fear bit pining her people carrier buildings pretty architecture lot city town care what keep turning down funny does even try cheer him because happen again aeroplane tellys seats front rodney del mind off aches pains laugh falls,might:5 there:3 she:3 thought:3 although:2 about:2 feeling:2 when:2 nowhere:2 near:2 closely:2 followed:2 fear:2 bit:2 pining:1 her:1 people:1 carrier:1 buildings:1 pretty:1 architecture:1 lot:1 city:1 town:1 care:1 what:1 keep:1 turning:1 down:1 funny:1 does:1 even:1 try:1 cheer:1 him:1 because:1 happen:1 again:1 aeroplane:1 tellys:1 seats:1 front:1 rodney:1 del:1 mind:1 off:1 aches:1 pains:1 laugh:1 falls:1,en,4GJKUGqq1qdqQCl3uWv6Sn,2006
+QqX67Rc0QP0wlOB5,Homesick,Dua Lipa,pop,0.399,0.224,"pop,ballad,2017,chris martin","Here, where the sky's falling
+I'm covered in blue
+I'm running and I'm crawling
+Fighting for you
+When the rain stops, then, darling, what will I do?
+And I know I go all in, but why do I?
+
+You give me a reason, something to believe in
+I know, I know, I know
+You give me a meaning, something I can breathe in
+I know, I know, I know
+It's a bittersweet feeling
+Longing, and I'm leaving
+I go, I go, I go
+But I wish I was there with you
+Oh, I wish I was there with you
+There's a crack in my window
+A bird in my room
+Angels all over that watch over you
+When I'm walking on water
+All my dreams have come true
+Still, nothing means nothing
+Without you, you
+
+You give me a reason, something to believe in
+I know, I know, I know
+You give me a meaning, something I can breathe in
+I know, I know, I know
+It's a bittersweet feeling
+Longing, and I'm leaving
+I go, I go, I go
+Tell my heart to lie, but I know deep inside it's true
+That I wish I was there with you
+That I wish I was there with you
+Oh I wish I was there with you
+
+You give me a reason, something to believe in
+I know, I know, I know
+You give me a meaning, something I can breathe in
+I know, I know, I know
+It's a bittersweet feeling
+Longing, and I'm leaving
+I go, I go, I go
+Tell my heart to lie, but I know deep inside it's true
+That I wish I was there with you
+That I wish I was there with you
+Oh, I wish I was there with you",content,wish there all when give something over true nothing here where skys falling covered blue running crawling fighting rain stops darling what will why reason believe meaning can breathe bittersweet feeling longing leaving crack window bird room angels watch walking water dreams have means without tell heart lie deep inside,wish:4 there:4 all:3 when:2 give:2 something:2 over:2 true:2 nothing:2 here:1 where:1 skys:1 falling:1 covered:1 blue:1 running:1 crawling:1 fighting:1 rain:1 stops:1 darling:1 what:1 will:1 why:1 reason:1 believe:1 meaning:1 can:1 breathe:1 bittersweet:1 feeling:1 longing:1 leaving:1 crack:1 window:1 bird:1 room:1 angels:1 watch:1 walking:1 water:1 dreams:1 have:1 means:1 without:1 tell:1 heart:1 lie:1 deep:1 inside:1,i you in im know a go wish was there with my and all but the when do give me something to its oh over that true nothing here where skys falling covered blue running crawling fighting for rain stops then darling what will why reason believe meaning can breathe,i:20 you:10 in:6 im:5 know:5 a:5 go:4 wish:4 was:4 there:4 with:4 my:4 and:3 all:3 but:3 the:2 when:2 do:2 give:2 me:2 something:2 to:2 its:2 oh:2 over:2 that:2 true:2 nothing:2 here:1 where:1 skys:1 falling:1 covered:1 blue:1 running:1 crawling:1 fighting:1 for:1 rain:1 stops:1 then:1 darling:1 what:1 will:1 why:1 reason:1 believe:1 meaning:1 can:1 breathe:1,wish there all when give something over true nothing here where skys falling covered blue running crawling fighting rain stops darling what will why reason believe meaning can breathe bittersweet feeling longing leaving crack window bird room angels watch walking water dreams have means without tell heart lie deep inside,wish:4 there:4 all:3 when:2 give:2 something:2 over:2 true:2 nothing:2 here:1 where:1 skys:1 falling:1 covered:1 blue:1 running:1 crawling:1 fighting:1 rain:1 stops:1 darling:1 what:1 will:1 why:1 reason:1 believe:1 meaning:1 can:1 breathe:1 bittersweet:1 feeling:1 longing:1 leaving:1 crack:1 window:1 bird:1 room:1 angels:1 watch:1 walking:1 water:1 dreams:1 have:1 means:1 without:1 tell:1 heart:1 lie:1 deep:1 inside:1,en,5E5MqaS6eOsbaJibl3YeMZ,2017
+59uRghNSX1RUlUrc,Last Xmas,Allie X,pop,0.245,0.83,pop,"Last Christmas, I gave you my heart
+But the very next day you gave it away
+This year, to save me from tears
+I'll give it to someone special
+Last Christmas, I gave you my heart
+But the very next day you gave it away (You gave it away)
+This year, to save me from tears
+I'll give it to someone special
+(Special, special, special...)
+
+Once bitten, twice shy
+I keep my distance, but you still catch my eye
+Tell me, baby, do you recognize me?
+Well, it's been a year, it doesn't surprise me
+
+Merry Christmas, I wrapped it up and sent it
+With a note saying, I love you, I meant it
+Now I know what a fool I've been
+But if you kissed me now
+I know you'd fool me again
+
+Last Christmas, I gave you my heart
+But the very next day you gave it away
+(You gave it away)
+This year, to save me from tears
+I'll give it to someone special
+
+Ooh-ooh
+Oooh, baby
+Yeah!
+
+A crowded room, friends with tired eyes
+I'm hiding from you and your soul of ice
+My God, I thought you were someone to rely on
+Me? I guess I was a shoulder to cry on
+
+A face on a lover with a fire in his heart
+A man under cover but you tore me apart, ooh-hoo
+Now I've found a real love, you'll never fool me again
+
+Last Christmas, I gave you my heart
+But the very next day you gave it away
+(You gave it away)
+This year, to save me from tears
+I'll give it to someone special (Special)
+
+Last Christmas, I gave you my heart
+(I gave you my heart)
+But the very next day you gave it away
+(You gave me away, oh)
+This year, to save me from tears
+I'll give it to someone special
+(I'll give it to someone special)
+Special, ooh ooh...
+
+A face on a lover with a fire in his heart
+(I gave you my heart)
+A man under cover but you tore him apart
+Hmm-hmm, ooh-hoo
+I'll give it to someone
+I'll give it to someone special (Special)
+Hmmm...
+Gave you my
+Aaah...",content,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,you it i a me gave special to my but ooh away someone ill give heart with now fool on christmas the very next day year from baby been and love know ive again man under cover tore apart hoo hmm last this save tears once bitten twice shy keep,you:16 it:12 i:11 a:11 me:10 gave:8 special:8 to:7 my:6 but:6 ooh:6 away:5 someone:5 ill:4 give:4 heart:3 with:3 now:3 fool:3 on:3 christmas:2 the:2 very:2 next:2 day:2 year:2 from:2 baby:2 been:2 and:2 love:2 know:2 ive:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 this:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1,gave special someone give heart now fool christmas next year been love again man under cover tore apart hoo hmm last save tears once bitten twice shy keep distance catch eye tell recognize surprise merry wrapped sent note saying meant what kissed oooh crowded room friends tired eyes hiding soul,gave:8 special:8 someone:5 give:4 heart:3 now:3 fool:3 christmas:2 next:2 year:2 been:2 love:2 again:2 man:2 under:2 cover:2 tore:2 apart:2 hoo:2 hmm:2 last:1 save:1 tears:1 once:1 bitten:1 twice:1 shy:1 keep:1 distance:1 catch:1 eye:1 tell:1 recognize:1 surprise:1 merry:1 wrapped:1 sent:1 note:1 saying:1 meant:1 what:1 kissed:1 oooh:1 crowded:1 room:1 friends:1 tired:1 eyes:1 hiding:1 soul:1,en,5Iylu9FEarJW7j3VXJO7UN,2018
+t7SuEWvnGxM0XH3F,Starstruck,Lancey Foux,"grime, uk hip hop, rap",0.689,0.564,"grime,uk hip hop,trap,rap,hip-hop,british","Lot of ice
+Lot of ice
+Lot of ice
+Lot of ice
+Lot of ice
+Lot of ice
+Lot of i, ice
+
+I ain't even famous, but she saw me and was starstruck (lots of ice)
+I ain't even famous, but she saw me and was starstruck (lots of ice)
+Big pride on me, I come beg your pardon?
+A boy with a big nine on him, you don't want no problem
+
+Born to die, so alive
+See it in your eyes
+Cold as ice, whats your choice of p?
+Minus priced, the other one I like
+She might say she won't, but she might
+She be cocaine, wool over your eyes
+I'm doing holiday rouse, on the first night
+She gonna see me and drool, over my ice
+So la la la, ooh ooh ooh
+Is it you, is it you?
+Opposition member, we gonna shoot if it's you
+I'm present supplying, pressure on youths
+And it's true
+I'm coming heavy, if I end up in the ready with my troops
+
+I ain't even famous, but she saw me and was starstruck (lots of ice)
+I ain't even famous, but she saw me and was starstruck (lots of ice)
+Big pride on me, I come beg your pardon
+A boy with a big nine on him, you don't want no problem
+
+Scared of what, afraid of who? (who?)
+Saint Laurent, yeah, choos beaming cool (yeah, yeah)
+Got enough from a dog, three c's, you doing the two
+Want some chat chat, want some tattoos
+Mummy said get a job, I got a clue, non saloon
+Riding around recliner, seat back
+£20 for 2
+Days in the trap, and if you gotta stick with the plan
+Get with the group
+I see my niggas, every thing around me new
+I ain't famous, she like Lancey is it you?
+Every night I long[?] for the devil, and I do not wear a suit
+New bitch, and a drink
+Sink by the blues[?]
+New grip on her, 452
+
+I ain't even famous, but she saw me and was starstruck
+I ain't even famous, but she saw me and was starstruck
+Big pride on me, I come beg your pardon
+A boy with a big nine on him, you don't want no problem
+
+Born to die, so alive
+See it in your eyes
+Cold as ice, whats your choice of p?
+Minus priced
+
+I ain't even famous, but she saw me and was starstruck
+I ain't even famous, but she saw me and was starstruck
+Big pride on me, I come beg your pardon
+A boy with a big nine on him, you don't want no problem
+I ain't even famous, but she saw me and was starstruck",content,she ice aint famous big new lot even saw starstruck pride beg pardon eyes minus priced might over doing gonna who some chat around every lots boy nine him problem born die alive cold choice other cocaine wool holiday rouse first drool opposition member shoot present supplying pressure youths true,she:8 ice:5 aint:3 famous:3 big:3 new:3 lot:2 even:2 saw:2 starstruck:2 pride:2 beg:2 pardon:2 eyes:2 minus:2 priced:2 might:2 over:2 doing:2 gonna:2 who:2 some:2 chat:2 around:2 every:2 lots:1 boy:1 nine:1 him:1 problem:1 born:1 die:1 alive:1 cold:1 choice:1 other:1 cocaine:1 wool:1 holiday:1 rouse:1 first:1 drool:1 opposition:1 member:1 shoot:1 present:1 supplying:1 pressure:1 youths:1 true:1,i the she and a you of me on ice your with it aint famous but big want see in im my la ooh is if yeah new lot even saw was starstruck pride come beg pardon so eyes minus priced like might over doing night gonna its who got,i:12 the:9 she:8 and:7 a:7 you:7 of:6 me:6 on:6 ice:5 your:5 with:4 it:4 aint:3 famous:3 but:3 big:3 want:3 see:3 in:3 im:3 my:3 la:3 ooh:3 is:3 if:3 yeah:3 new:3 lot:2 even:2 saw:2 was:2 starstruck:2 pride:2 come:2 beg:2 pardon:2 so:2 eyes:2 minus:2 priced:2 like:2 might:2 over:2 doing:2 night:2 gonna:2 its:2 who:2 got:2,she ice aint famous big new lot even saw starstruck pride beg pardon eyes minus priced might over doing gonna who some chat around every lots boy nine him problem born die alive cold choice other cocaine wool holiday rouse first drool opposition member shoot present supplying pressure youths true,she:8 ice:5 aint:3 famous:3 big:3 new:3 lot:2 even:2 saw:2 starstruck:2 pride:2 beg:2 pardon:2 eyes:2 minus:2 priced:2 might:2 over:2 doing:2 gonna:2 who:2 some:2 chat:2 around:2 every:2 lots:1 boy:1 nine:1 him:1 problem:1 born:1 die:1 alive:1 cold:1 choice:1 other:1 cocaine:1 wool:1 holiday:1 rouse:1 first:1 drool:1 opposition:1 member:1 shoot:1 present:1 supplying:1 pressure:1 youths:1 true:1,en,0HxbRq7TvkVD60hmxIovIB,2018
+xWYCYPIrpiAoXrl0,Toro,liily,"rock, alternative rock, indie rock, post-punk",0.554,0.878,"rock,alternative rock,indie rock,post-punk","Sunkissed, skin it makes me feed into your mind tricks
+Your eyes are ocean blue but I'm sea sick
+Of all your pretty lies on your lipstick
+Cryptic so cryptic
+All my life want to take it over
+All my life want to take it over
+Stranger do me the most,
+look into my eyes be the holy to my Ghost, bless me your strange love
+Baby where's the dirty love that you mentioned,
+you make me start to question my own patience,
+I'm waiting ona knife to come an save me, save me, please save me
+All my life want to take it over
+Stranger do me the most,
+look into my eyes be the holy to my Ghost, give me that strange love
+Hold me give me a kiss, wake me from this dream of a never ending pit
+Bless me your strange love
+All my life want to take it over
+All my life want to take it over
+All my life want to take it over
+All my life want to take it over
+All my life want to take it over",content,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,me your my to the love into eyes strange save it im of all cryptic look be holy ghost bless that you give a sunkissed skin makes feed mind tricks are ocean blue but sea sick pretty lies on lipstick so life want take over stranger do most baby wheres,me:12 your:6 my:6 to:5 the:4 love:4 into:3 eyes:3 strange:3 save:3 it:2 im:2 of:2 all:2 cryptic:2 look:2 be:2 holy:2 ghost:2 bless:2 that:2 you:2 give:2 a:2 sunkissed:1 skin:1 makes:1 feed:1 mind:1 tricks:1 are:1 ocean:1 blue:1 but:1 sea:1 sick:1 pretty:1 lies:1 on:1 lipstick:1 so:1 life:1 want:1 take:1 over:1 stranger:1 do:1 most:1 baby:1 wheres:1,love eyes strange save all cryptic look holy ghost bless give sunkissed skin feed mind tricks ocean blue sea sick pretty lies lipstick life over stranger most wheres dirty mentioned start question own patience waiting ona knife please hold kiss wake dream ending pit,love:4 eyes:3 strange:3 save:3 all:2 cryptic:2 look:2 holy:2 ghost:2 bless:2 give:2 sunkissed:1 skin:1 feed:1 mind:1 tricks:1 ocean:1 blue:1 sea:1 sick:1 pretty:1 lies:1 lipstick:1 life:1 over:1 stranger:1 most:1 wheres:1 dirty:1 mentioned:1 start:1 question:1 own:1 patience:1 waiting:1 ona:1 knife:1 please:1 hold:1 kiss:1 wake:1 dream:1 ending:1 pit:1,en,2Uz2fB3AZEJlixkLRjsves,2019
+rUcvSa4S5TWMdEmo,"Chase, I Hardly Know Ya",Marietta,"emo, math rock, midwest emo",0.403,0.58,"emo,indie,math rock,midwest emo,twinkly,gang vocals","I screamed at my skin, ""Please stay younger.""
+Where did the years go when I was feeling stronger?
+
+Right out the window when I was driving your car,
+In the rear view I saw my heart.
+It spun and landed in the front yard
+Of a place I knew before.
+
+Before I knew it, distance crossed my mind.
+Divides my spirits, half for faith and half for better times.
+So how long is four years? It's an eternity I suppose.
+Infinity beckons me to a simple place to hide.
+
+Lay down and cover your eyes so bright from awful morning light.
+I'm so scared of death, not fond of life
+And facing my fears doesn't feel right so I'll carry on tonight.
+Lay down and draw the blinds, the past is always on my mind.
+
+So call me at midnight or call me anytime,
+I'm patiently waiting, the past is on my mind.
+I memorized the nuances of conversation held that night,
+I memorized every detail of your skin, we were spread so thin.
+
+Could've seen you in the basement, could've seen you in the hall.
+But it doesn't even matter, cuz it was nothing at all.
+
+I've been thinking what you said is true,
+Our lives are reds and greens and shades of blue,
+Our colored pasts reveal what is true,
+Nothing that I said to you paints a pretty portrait of us two,
+We're different shades of blue.",content,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1,i the of my and so is in it you at was your a mind me to on skin years when right place knew before half for lay down im doesnt past call memorized that were couldve seen nothing what said true our shades blue screamed please stay younger where,i:10 the:10 of:8 my:7 and:7 so:6 is:5 in:4 it:4 you:4 at:3 was:3 your:3 a:3 mind:3 me:3 to:3 on:3 skin:2 years:2 when:2 right:2 place:2 knew:2 before:2 half:2 for:2 lay:2 down:2 im:2 doesnt:2 past:2 call:2 memorized:2 that:2 were:2 couldve:2 seen:2 nothing:2 what:2 said:2 true:2 our:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1,mind skin years when place knew before half lay down past call memorized couldve seen nothing what true shades blue screamed please stay younger where did feeling stronger out window driving car rear view saw heart spun landed front yard distance crossed divides spirits faith better times how long four,mind:3 skin:2 years:2 when:2 place:2 knew:2 before:2 half:2 lay:2 down:2 past:2 call:2 memorized:2 couldve:2 seen:2 nothing:2 what:2 true:2 shades:2 blue:2 screamed:1 please:1 stay:1 younger:1 where:1 did:1 feeling:1 stronger:1 out:1 window:1 driving:1 car:1 rear:1 view:1 saw:1 heart:1 spun:1 landed:1 front:1 yard:1 distance:1 crossed:1 divides:1 spirits:1 faith:1 better:1 times:1 how:1 long:1 four:1,en,2K4h2jMvqQ8VEKPP7F7MWg,2013
+gNioVLaEJFxkn1Wj,We All Sleep Alone,Cher,pop,0.363,0.51,"pop,cher,80s,dance,90s","Somebody, somewhere, turns off the lights
+Somebody all alone faces the night
+You've got to be strong when you're out on your own
+Cause sooner or later, we all sleep alone
+
+Nobody, nowhere, holds the key to your heart
+When love's a possession, it'll tear you apart
+You may have lovers wherever you roam
+But sooner or later, ooh, we all sleep alone
+
+Oh, the young and the young at heart wait
+But the wait never ends in the soul
+When you feel love is all gone away
+Independence has come
+And into the night I go
+
+Don't make no promises that I can't keep
+I won't be no prisoner of somebody's needs
+You may have lovers wherever you roam
+But sooner or later, ooh, we all sleep alone
+Ooh, we all sleep alone
+
+Yeah, yeah, we all sleep alone, yeah
+And I know, And I know how you feel
+Like I've taken what you're saying to me
+Cause we all sleep alone
+Yes, we all sleep alone",content,all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes,all:8 alone:7 sleep:6 when:3 somebody:2 sooner:2 later:2 heart:2 young:2 wait:2 feel:2 somewhere:1 turns:1 off:1 lights:1 faces:1 strong:1 out:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 possession:1 itll:1 tear:1 apart:1 may:1 have:1 lovers:1 wherever:1 roam:1 ends:1 soul:1 love:1 independence:1 has:1 promises:1 keep:1 prisoner:1 somebodys:1 needs:1 how:1 taken:1 what:1 saying:1 yes:1,the all alone we sleep you i and to when yeah somebody night be youre your cause sooner or later heart but ooh young wait feel no know somewhere turns off lights faces youve got strong out on own nobody nowhere holds key loves a possession itll tear apart may,the:8 all:8 alone:7 we:6 sleep:6 you:5 i:5 and:4 to:3 when:3 yeah:3 somebody:2 night:2 be:2 youre:2 your:2 cause:2 sooner:2 or:2 later:2 heart:2 but:2 ooh:2 young:2 wait:2 feel:2 no:2 know:2 somewhere:1 turns:1 off:1 lights:1 faces:1 youve:1 got:1 strong:1 out:1 on:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 a:1 possession:1 itll:1 tear:1 apart:1 may:1,all alone sleep when somebody sooner later heart young wait feel somewhere turns off lights faces strong out own nobody nowhere holds key loves possession itll tear apart may have lovers wherever roam ends soul love independence has promises keep prisoner somebodys needs how taken what saying yes,all:8 alone:7 sleep:6 when:3 somebody:2 sooner:2 later:2 heart:2 young:2 wait:2 feel:2 somewhere:1 turns:1 off:1 lights:1 faces:1 strong:1 out:1 own:1 nobody:1 nowhere:1 holds:1 key:1 loves:1 possession:1 itll:1 tear:1 apart:1 may:1 have:1 lovers:1 wherever:1 roam:1 ends:1 soul:1 love:1 independence:1 has:1 promises:1 keep:1 prisoner:1 somebodys:1 needs:1 how:1 taken:1 what:1 saying:1 yes:1,en,3ZW8YDbgZBkqu8Wt0jzf4H,1987
