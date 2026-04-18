@@ -103,12 +103,20 @@ It:
 - creates `extension_prompt`
 - writes the final prompt dataset to `data/processed/prompt_dataset.csv`
 
-The mood labels used are:
+The mood labels used are the 12 LyCon-inspired theta sectors:
 
-- `positive and energetic`
-- `tense and emotional`
-- `sad and reflective`
-- `positive and calm`
+- `pleased`
+- `happy`
+- `excited`
+- `annoying`
+- `angry`
+- `nervous`
+- `sad`
+- `bored`
+- `sleepy`
+- `calm`
+- `peaceful`
+- `relaxed`
 
 ### 3. Generate Lyrics
 

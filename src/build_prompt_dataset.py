@@ -38,13 +38,32 @@ def compute_theta(valence: float, arousal: float) -> float:
 
 def mood_from_valence_arousal(valence: float, arousal: float) -> str:
     theta = compute_theta(valence, arousal)
-    if 0 <= theta < math.pi / 2:
-        return "positive and energetic"
-    if math.pi / 2 <= theta < math.pi:
-        return "tense and emotional"
-    if math.pi <= theta < 3 * math.pi / 2:
-        return "sad and reflective"
-    return "positive and calm"
+    signed_theta = theta if theta < math.pi else theta - (2 * math.pi)
+
+    # LyCon maps the valence-arousal angle into 12 mood sectors.
+    if 0 <= signed_theta < 0.17 * math.pi:
+        return "pleased"
+    if 0.17 * math.pi <= signed_theta < 0.33 * math.pi:
+        return "happy"
+    if 0.33 * math.pi <= signed_theta < 0.50 * math.pi:
+        return "excited"
+    if 0.50 * math.pi <= signed_theta < 0.67 * math.pi:
+        return "annoying"
+    if 0.67 * math.pi <= signed_theta < 0.83 * math.pi:
+        return "angry"
+    if 0.83 * math.pi <= signed_theta <= math.pi:
+        return "nervous"
+    if -math.pi <= signed_theta < -0.83 * math.pi:
+        return "sad"
+    if -0.83 * math.pi <= signed_theta < -0.67 * math.pi:
+        return "bored"
+    if -0.67 * math.pi <= signed_theta < -0.50 * math.pi:
+        return "sleepy"
+    if -0.50 * math.pi <= signed_theta < -0.33 * math.pi:
+        return "calm"
+    if -0.33 * math.pi <= signed_theta < -0.17 * math.pi:
+        return "peaceful"
+    return "relaxed"
 
 
 def build_frequency_block(vocab_freq: str) -> str:
