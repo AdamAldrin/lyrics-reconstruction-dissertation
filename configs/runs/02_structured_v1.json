@@ -20,13 +20,13 @@
       "name": "structured",
       "template_file": "prompts/02_extension_v1.txt",
       "vocab_words_column": "vocab_words",
-      "vocab_freq_column": "vocab_freq",
+      "vocab_freq_column": "",
       "requires_structure": true
     }
   ],
   "generation": {
     "model_name": "gpt-4o-mini",
-    "max_rows": null,
+    "max_rows": 3,
     "sleep_between_calls": 1.0,
     "max_retries": 3,
     "dry_run": true

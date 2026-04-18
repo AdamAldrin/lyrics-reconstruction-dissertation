@@ -39,6 +39,10 @@
     "dry_run": false
   },
   "evaluation": {
-    "top_keyword_k": 10
+    "top_keyword_k": 10,
+    "enable_bertscore": true,
+    "bertscore_lang": "en",
+    "bertscore_model_type": "",
+    "bertscore_batch_size": 8
   }
 }

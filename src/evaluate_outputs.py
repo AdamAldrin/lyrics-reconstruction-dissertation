@@ -3,12 +3,16 @@ from __future__ import annotations
 import argparse
 import re
 from collections import Counter
-from math import isnan
 from pathlib import Path
 
 import pandas as pd
 
 from experiment_utils import clean_text, get_prompt_variants, get_run_dir, get_run_id, load_config
+
+try:
+    from bert_score import score as bertscore_score
+except ImportError:  # pragma: no cover - optional dependency
+    bertscore_score = None
 
 
 SECTION_HEADERS = {
@@ -22,6 +26,10 @@ SECTION_HEADERS = {
     "refrain",
 }
 REQUIRED_EXTENSION_ORDER = ["verse 1", "chorus", "verse 2", "chorus"]
+SECTION_ALIASES = {
+    "pre chorus": "pre-chorus",
+    "prechorus": "pre-chorus",
+}
 
 
 def tokenize(text: str) -> list[str]:
@@ -41,15 +49,38 @@ def count_lines(text: str) -> int:
 
 
 def normalize_section_line(line: str) -> str:
-    return line.strip().lower().replace("[", "").replace("]", "").replace(":", "")
+    clean = line.strip().lower()
+    clean = re.sub(r"^#+\s*", "", clean)
+    clean = clean.strip("*_`~")
+    clean = re.sub(r"^[\[\(\{<\s]+|[\]\)\}>\s]+$", "", clean)
+    clean = clean.strip("*_`~")
+    clean = clean.replace(":", " ")
+    clean = re.sub(r"[-_/]+", " ", clean)
+    clean = re.sub(r"\s+", " ", clean).strip()
+    return SECTION_ALIASES.get(clean, clean)
+
+
+def canonicalize_section_label(line: str) -> str | None:
+    clean = normalize_section_line(line)
+    if not clean:
+        return None
+
+    # Match standalone labels such as "verse", "verse 1", "chorus", "pre-chorus 2".
+    match = re.fullmatch(r"(verse|chorus|bridge|intro|outro|pre chorus|pre-chorus|hook|refrain)(?:\s+(\d+))?", clean)
+    if match:
+        header = SECTION_ALIASES.get(match.group(1), match.group(1))
+        number = match.group(2)
+        return f"{header} {number}" if number else header
+
+    return None
 
 
 def extract_section_labels(text: str) -> list[str]:
     labels = []
     for line in split_nonempty_lines(text):
-        clean = normalize_section_line(line)
-        if clean in SECTION_HEADERS or any(clean.startswith(header) for header in SECTION_HEADERS):
-            labels.append(clean)
+        canonical_label = canonicalize_section_label(line)
+        if canonical_label is not None:
+            labels.append(canonical_label)
     return labels
 
 
@@ -299,6 +330,53 @@ def title_token_coverage(text: str, title: str) -> float:
     return len(title_tokens & text_tokens) / len(title_tokens)
 
 
+def add_bertscore_metrics(
+    per_song_df: pd.DataFrame,
+    *,
+    enabled: bool,
+    lang: str,
+    model_type: str | None,
+    batch_size: int,
+) -> pd.DataFrame:
+    per_song_df = per_song_df.copy()
+    metric_columns = ["bertscore_precision", "bertscore_recall", "bertscore_f1"]
+    for column in metric_columns:
+        per_song_df[column] = None
+
+    if not enabled:
+        return per_song_df
+
+    if bertscore_score is None:
+        print("Warning: BERTScore is enabled but the 'bert-score' package is not installed. Skipping BERTScore metrics.")
+        return per_song_df
+
+    valid_mask = (
+        per_song_df["generated_text"].fillna("").astype(str).str.strip().ne("")
+        & per_song_df["reference_lyrics"].fillna("").astype(str).str.strip().ne("")
+    )
+    if not valid_mask.any():
+        return per_song_df
+
+    candidates = per_song_df.loc[valid_mask, "generated_text"].astype(str).tolist()
+    references = per_song_df.loc[valid_mask, "reference_lyrics"].astype(str).tolist()
+
+    kwargs = {
+        "cands": candidates,
+        "refs": references,
+        "lang": lang,
+        "verbose": False,
+        "batch_size": batch_size,
+    }
+    if model_type:
+        kwargs["model_type"] = model_type
+
+    precision, recall, f1 = bertscore_score(**kwargs)
+    per_song_df.loc[valid_mask, "bertscore_precision"] = [float(value) for value in precision]
+    per_song_df.loc[valid_mask, "bertscore_recall"] = [float(value) for value in recall]
+    per_song_df.loc[valid_mask, "bertscore_f1"] = [float(value) for value in f1]
+    return per_song_df
+
+
 def evaluate_text(
     text: str,
     *,
@@ -307,7 +385,6 @@ def evaluate_text(
     reference_text: str,
     title: str,
     top_keyword_k: int,
-    requires_structure: bool,
 ) -> dict:
     tokens = tokenize(text)
     bigrams = get_ngrams(tokens, 2)
@@ -336,13 +413,9 @@ def evaluate_text(
         "reference_unigram_recall": unigram_recall(text, reference_text),
         "reference_bigram_overlap": bigram_overlap(text, reference_text),
         "length_ratio_vs_reference": length_ratio_vs_reference(text, reference_text),
+        "structure_score": structure_score(text),
+        "structure_order_match": structure_order_match(text),
     }
-    if requires_structure:
-        metrics["structure_score"] = structure_score(text)
-        metrics["structure_order_match"] = structure_order_match(text)
-    else:
-        metrics["structure_score"] = None
-        metrics["structure_order_match"] = None
     return metrics
 
 
@@ -371,6 +444,9 @@ def summarize_metrics(per_song_df: pd.DataFrame) -> dict:
         "reference_unigram_recall",
         "reference_bigram_overlap",
         "length_ratio_vs_reference",
+        "bertscore_precision",
+        "bertscore_recall",
+        "bertscore_f1",
         "structure_score",
         "structure_order_match",
     ]
@@ -396,6 +472,10 @@ def evaluate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, pd.DataFr
 
     evaluation_config = config.get("evaluation", {})
     top_keyword_k = int(evaluation_config.get("top_keyword_k", 10))
+    enable_bertscore = bool(evaluation_config.get("enable_bertscore", True))
+    bertscore_lang = clean_text(evaluation_config.get("bertscore_lang", "en")) or "en"
+    bertscore_model_type = clean_text(evaluation_config.get("bertscore_model_type", ""))
+    bertscore_batch_size = int(evaluation_config.get("bertscore_batch_size", 8))
     prompt_variants = get_prompt_variants(config)
     df = pd.read_csv(input_file).copy()
 
@@ -430,7 +510,6 @@ def evaluate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, pd.DataFr
                 reference_text=clean_text(row.get("reference_lyrics", "")),
                 title=clean_text(row.get("title", "")),
                 top_keyword_k=top_keyword_k,
-                requires_structure=bool(variant.get("requires_structure", False)),
             )
             per_song_rows.append(
                 {
@@ -444,6 +523,13 @@ def evaluate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, pd.DataFr
             )
 
     per_song_df = pd.DataFrame(per_song_rows)
+    per_song_df = add_bertscore_metrics(
+        per_song_df,
+        enabled=enable_bertscore,
+        lang=bertscore_lang,
+        model_type=bertscore_model_type or None,
+        batch_size=bertscore_batch_size,
+    )
     summary_df = pd.DataFrame(
         [summarize_metrics(per_song_df[per_song_df["output_type"] == clean_text(variant["name"])]) for variant in prompt_variants]
     )

@@ -178,13 +178,14 @@ The repo does not currently define a populated `requirements.txt`, but the scrip
 - `pandas`
 - `python-dotenv`
 - `openai`
+- `bert-score` for semantic evaluation with BERTScore
 
 A simple setup flow is:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install pandas python-dotenv openai
+pip install pandas python-dotenv openai bert-score
 ```
 
 If you plan to use API generation, also set:
@@ -192,6 +193,13 @@ If you plan to use API generation, also set:
 ```bash
 export OPENAI_API_KEY="your_api_key_here"
 ```
+
+The evaluation stage can also compute BERTScore against the reference lyrics. In `evaluation` config, this is controlled by:
+
+- `enable_bertscore`
+- `bertscore_lang`
+- `bertscore_model_type`
+- `bertscore_batch_size`
 
 ## Running the Project
 

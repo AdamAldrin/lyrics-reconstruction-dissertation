@@ -2,7 +2,6 @@ Compose {genre} lyrics, in a style reminiscent of {artist}, which represents a {
 
 Use the following vocabulary naturally:
 {vocab_words}
-{vocab_frequency_block}
 
 Additional requirements:
 - Keep the lyrics coherent and emotionally consistent.
