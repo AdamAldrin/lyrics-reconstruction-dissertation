@@ -26,10 +26,10 @@
   ],
   "generation": {
     "model_name": "gpt-4o-mini",
-    "max_rows": null,
+    "max_rows": 3,
     "sleep_between_calls": 1.0,
     "max_retries": 3,
-    "dry_run": true
+    "dry_run": false
   },
   "evaluation": {
     "top_keyword_k": 10
