@@ -1,15 +1,100 @@
 \chapter{Approach}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+\section{Introduction}
+This chapter presents the approach adopted in this dissertation for lyric reconstruction from bag-of-words style constraints. The proposed method is inspired by LyCon, but extends this general idea through a prompt-based framework that combines lexical cues, song metadata, and affective information derived from valence and arousal. Rather than treating lyric generation as an unconstrained text generation task, the approach represents each song through a structured set of features that can be used to guide the language model towards outputs that better reflect the source song.
 
-\section{Project Requirements}
+The chapter explains how songs are selected and represented, how lexical vocabularies are extracted from the reference lyrics, how emotional information is incorporated through mood representations, and how different prompt designs are used to impose varying levels of control over the generated lyrics. It also outlines the evaluation strategy used to assess the resulting outputs. Together, these components form the methodological basis for the experimental study presented in the next chapter.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+\section{Overview of the Proposed Approach}
 
-\section{Another Section}
+The proposed approach is organised as a prompt-based lyric reconstruction pipeline. Rather than generating lyrics from unconstrained instructions, each song is first transformed into a structured representation that captures information about its identity, affective characteristics, and lexical content. This representation is then used to construct prompts that guide the language model towards outputs that more closely reflect the source song.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. 
+At a high level, the process begins with song selection from the Music4All dataset, followed by the preparation of the relevant metadata and reference lyrics. The lyrics are then processed to extract vocabulary cues that act as bag-of-words style constraints, while valence and arousal values are used to derive a compact mood representation. These lexical and affective features are combined with song metadata to form prompt inputs, from which multiple prompt variants are constructed. Each prompt variant represents a different level or style of control, allowing the dissertation to compare how structure, lexical guidance, and frequency information affect lyric reconstruction.
 
-\section{Ethical, Professional and Legal Issues}
+Once the prompts are constructed, the selected language model generates a reconstructed lyric for each song. The outputs are then evaluated against the reference lyrics using a set of structural, lexical, diversity, and semantic similarity measures.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{figures/approach-pipeline.png}
+    \caption{Overview of the proposed lyric reconstruction pipeline.}
+    \label{fig:approach_pipeline}
+\end{figure}
+
+
+Figure~\ref{fig:approach_pipeline} summarises the overall pipeline used in this dissertation. The following sections describe each stage of the approach in more detail.
+
+\section{Dataset Selection and Song Representation}
+
+This dissertation uses the Music4All dataset as the basis for the lyric reconstruction task. Although the project is inspired by LyCon, the experiments are not conducted directly on LyCon's released reconstructed lyrics. An initial attempt was made to consider LyCon's published outputs as the basis for evaluation. However, the released material does not provide a sufficiently controlled setting for systematic comparison against original reference lyrics across multiple prompt conditions. In practice, this makes it difficult to construct a consistent reconstruction benchmark in which generated outputs can be evaluated against paired ground-truth lyrics under a shared experimental design.
+
+For this reason, Music4All was selected as the primary dataset for the study. Music4All provides both lyric files and song-level metadata, making it possible to build a reproducible lyric reconstruction pipeline with explicit reference texts for evaluation. This is particularly important in the present dissertation, where the objective is not only to produce reconstructed lyrics, but also to compare different prompt-control strategies against the original lyrics in a consistent and measurable way.
+
+From the available metadata, the approach uses the song title, artist name, genre-related information, and affective features derived from valence and arousal. In the Music4All dataset, arousal is approximated using the available energy measure, allowing the dataset to be aligned with the valence-arousal framing used by LyCon. In addition, the reference lyrics are used as the source from which lexical constraints are derived. This allows the reconstruction task to be framed as generation from an informative but incomplete representation of the original song, rather than direct reproduction of the full lyrics. Music4All is therefore well suited to the construction of a LyCon-inspired baseline condition, while also supporting the broader comparative experiments introduced in later chapters.
+
+To ensure consistency across the dataset, only songs with the required metadata and available lyric content are retained. The dataset is also restricted to English-language songs so that lexical extraction and evaluation can be applied more reliably within a single language setting. Songs with missing titles, artists, genre information, valence, arousal, or usable lyric data are excluded from the final sample. In addition, the sampling procedure is controlled through a fixed random seed so that the same song set can be reused across experimental conditions.
+
+Each retained song is therefore represented as a structured input instance consisting of its metadata, affective attributes, and lyric-derived vocabulary cues. This representation forms the basis for prompt construction in the later stages of the pipeline. By transforming each song into a controlled set of lexical and contextual signals, the approach enables a systematic comparison of different prompt strategies for lyric reconstruction.
+
+\section{Preprocessing and Vocabulary Extraction}
+
+The preprocessing stage converts the reference lyrics of each selected song into a controlled lexical representation that can be used for prompting. This step is central to the dissertation, since the reconstruction task is framed not as generation from the full original lyrics, but as generation from a reduced bag-of-words style representation derived from them. The objective of preprocessing is therefore to transform the raw lyric text into a consistent and informative set of lexical cues while preserving the distinctions required for the later experimental conditions.
+
+For each selected song, the corresponding lyric file is first loaded and normalised into a consistent text format. As lyrics often contain repeated choruses, hooks, and refrains, the preprocessing pipeline applies line deduplication before vocabulary extraction. This means that repeated lines are only counted once when constructing the lexical representation. The purpose of this step is to reduce the influence of repeated lyrical structure on the vocabulary signal, ensuring that highly repeated sections do not dominate the lexical cues simply because they occur multiple times in the original song.
+
+The normalised lyric text is then tokenised into lowercase alphabetic word tokens, providing a simple and consistent lexical representation across songs. At this stage, the pipeline produces two different token representations from the same lyric source. The first is a raw token stream, which retains a broad surface-level representation of the lyrics. The second is a content-based token stream, which applies stopword removal and a minimum token length threshold in order to retain more semantically informative words. In the implementation used in this dissertation, content vocabulary extraction removes common function words and filters tokens shorter than three characters, while raw vocabulary extraction retains these more literal surface-level elements. These two token streams form the basis for the later comparison between raw and content vocabulary prompting.
+
+After tokenisation, frequency counts are computed over the extracted tokens in order to identify the most salient lexical items in each song. From these frequency counts, top-k vocabulary lists are produced, where \(k\) is configurable depending on the experimental condition. This makes it possible to compare smaller and larger lexical budgets, such as top-20, top-50, and top-100 vocabularies. In addition to plain vocabulary lists, the pipeline also stores frequency-annotated vocabulary strings in the form \texttt{word:count}. This allows later prompt variants to make use not only of lexical presence, but also of approximate lexical importance.
+
+The output of this stage is therefore a structured lexical representation for each song, including both raw and content-based vocabulary forms, as well as their associated frequency information. Songs for which usable lyrics or derived vocabulary representations cannot be obtained are excluded from the final dataset. These extracted lexical cues form the core bag-of-words style constraints used for prompt construction throughout the remainder of the lyric reconstruction pipeline.
+
+\section{Content Vocabulary and Raw Vocabulary Representations}
+
+A central design choice in this dissertation is the use of two different lexical representations derived from the same reference lyrics: content vocabulary and raw vocabulary. Although both are extracted from the original song text, they reflect different assumptions about what kind of lexical information is most useful for lyric reconstruction. Because the two representations are generated from the same lyric source, the comparison between them is controlled at the level of the underlying song text, with the primary difference lying in how the lexical signal is filtered and represented. This distinction allows the dissertation to examine whether reconstruction benefits more from a semantically focused representation or from a broader surface-level representation of the source lyrics.
+
+The content vocabulary representation is intended to capture the more informative lexical core of a song. By removing common function words and filtering out very short tokens, this representation emphasises words that are more likely to contribute to theme, imagery, and lyrical content. In the implementation used here, content vocabulary extraction applies a lyric-aware stopword list and a minimum token length threshold of three characters. This reduces the influence of highly frequent but less informative words, producing a more selective bag-of-words signal. Such a representation is particularly suitable for prompt conditions that aim to preserve semantic direction while leaving the language model some flexibility in phrasing and structure.
+
+By contrast, the raw vocabulary representation retains a wider range of lexical material from the original lyrics. This includes function words, short tokens, and other surface-level elements that are excluded from the content-based representation. As a result, the raw vocabulary may preserve aspects of the original lexical texture more directly, potentially encouraging outputs that more closely resemble the wording of the reference song. However, this broader representation may also introduce noise, as highly frequent but low-information words can dominate the lexical signal and reduce its semantic selectivity.
+
+Table~\ref{tab:raw_content_vocab_example} illustrates the difference between the two representations using one song from the experimental sample.
+
+\begin{table}[ht]
+\centering
+\caption{Example comparison of raw and content vocabulary representations for Stevie Wonder's ``Do I Do''.}
+\label{tab:raw_content_vocab_example}
+\begin{tabular}{p{0.28\textwidth} p{0.62\textwidth}}
+\hline
+Representation & Top vocabulary terms \\
+\hline
+Raw vocabulary & do, i, you, love, your, my, the, to, when, for \\
+Content vocabulary & love, when, what, blow, some, girl, kisses, all, chocolate, been \\
+\hline
+\end{tabular}
+\end{table}
+
+The example shows how the raw representation preserves more surface-level lyric material, while the content representation suppresses frequent low-information terms and foregrounds words that are more useful as semantic constraints.
+
+Both vocabulary forms are represented not only as plain word lists but also as frequency-ranked lexical cues. This means that the distinction between raw and content vocabulary can influence both the set of words presented to the language model and the relative prominence assigned to those words in frequency-aware prompt variants. In practical terms, the selected vocabulary strategy determines the lexical fields used for prompt construction, making the representation choice a direct component of the reconstruction process rather than a purely descriptive preprocessing decision.
+
+The comparison between content vocabulary and raw vocabulary is therefore methodologically important. It allows the dissertation to test whether lyric reconstruction is better supported by a cleaner and more semantically focused lexical representation, or by a more literal representation that more closely reflects the surface form of the original lyrics. This distinction also provides a principled basis for one of the core experimental comparisons in the study. More broadly, it helps clarify how the type of lexical constraint influences the balance between fluency, thematic consistency, and reconstruction fidelity in prompt-based lyric generation.
+
+\section{Mood Representation from Valence and Arousal}
+
+\section{Prompt Design Strategy}
+
+\section{Prompt Variants and Control Levels}
+
+\subsection{Baseline LyCon-Style Prompting}
+
+\subsection{Structured Prompting}
+
+\subsection{Frequency-Aware Prompting}
+
+\subsection{Raw Vocabulary Prompting}
+
+\subsection{Minimal Control Prompting}
+
+\subsection{Strong Control Prompting}
+
+\section{Evaluation Strategy}
+
+\section{Chapter Summary}
