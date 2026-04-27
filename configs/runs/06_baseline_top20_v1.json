@@ -3,7 +3,7 @@
   "dataset": {
     "input_root": "data/raw/music4all",
     "output_file": "data/samples/music4all_sample_with_prompt_inputs.csv",
-    "max_rows": 10,
+    "max_rows": 50,
     "candidate_multiplier": 20,
     "top_k_vocab": 20,
     "english_only": true,
@@ -26,10 +26,10 @@
   ],
   "generation": {
     "model_name": "gpt-4o-mini",
-    "max_rows": 3,
+    "max_rows": 50,
     "sleep_between_calls": 1.0,
     "max_retries": 3,
-    "dry_run": true
+    "dry_run": false
   },
   "evaluation": {
     "top_keyword_k": 10

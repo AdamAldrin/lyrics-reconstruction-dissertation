@@ -1,1 +1,4 @@
 Compose {genre} lyrics, in a style reminiscent of {artist} which represents a {mood_label} mood under the title of "{title}" using the following vocabulary {vocab_words}.
+
+Output only the lyrics.
+Do not include introductions, explanations, comments, or closing remarks.

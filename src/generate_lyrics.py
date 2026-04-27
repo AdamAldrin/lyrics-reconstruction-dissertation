@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,6 +22,22 @@ from experiment_utils import (
 
 
 load_dotenv()
+
+
+BOILERPLATE_PREFIX_PATTERNS = [
+    r"^sure[!,.:\s].*$",
+    r"^here (?:are|is) the lyrics.*$",
+    r"^below (?:are|is) the lyrics.*$",
+    r"^lyrics[:\s]*$",
+    r"^title[:\s].*$",
+]
+BOILERPLATE_EXACT_LINES = {
+    "---",
+    "here are the lyrics:",
+    "here is the lyrics:",
+    "i hope you enjoy it!",
+    "i hope you enjoy!",
+}
 
 
 def generate_text(
@@ -46,6 +63,42 @@ def generate_text(
 def generate_text_dry_run(prompt: str, *, label: str) -> str:
     preview = clean_text(prompt).replace("\n", " ")[:240]
     return f"[DRY RUN {label}] {preview}..."
+
+
+def clean_generated_lyrics(text: str) -> tuple[str, bool]:
+    cleaned = clean_text(text)
+    if not cleaned:
+        return "", False
+
+    original = cleaned
+    lines = cleaned.splitlines()
+
+    # Remove obvious wrapper lines at the start, such as "Here are the lyrics".
+    while lines:
+        stripped = lines[0].strip()
+        lowered = stripped.lower()
+        if not stripped:
+            lines.pop(0)
+            continue
+        if lowered in BOILERPLATE_EXACT_LINES or any(re.match(pattern, lowered) for pattern in BOILERPLATE_PREFIX_PATTERNS):
+            lines.pop(0)
+            continue
+        break
+
+    # Remove lightweight wrapper lines at the end, such as closing remarks.
+    while lines:
+        stripped = lines[-1].strip()
+        lowered = stripped.lower()
+        if not stripped:
+            lines.pop()
+            continue
+        if lowered in BOILERPLATE_EXACT_LINES or lowered.startswith("i hope you enjoy"):
+            lines.pop()
+            continue
+        break
+
+    cleaned = "\n".join(lines).strip()
+    return cleaned, cleaned != original
 
 
 def load_existing_outputs(output_file: Path) -> pd.DataFrame:
@@ -153,7 +206,10 @@ def generate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, Path]:
                 print(f"{name} prompt failed for row {idx}: {exc}")
                 output_text = ""
 
+            cleaned_output_text, output_was_cleaned = clean_generated_lyrics(output_text)
             result[output_col] = output_text
+            result[f"{name}_output_clean"] = cleaned_output_text
+            result[f"{name}_output_was_cleaned"] = output_was_cleaned
             time.sleep(sleep_between_calls)
 
         new_rows.append(result)

@@ -502,9 +502,11 @@ def evaluate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, pd.DataFr
             name = clean_text(variant["name"])
             prompt_col = f"{name}_prompt"
             output_col = f"{name}_output"
+            cleaned_output_col = f"{name}_output_clean"
             vocab_freq_column = clean_text(variant.get("vocab_freq_column", "")) or "vocab_freq"
+            output_text = clean_text(row.get(cleaned_output_col, "")) or clean_text(row.get(output_col, ""))
             metrics = evaluate_text(
-                clean_text(row.get(output_col, "")),
+                output_text,
                 vocab=clean_text(row.get(variant.get("vocab_words_column", "vocab_words"), "")),
                 vocab_freq=clean_text(row.get(vocab_freq_column, "")),
                 reference_text=clean_text(row.get("reference_lyrics", "")),
@@ -517,7 +519,7 @@ def evaluate_outputs(config: dict, run_id: str) -> tuple[pd.DataFrame, pd.DataFr
                     "output_type": name,
                     "prompt_version": Path(variant["template_file"]).stem,
                     "prompt_text": clean_text(row.get(prompt_col, "")),
-                    "generated_text": clean_text(row.get(output_col, "")),
+                    "generated_text": output_text,
                     **metrics,
                 }
             )
