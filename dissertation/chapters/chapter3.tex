@@ -79,6 +79,57 @@ The comparison between content vocabulary and raw vocabulary is therefore method
 
 \section{Mood Representation from Valence and Arousal}
 
+In addition to lexical constraints, the proposed approach incorporates affective information into the lyric reconstruction process. This is motivated by the LyCon framework, which uses valence and arousal as part of its representation of lyrical emotion. Valence broadly describes the positivity or negativity of a song, while arousal describes its level of energy or activation. Together, these dimensions provide a compact way to represent the emotional character of a song and to condition the generated lyrics accordingly.
+
+The Music4All dataset provides valence values together with an energy feature obtained from Spotify metadata. In this dissertation, the energy feature is treated as a proxy for arousal, allowing the dataset to be aligned with the valence-arousal representation used in LyCon-inspired lyric reconstruction. Where necessary, values on a unit scale are centred so that the affective space can be interpreted around a neutral origin. Each song is therefore represented as a point in a two-dimensional valence-arousal space.
+
+To convert this continuous affective representation into a promptable form, the approach computes the angular position of each song in the valence-arousal plane. This follows the same general principle as LyCon, where the emotional position of a song is represented by its direction in the valence-arousal space. The angle is calculated using the two-argument arctangent function:
+
+\[
+\theta = \operatorname{atan2}(a, v)
+\]
+
+where \(v\) represents the centred valence value and \(a\) represents the centred arousal value. Following the LyCon-style use of the valence-arousal plane, the resulting angle \(\theta\) is mapped into one of 12 mood sectors, producing a discrete mood label such as \textit{happy}, \textit{excited}, \textit{calm}, or \textit{sad}. Figure~\ref{fig:mood_sector_mapping} illustrates this mood-sector mapping.
+
+\begin{figure}[H]
+\centering
+\resizebox{0.84\textwidth}{!}{%
+\begin{tikzpicture}
+
+\draw[black] (-6.70,-6.00) rectangle (6.70,6.00);
+
+\draw[->, thick] (-6.35,0) -- (6.40,0);
+\draw[->, thick] (0,-5.65) -- (0,5.70);
+
+\node[font=\small] at (0.95,5.82) {Arousal};
+\node[font=\small] at (6.12,-0.35) {Valence};
+
+\foreach \a in {-180,-149.4,-120.6,-90,-59.4,-30.6,0,30.6,59.4,90,120.6,149.4,180} {
+    \draw[densely dotted] (0,0) -- (\a:5.35);
+}
+
+\node[align=center] at (4.45,1.1) {{\small \textbf{PLEASED}}\\{\tiny \(0 \leq \theta < 0.17\pi\)}};
+\node[align=center] at (3.25,3.10) {{\small \textbf{HAPPY}}\\{\tiny \(0.17\pi \leq \theta < 0.33\pi\)}};
+\node[align=center] at (1.4,4.35) {{\small \textbf{EXCITED}}\\{\tiny \(0.33\pi \leq \theta < 0.50\pi\)}};
+\node[align=center] at (-1.4,4.35) {{\small \textbf{ANNOYING}}\\{\tiny \(0.50\pi \leq \theta < 0.67\pi\)}};
+\node[align=center] at (-3.25,3.10) {{\small \textbf{ANGRY}}\\{\tiny \(0.67\pi \leq \theta < 0.83\pi\)}};
+\node[align=center] at (-4.35,1.1) {{\small \textbf{NERVOUS}}\\{\tiny \(0.83\pi \leq \theta \leq \pi\)}};
+
+\node[align=center] at (-4.35,-1.1) {{\small \textbf{SAD}}\\{\tiny \(-\pi \leq \theta < -0.83\pi\)}};
+\node[align=center] at (-3.25,-3.10) {{\small \textbf{BORED}}\\{\tiny \(-0.83\pi \leq \theta < -0.67\pi\)}};
+\node[align=center] at (-1.4,-4.25) {{\small \textbf{SLEEPY}}\\{\tiny \(-0.67\pi \leq \theta < -0.50\pi\)}};
+\node[align=center] at (1.4,-4.25) {{\small \textbf{CALM}}\\{\tiny \(-0.50\pi \leq \theta < -0.33\pi\)}};
+\node[align=center] at (3.25,-3.10) {{\small \textbf{PEACEFUL}}\\{\tiny \(-0.33\pi \leq \theta < -0.17\pi\)}};
+\node[align=center] at (4.35,-1.1) {{\small \textbf{RELAXED}}\\{\tiny \(-0.17\pi \leq \theta < 0\)}};
+
+\end{tikzpicture}%
+}
+\caption{Valence-arousal mood sector mapping adapted from LyCon.}
+\label{fig:mood_sector_mapping}
+\end{figure}
+
+The resulting mood label is inserted into the prompt templates as an affective cue, allowing the language model to receive not only lexical and metadata information, but also a compact description of the intended emotional tone. This mood representation is not intended to provide a complete model of lyrical emotion. Instead, it serves as a lightweight conditioning signal that allows the generated lyrics to be guided by the affective metadata available for each song. Combined with the vocabulary cues described in the previous sections, the mood label helps define the target song representation used throughout the prompt-based reconstruction pipeline.
+
 \section{Prompt Design Strategy}
 
 \section{Prompt Variants and Control Levels}
