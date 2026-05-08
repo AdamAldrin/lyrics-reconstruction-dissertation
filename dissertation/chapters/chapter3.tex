@@ -132,20 +132,207 @@ The resulting mood label is inserted into the prompt templates as an affective c
 
 \section{Prompt Design Strategy}
 
+Prompt design is the central mechanism through which the reconstruction task is controlled in this dissertation. Once each song has been represented through its metadata, lyric-derived vocabulary, and affective mood label, these components are inserted into prompt templates that instruct the language model to generate a reconstructed lyric. The prompts therefore act as the interface between the reduced song representation and the generative model. Rather than asking the model to generate lyrics freely, the prompt provides a constrained description of the source song and specifies how strongly the model should use the available cues.
+
+The prompt design strategy is experimental in nature. Different prompt templates are used to impose different levels and types of control over the generation process. This makes it possible to investigate how reconstruction quality changes when the model is given more explicit structural guidance, stronger lexical requirements, frequency information, or a larger vocabulary budget. In this way, prompt design is not treated simply as an implementation detail, but as the main variable through which the dissertation studies lyric reconstruction from bag-of-words style inputs.
+
+Several dimensions of control are considered. The first is lexical control, which concerns the extent to which the model is instructed to use the vocabulary extracted from the reference lyrics. In some variants, the vocabulary is presented as a central requirement, while in others it is framed more loosely as inspiration. The second is structural control, where the prompt may require the generated lyric to follow a specific organisation such as Verse 1, Chorus, Verse 2, and Chorus. This allows the experiments to examine whether explicit structural instructions improve the formal organisation of the generated lyrics.
+
+A third dimension is frequency-aware control. Since the preprocessing stage stores not only vocabulary lists but also frequency counts, some prompt variants provide the model with information about which words were more prominent in the reference lyrics. The purpose of this is to test whether approximate frequency information helps the model preserve more important lexical cues rather than treating all supplied words equally. A fourth dimension is vocabulary representation, which distinguishes between content vocabulary and raw vocabulary. This comparison tests whether a cleaner semantic vocabulary or a broader surface-level vocabulary provides a better reconstruction signal.
+
+The prompt design also varies the size of the vocabulary supplied to the model. By comparing top-20, top-50, and top-100 vocabulary settings, the experiments examine whether a smaller lexical budget produces more focused outputs, or whether a larger vocabulary helps the model remain closer to the reference lyric. Finally, the prompts vary in overall strictness. Minimal-control prompting gives the model more freedom, while strong-control prompting explicitly requires prominent vocabulary use, structural compliance, and coherent emotional expression.
+
+This design allows the dissertation to compare prompt strategies under a controlled experimental setting. Since the same song sample is used across the final runs, differences in the generated outputs can be interpreted in relation to the prompt conditions rather than changes in the underlying dataset. The following section describes the specific prompt variants and control levels used in the experiments.
+
 \section{Prompt Variants and Control Levels}
+
+The experimental design includes a set of prompt variants that differ in the type and strength of control imposed on the language model. Each variant uses the same general song representation, but changes how the available information is presented to the model. This makes it possible to compare reconstruction behaviour across different prompt-control settings while keeping the underlying song sample consistent.
+
+Table~\ref{tab:prompt_variants} summarises the main prompt variants used in the final experiments.
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.45}
+\caption{Summary of prompt variants used in the lyric reconstruction experiments.}
+\label{tab:prompt_variants}
+\begin{tabular}{
+p{0.05\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
+>{\raggedright\arraybackslash}p{0.24\textwidth}
+>{\raggedright\arraybackslash}p{0.41\textwidth}
+}
+\hline
+No. & Prompt variant & Main control type & Purpose \\
+\hline
+1 & Baseline LyCon-style & Metadata, mood, content vocabulary & Provides a baseline reconstruction condition inspired by LyCon-style prompting. \\
+2 & Structured & Explicit lyric structure & Tests whether verse and chorus instructions improve formal organisation. \\
+3 & Frequency-aware & Structure and word frequency cues & Tests whether frequency information helps prioritise important vocabulary. \\
+4 & Raw vocabulary & Surface-level vocabulary & Tests whether retaining function words and short tokens improves reconstruction. \\
+5 & Top-20 vocabulary & Reduced lexical budget & Tests whether a compact vocabulary signal produces more focused outputs. \\
+6 & Top-100 vocabulary & Expanded lexical budget & Tests whether a larger vocabulary signal improves reference similarity. \\
+7 & Minimal control & Loose vocabulary guidance & Tests the effect of giving the model greater freedom. \\
+8 & Strong control & Structure, vocabulary, and frequency constraints & Tests the most constrained reconstruction setting. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
+
+
+
 
 \subsection{Baseline LyCon-Style Prompting}
 
+The baseline prompt is designed to provide a LyCon-inspired reconstruction condition. It uses the song title, artist name, genre, mood label, and lyric-derived content vocabulary as the main input cues. The prompt asks the model to compose lyrics in a style reminiscent of the given artist, representing the derived mood label, and using the supplied vocabulary. This establishes a simple reconstruction setting in which the model receives both contextual and lexical information, but is not given explicit structural requirements.
+
+This baseline is important because it provides a reference point for evaluating the later prompt variants. Since it includes the main song-level cues used throughout the dissertation, it represents the minimum controlled reconstruction condition against which additional forms of prompt control can be compared. However, because it does not enforce verse or chorus organisation, the generated structure is left largely to the language model.
+
 \subsection{Structured Prompting}
+
+The structured prompt extends the baseline by adding explicit instructions about lyric organisation. In addition to genre, artist, mood label, title, and vocabulary, the model is instructed to structure the output into Verse 1, Chorus, Verse 2, and Chorus. The purpose of this variant is to test whether a clear structural template improves the formal organisation of the generated lyrics.
+
+This condition is motivated by the observation that lyric reconstruction involves not only recovering relevant words, but also arranging them into a recognisable lyrical form. A generated output may contain appropriate vocabulary but still be weak as a lyric if it lacks coherent sections or repeated chorus-like material. Structured prompting therefore tests whether formal constraints help the model produce outputs that better resemble conventional song lyrics.
 
 \subsection{Frequency-Aware Prompting}
 
+The frequency-aware prompt builds on the structured condition by adding frequency information for the supplied vocabulary. Instead of presenting only a list of words, this variant also provides approximate word counts in the form \texttt{word:count}. These counts are derived from the reference lyrics during preprocessing and are intended to indicate which lexical items were more prominent in the source song.
+
+The purpose of frequency-aware prompting is to test whether the model can make more effective use of the vocabulary when given information about relative lexical importance. In a plain vocabulary list, all words are presented with equal weight, even though some may be central to the original lyric while others appear only once. By providing frequency cues, the prompt encourages the model to reuse more important words more prominently while still maintaining fluency and coherence.
+
 \subsection{Raw Vocabulary Prompting}
+
+The raw vocabulary prompt uses the same general baseline style but changes the vocabulary representation. Instead of using content vocabulary, it uses raw vocabulary extracted from the reference lyrics. This means that the supplied vocabulary may include function words, short tokens, and other surface-level lexical material that would normally be removed in the content vocabulary condition.
+
+This variant tests whether a broader and more literal vocabulary representation provides a better reconstruction signal. Raw vocabulary may help preserve aspects of the original lyric's surface form because it contains common words and phrasing elements that are filtered out of the content-based representation. However, it may also introduce noise by giving the model less semantically selective lexical cues. The raw vocabulary condition is therefore used to examine the tradeoff between surface-level fidelity and lexical informativeness.
+
+\subsection{Vocabulary Size Variants}
+
+Two additional baseline-style variants are used to examine the effect of vocabulary size. The top-20 condition provides only the twenty most frequent content vocabulary terms from each reference lyric, while the top-100 condition provides a much larger set of lexical cues. These variants allow the dissertation to examine how the size of the bag-of-words representation affects reconstruction behaviour.
+
+The top-20 condition represents a compact lexical budget. It gives the model only the most prominent words and therefore tests whether a smaller set of high-salience cues is sufficient to guide reconstruction. This may encourage more focused outputs, but it may also omit important secondary details from the original lyric. By contrast, the top-100 condition provides a broader lexical representation. This may help the generated output remain closer to the reference lyric, but it may also make the prompt less focused or harder for the model to satisfy fully.
+
+Together, these conditions allow the dissertation to investigate whether lyric reconstruction benefits more from concise lexical guidance or from a larger vocabulary signal.
 
 \subsection{Minimal Control Prompting}
 
+The minimal-control prompt is designed to reduce the strength of the lexical constraint. In this condition, the vocabulary is presented only as optional inspiration rather than as a required set of words to use. The model is still given metadata and mood information, but it is allowed more freedom in deciding whether and how to incorporate the supplied vocabulary.
+
+This variant provides a useful contrast to the more controlled prompt conditions. If the model performs well under minimal control, this would suggest that detailed lexical constraints may not be necessary for generating plausible lyrics. If performance decreases, this would suggest that stronger prompt control may be important for reconstructing lyrics from reduced song representations. The minimal-control condition therefore helps clarify the role of explicit lexical guidance in the reconstruction process.
+
 \subsection{Strong Control Prompting}
+
+The strong-control prompt represents the most constrained condition in the experimental design. It combines explicit structural requirements, prominent vocabulary use, and frequency-aware lexical guidance. The model is instructed to structure the output into Verse 1, Chorus, Verse 2, and Chorus, to use many of the supplied vocabulary words explicitly, and to reuse important words where natural.
+
+This condition is designed to test whether combining multiple forms of control leads to stronger reconstruction behaviour. Unlike the minimal-control condition, which gives the model substantial freedom, the strong-control prompt makes the reconstruction objective more explicit. It therefore represents the strongest attempt in the dissertation to guide the language model using the reduced song representation. Comparing this variant with the baseline, structured, and frequency-aware conditions allows the experiments to examine whether stronger control improves reconstruction, or whether excessive constraint introduces tradeoffs such as repetition or reduced naturalness.
+
+\section{Lyric Generation Procedure}
+
+After the prompt variants are constructed, they are used to generate reconstructed lyrics for each song in the experimental sample. Each final prompt condition is applied to the same set of 50 songs, ensuring that the outputs from different runs can be compared under a consistent dataset. For each song and prompt variant, the language model generates one reconstructed lyric using the corresponding prompt template and song representation.
+
+The generation stage uses GPT-4o mini as the language model. This model is treated as a fixed generation component across the experiments, while the prompt design is varied between conditions. Keeping the model constant is important because it allows differences in the generated outputs to be interpreted primarily in relation to the prompt strategy rather than changes in model architecture or model capability.
+
+For each run, the generated output is saved together with the song metadata, prompt input, prompt version, model name, and timestamp. The pipeline also stores a snapshot of the configuration used for the run, allowing the experimental conditions to be traced and reproduced. This includes information such as the vocabulary strategy, vocabulary size, prompt template, and whether structural constraints or frequency cues are used. By storing these files separately for each run, the pipeline maintains a clear record of how each output was produced.
+
+A light output-cleaning step is applied after generation. This step removes obvious wrapper text such as introductory phrases, explanations, or closing remarks if they are produced by the language model. However, the generated lyric itself is not rewritten or manually corrected. This is important because the evaluation should reflect the model output produced under each prompt condition rather than a human-edited version of the text.
+
+The same generation procedure is used across all final prompt variants. As a result, the main experimental difference between runs lies in the information and constraints provided through the prompt. This supports a controlled comparison of how lexical guidance, structural requirements, frequency information, vocabulary size, and prompt strictness influence lyric reconstruction.
+
+\begin{table}[H]
+\centering
+\caption{Summary of the lyric generation setup.}
+\label{tab:generation_setup}
+\begin{tabular}{p{0.35\textwidth} p{0.50\textwidth}}
+\hline
+Component & Setting \\
+\hline
+Language model & GPT-4o mini \\
+Songs per run & 50 \\
+Outputs per song & One reconstructed lyric per prompt variant \\
+Controlled variable & Prompt design \\
+Stored run files & Prompt dataset, generated outputs, configuration snapshot, evaluation files \\
+\hline
+\end{tabular}
+\end{table}
+
 
 \section{Evaluation Strategy}
 
+The generated lyrics are evaluated using a set of automatic metrics designed to capture different aspects of lyric reconstruction quality. Since lyric reconstruction cannot be assessed using a single measure, the evaluation strategy considers structural form, lexical adherence, similarity to the reference lyrics, diversity, repetition, and auxiliary mood preservation. These metrics are used together to provide a broader picture of how different prompt-control strategies affect the generated outputs.
+
+The evaluation is performed against the reference lyrics from the Music4All dataset. However, the aim is not to reward exact copying of the original lyrics. Instead, the metrics are used to examine whether the generated lyrics preserve important characteristics of the source song representation, such as its vocabulary, structure, and affective cues, while still producing coherent lyric text.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\caption{Summary of evaluation dimensions used in the dissertation.}
+\label{tab:evaluation_dimensions}
+\begin{tabular}{
+>{\raggedright\arraybackslash}p{0.26\textwidth}
+>{\raggedright\arraybackslash}p{0.32\textwidth}
+>{\raggedright\arraybackslash}p{0.32\textwidth}
+}
+\hline
+Evaluation dimension & Example metrics & Purpose \\
+\hline
+Structural form & Section count, structure score, order match & Measures whether outputs follow song-like organisation. \\
+Lexical adherence & Keyword coverage, weighted coverage, keyword density & Measures use of supplied vocabulary cues. \\
+Reference similarity & Jaccard, unigram overlap, bigram overlap, BERTScore & Measures similarity to the reference lyrics. \\
+Diversity and repetition & Distinct n-grams, type-token ratio, repeated line ratio & Measures variety and excessive repetition. \\
+Mood preservation & Classifier-based mood prediction, Warriner VA distance & Provides auxiliary affective comparison. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
+
+\subsection{Structural Evaluation}
+
+Structural evaluation measures whether the generated lyrics resemble a recognisable song-like form. This is particularly important for prompt variants that explicitly request sections such as Verse 1, Chorus, Verse 2, and Chorus. The evaluation therefore includes measures such as line count, section count, structure score, and section order match.
+
+The section-based metrics are used to assess whether generated outputs contain the expected lyrical divisions and whether these divisions appear in the intended order. This allows the structured and strong-control prompt variants to be compared against less constrained variants. A generated lyric may contain relevant vocabulary but still be structurally weak if it lacks clear sections or does not follow the requested verse-chorus organisation. Structural evaluation therefore captures an aspect of reconstruction quality that is not measured by lexical overlap alone.
+
+The evaluation also records the length ratio between the generated lyric and the reference lyric. This provides a basic indication of whether generated outputs are substantially shorter or longer than the original lyric text.
+
+\subsection{Lexical Adherence Evaluation}
+
+Lexical adherence evaluation measures how effectively the generated lyrics use the vocabulary supplied in the prompt. Since the reconstruction task is based on bag-of-words style constraints, this is one of the central evaluation dimensions in the dissertation. The main lexical metrics include keyword coverage, top keyword coverage, weighted keyword coverage, and keyword density.
+
+Keyword coverage measures the proportion of supplied vocabulary words that appear in the generated lyric. Top keyword coverage focuses on the highest-ranked vocabulary terms, while weighted keyword coverage takes frequency information into account when available. This allows the evaluation to distinguish between outputs that use only minor vocabulary terms and outputs that preserve more prominent words from the reference lyric. Keyword density is used to examine how much of the generated text consists of supplied vocabulary words. Title token coverage is also recorded to indicate whether important words from the song title are reflected in the generated output.
+
+Together, these metrics help assess whether the language model follows the lexical constraints provided by each prompt variant. They are especially useful for comparing minimal-control, baseline, frequency-aware, and strong-control prompts.
+
+\subsection{Reference Similarity Evaluation}
+
+Reference similarity evaluation measures the degree of overlap between the generated lyric and the original reference lyric. This includes lexical overlap metrics such as reference Jaccard similarity, unigram precision, unigram recall, and bigram overlap. These measures provide an indication of how closely the generated output resembles the reference lyric at the word and phrase level.
+
+In addition to surface-level overlap, BERTScore is used as a semantic similarity measure. BERTScore compares generated and reference lyrics using contextual language representations, allowing the evaluation to capture forms of similarity that may not rely on exact word matching. This is useful because a generated lyric may express related themes or emotional content while using different wording from the original lyric.
+
+These metrics are interpreted carefully. Higher reference similarity may indicate stronger reconstruction, but the goal is not direct duplication of copyrighted lyrics. Instead, reference similarity is treated as one signal of how much source-song information is preserved in the generated output.
+
+\subsection{Diversity and Repetition Evaluation}
+
+Diversity and repetition metrics are included to assess the quality and variety of the generated lyrics. A prompt variant may achieve high keyword coverage by repeatedly using the same supplied words, but such an output may still be weak if it is repetitive or lacks lexical variety. To account for this, the evaluation includes measures such as distinct unigrams, distinct bigrams, type-token ratio, and repeated line ratio.
+
+Distinct n-gram metrics measure the proportion of unique word sequences in the generated lyric, while type-token ratio measures lexical variety at the word level. The repeated line ratio measures how much of the lyric consists of repeated lines. These metrics are important because lyric generation involves a balance between repetition and variation. Some repetition is natural in songs, especially in choruses, but excessive repetition may indicate that the prompt constraint has reduced output quality.
+
+This part of the evaluation therefore helps identify tradeoffs between control and fluency. A highly constrained prompt may improve structure or vocabulary use while also increasing repetition, so diversity metrics provide an additional perspective on the generated outputs.
+
+\subsection{Auxiliary Mood Preservation Evaluation}
+
+In addition to the main reconstruction metrics, the evaluation design includes an auxiliary mood preservation analysis. This component is included because the prompt representations contain affective information derived from valence and arousal, and it is therefore useful to examine whether generated lyrics preserve aspects of the intended emotional character of the source song. However, mood preservation is treated as exploratory rather than as the primary measure of reconstruction quality, since lyrical emotion is difficult to evaluate automatically and the available Music4All affective features are song-level metadata rather than direct lyric-level annotations.
+
+Two complementary approaches are considered for this analysis. The first is classifier-based mood prediction, where classifiers are trained on Music4All lyrics to predict mood labels derived from the valence-arousal representation. This provides a way to test whether generated lyrics can be assigned to the same broad mood category as the source song. However, because the labels originate from song-level metadata, this approach is used cautiously and mainly as an exploratory indicator.
+
+The second approach uses lyric-derived affective scores based on Warriner et al.'s word-level valence and arousal ratings. For both the reference lyric and the generated lyric, matched words are assigned valence and arousal scores and averaged to produce a lyric-level affect representation. Mood preservation can then be estimated by measuring the distance between the reference and generated lyric representations in valence-arousal space. This provides a text-based auxiliary measure that is more directly aligned with the generated lyric content.
+
+The results and limitations of these mood preservation analyses are discussed in the results chapter, where their reliability is considered alongside the main structural, lexical, reference-similarity, diversity, and repetition metrics.
+
+
 \section{Chapter Summary}
+
+This chapter has presented the approach used in this dissertation for prompt-based lyric reconstruction from reduced song representations. The proposed pipeline begins with song selection from the Music4All dataset, where each song is represented using metadata, reference lyrics, lyric-derived vocabulary, and affective information based on valence and arousal. These inputs are transformed into a structured representation that supports systematic prompt construction.
+
+The chapter then described the preprocessing and vocabulary extraction stages, including the distinction between content vocabulary and raw vocabulary representations. It also explained how valence and arousal are mapped into LyCon-inspired mood sectors, producing mood labels that can be used as prompt conditioning cues. These representations provide the basis for the different prompt-control strategies used in the experiments.
+
+The prompt design was presented as the central experimental mechanism of the dissertation. Different prompt variants were introduced to test the effects of lexical control, structural control, frequency-aware guidance, vocabulary size, and prompt strictness. The chapter also described the lyric generation procedure and the evaluation strategy used to assess generated outputs across structural, lexical, reference-similarity, diversity, repetition, and auxiliary mood preservation dimensions.
+
+Together, these methodological components define the experimental framework used in the remainder of the dissertation. The next chapter describes how this approach was implemented in practice, including the software pipeline, experiment configuration, and generation workflow.
+
