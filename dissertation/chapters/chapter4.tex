@@ -2,36 +2,367 @@
 
 \section{Introduction}
 
+This chapter describes the implementation of the experimental pipeline used to carry out the lyric reconstruction study. While the previous chapter introduced the methodological approach, this chapter focuses on how that approach was realised in practice through data preparation scripts, prompt templates, generation workflows, evaluation code, and experiment configurations.
+
+The implementation was developed as a Python-based pipeline that processes Music4All song data, constructs prompt-ready representations, generates reconstructed lyrics using a language model, and evaluates the generated outputs using automatic metrics. Each experimental condition is defined through a separate configuration file, allowing the same core pipeline to be reused across different prompt variants. This supports a controlled experimental setup in which the main variable is the prompt design rather than the dataset or model.
+
+The final lyric reconstruction experiments were conducted on a fixed sample of 50 English-language songs. The same sample was used across all final prompt variants, ensuring that the outputs could be compared consistently. Since eight final prompt variants were evaluated, the complete set of final experiments produced 400 reconstructed lyrics in total. For each run, the system stores the prompt dataset, generated lyrics, configuration snapshot, and evaluation outputs in a dedicated run directory. This output structure makes the experiments easier to inspect, reproduce, and compare.
+
+In addition to the main reconstruction pipeline, this chapter also describes the implementation of the mood preservation experiments. These include classifier-based experiments for predicting mood-related labels from lyrics, as well as a lyric-derived affect analysis based on valence and arousal word ratings. These experiments are treated as auxiliary to the main reconstruction evaluation, but they provide additional insight into whether generated lyrics preserve affective characteristics of the source songs.
+
+The chapter is organised as follows. Section 4.2 gives an overview of the implementation structure. Sections 4.3 to 4.6 describe dataset preparation, prompt generation, lyric generation, and evaluation. Section 4.7 outlines the final experimental configurations. Section 4.8 describes the mood preservation experiments, and Section 4.9 explains how outputs are organised to support reproducibility.
+
 \section{Implementation Overview}
+
+The implementation is organised as a modular Python pipeline. Rather than writing separate scripts for each experimental condition, the system uses a shared set of pipeline components that can be controlled through configuration files. This allows different prompt variants to be evaluated using the same data preparation, generation, and evaluation workflow.
+
+The main entry point for the lyric reconstruction experiments is \texttt{src/run\_experiment.py}. This script coordinates the end-to-end process by first preparing the input dataset, then constructing the prompt dataset, generating lyrics, and finally running the evaluation stage. Internally, it calls the dataset preparation, prompt construction, lyric generation, and evaluation modules in sequence. This keeps the workflow executable through a single command while still allowing each stage to remain modular.
+
+The dataset preparation stage loads and merges the required Music4All metadata, filters the dataset, loads reference lyrics, and extracts vocabulary representations. The prompt construction stage converts each song representation into prompt strings using configurable prompt templates. The generation stage sends each prompt to the language model and stores the resulting reconstructed lyrics. The main reconstruction evaluation stage then produces both per-song and summary-level metrics.
+
+The main implementation modules are summarised in Table~\ref{tab:implementation_modules}; the corresponding source files are stored as Python files under the \texttt{src/} directory.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Main implementation modules used in the reconstruction pipeline.}
+\label{tab:implementation_modules}
+\begin{tabular}{
+>{\raggedright\arraybackslash}p{0.40\textwidth}
+>{\raggedright\arraybackslash}p{0.42\textwidth}
+}
+\hline
+Module & Purpose \\
+\hline
+{\small\texttt{run\_experiment.py}} & Coordinates the end-to-end experiment pipeline. \\
+{\small\texttt{prepare\_input\_dataset\_music4all.py}} & Prepares the Music4All sample and vocabulary fields. \\
+{\small\texttt{build\_prompt\_dataset.py}} & Creates prompt-ready song representations. \\
+{\small\texttt{generate\_lyrics.py}} & Generates reconstructed lyrics from prompt templates. \\
+{\small\texttt{evaluate\_outputs.py}} & Computes per-song and summary evaluation metrics. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
+
+
+The pipeline is configuration-driven. Each final experiment is defined by a JSON configuration file under \texttt{configs/runs/}. These configuration files specify the dataset settings, vocabulary strategy, prompt template, generation settings, and evaluation options for each run. The prompt text itself is stored separately under the \texttt{prompts/} directory. This separation between code, configuration, and prompt templates makes it easier to introduce new experimental conditions without rewriting the core pipeline.
+
+The final reconstruction outputs are stored in dedicated run directories under \texttt{outputs/runs/}, using run identifiers ending in \texttt{-final}. Although the internal run identifiers preserve the development numbering used during implementation, the dissertation reports the study as eight final prompt variants. Each final run directory contains the prompt dataset, generated outputs, per-song evaluation file, summary evaluation file, configuration snapshot, and prompt variant metadata. This structure provides a clear record of how each experiment was produced and supports direct comparison between prompt variants.
 
 \section{Dataset Preparation Implementation}
 
+The dataset preparation stage converts the raw Music4All files into the song-level input representation used by the reconstruction experiments. This stage is implemented by the dataset preparation module listed in Table~\ref{tab:implementation_modules}. Its purpose is to collect the required metadata, load the reference lyrics, extract vocabulary representations, and produce a consistent input file that can be reused by the prompt construction stage.
+
+The preparation process begins by loading the relevant Music4All metadata files. These include song identity information, language labels, audio-related metadata, tag information, and genre information where available. The identity file provides the song title and artist, while the language file is used to restrict the sample to English-language songs. Genre information is taken from the genre field when available, with tags used as a fallback source. The metadata file provides valence and energy values, where energy is used as the arousal-related feature in this project.
+
+After merging these sources, the pipeline removes songs with missing title, artist, genre, valence, or arousal information. It then loads the corresponding lyric text file for each remaining song. Songs without available lyrics are excluded, since the lyrics are required both for vocabulary extraction and for later reference-based evaluation. Line endings are normalised so that the lyric text has a consistent format across files.
+
+A fixed sample of 50 songs is then selected using a controlled random seed. This is important because the dissertation compares prompt variants rather than different datasets. By using the same 50 songs across all final runs, differences in the evaluation results can be attributed more directly to the prompt design and vocabulary representation rather than to changes in the song sample.
+
+The reference lyrics are not passed directly to the language model as complete lyrics. Instead, they are converted into reduced vocabulary representations. This follows the reconstruction setting of the project, where the model is asked to generate lyrics from incomplete lexical and affective cues rather than from the original text. The preparation script tokenises the lyrics, lowercases words, removes punctuation, and counts word frequencies. Two vocabulary forms are produced: a raw vocabulary and a content vocabulary. The raw vocabulary retains surface-level tokens, including short and functional words, while the content vocabulary removes stopwords and very short tokens in order to focus on more semantically meaningful terms. Table~\ref{tab:dataset_prepared_fields} summarises the main fields produced during dataset preparation.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Main fields prepared for each song by \texttt{prepare\_input\_dataset\_music4all.py}.}
+\label{tab:dataset_prepared_fields}
+\begin{tabular}{
+>{\raggedright\arraybackslash}p{0.30\textwidth}
+>{\raggedright\arraybackslash}p{0.52\textwidth}
+}
+\hline
+Prepared field & Purpose \\
+\hline
+\texttt{title}, \texttt{artist} & Identify the source song used in each reconstruction task. \\
+\texttt{genre} & Provides high-level stylistic context for the prompt. \\
+\texttt{valence}, \texttt{arousal} & Provide affective metadata used to derive the mood cue. \\
+\texttt{reference\_lyrics} & Stores the original lyric text for vocabulary extraction and evaluation. \\
+\texttt{vocab\_words} & Stores the selected bag-of-words vocabulary used in the prompt. \\
+\texttt{vocab\_freq} & Stores frequency-ranked vocabulary information where required by the prompt variant. \\
+\texttt{vocab\_words\_raw} & Stores the raw vocabulary representation. \\
+\texttt{vocab\_words\_content} & Stores the content-word vocabulary representation. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
+
+The output of this stage is saved as \texttt{music4all\_sample\_with\_prompt\_inputs.csv}. This file acts as the prepared dataset for the remaining stages of the reconstruction pipeline. It contains both the metadata required for prompt construction and the reference lyrics required for evaluation, while keeping the actual generation input limited to reduced song representations.
+
 \section{Prompt Generation Implementation}
+
+After the dataset preparation stage, the next step is to convert each prepared song representation into a prompt that can be sent to the language model. This stage is implemented in \texttt{build\_prompt\_dataset.py}. It takes the prepared Music4All sample as input and produces a run-specific prompt dataset for the selected experimental configuration.
+
+Prompt generation is template-based. The prompt templates are stored separately from the Python code under the \texttt{prompts/} directory, while each experimental configuration under \texttt{configs/runs/} specifies which template should be used. This means that the same core prompt generation code can be reused across all final experiments, while the wording and control level of the prompt can be changed through configuration files.
+
+For each song, the script reads the prepared metadata and vocabulary fields, including the title, artist, genre, vocabulary words, and, where required, vocabulary frequencies. The valence and arousal values are also used to derive a discrete mood label, following the mood mapping described in Chapter 3. These values are then inserted into the selected prompt template to create the final rendered prompt. Different prompt variants therefore use the same underlying song sample but differ in the amount and type of information provided to the model. Table~\ref{tab:prompt_generation_organisation} summarises how the prompt generation stage is organised.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Organisation of the prompt generation stage.}
+\label{tab:prompt_generation_organisation}
+\begin{tabular}{
+>{\raggedright\arraybackslash}p{0.30\textwidth}
+>{\raggedright\arraybackslash}p{0.52\textwidth}
+}
+\hline
+Component & Role in prompt generation \\
+\hline
+\texttt{prompts/} & Stores the reusable prompt template files for each experimental condition. \\
+\texttt{configs/runs/} & Specifies which prompt template and vocabulary fields are used for each run. \\
+Prepared dataset & Provides the song metadata, vocabulary, valence, and arousal values inserted into the prompt. \\
+Mood mapping & Converts valence and arousal into a discrete mood label before prompt rendering. \\
+Rendered prompt & The final text input sent to the language model for one song and one prompt variant. \\
+\texttt{prompt\_dataset.csv} & Stores the rendered prompts and associated song metadata for each run. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
+
+The output of this stage is saved as \texttt{prompt\_dataset.csv} inside the corresponding run directory. This file records the exact prompt used for each song and prompt variant, making the generation process easier to inspect and reproduce. It also allows the generated outputs to be traced back to the specific prompt text that produced them.
+
 
 \section{Lyric Generation Implementation}
 
+The lyric generation stage uses the rendered prompts produced in the previous stage to generate reconstructed lyrics. This stage is implemented in \texttt{generate\_lyrics.py}. For each experimental run, the script loads the run-specific \texttt{prompt\_dataset.csv} file and processes each prompt in sequence.
+
+Each prompt is sent to the language model specified in the run configuration. In the final experiments, the generation model used was \texttt{gpt-4o-mini}. The model receives the prompt text containing the selected song metadata, vocabulary cues, mood information, and any additional instructions defined by the prompt variant. It then returns one reconstructed lyric for that song under the current experimental condition.
+
+Figure~\ref{fig:generation_process_example} shows a simplified example of this process using Stevie Wonder's \textit{Do I Do}, one of the songs included in the final 50-song sample. The example uses the baseline prompt variant to illustrate the basic reconstruction setting before the more controlled variants are introduced.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.2cm,
+    box/.style={
+        rectangle,
+        rounded corners,
+        draw=#1,
+        line width=0.8pt,
+        fill=#1!8,
+        text width=0.82\textwidth,
+        align=left,
+        inner sep=10pt
+    },
+    arrow/.style={
+        -{Latex[length=3mm]},
+        line width=0.8pt
+    }
+]
+
+\node[box=blue] (prompt) {
+\textbf{Baseline Prompt}
+
+\vspace{0.2cm}
+Compose \textbf{soul, funk, motown, pop} lyrics, in a style reminiscent of \textbf{Stevie Wonder} which represents a \textbf{relaxed} mood under the title of \textbf{\textit{Do I Do}} using the following vocabulary \textbf{love, when, what, blow, some, girl, kisses, chocolate, waiting, soul, \ldots}
+
+\vspace{0.2cm}
+Output only the lyrics. \\
+Do not include introductions, explanations, comments, or closing remarks.
+};
+
+\node[align=center, below=of prompt] (model) {
+\texttt{GPT-4o-mini generation}
+};
+
+\node[box=green, below=of model] (output) {
+\textbf{Reconstructed Lyric Excerpt}
+
+\vspace{0.2cm}
+\textit{Do I Do}
+
+\vspace{0.2cm}
+When the love in the air, I'm feeling fine, \\
+What's a man gotta do to capture your time? \\
+Blowin' kisses like wind, sweet as candy, \\
+You're my honey suckle, drippin' oh so handy.
+};
+
+\draw[arrow] (prompt) -- (model);
+\draw[arrow] (model) -- (output);
+
+\end{tikzpicture}
+\caption{Example of the lyric generation process for Stevie Wonder's \textit{Do I Do} using the baseline prompt variant.}
+\label{fig:generation_process_example}
+\end{figure}
+
+The generation script stores the outputs in \texttt{generated\_outputs.csv} inside the corresponding run directory. Each output row includes the song identifier, title, artist, prompt variant, rendered prompt, model name, timestamp, and generated lyric text. This makes it possible to trace each generated lyric back to the exact prompt and configuration that produced it.
+
+A small amount of output cleaning is applied after generation. This is used to remove simple wrapper phrases or formatting artefacts that may be returned by the model, such as introductory sentences before the lyric. However, the generated lyrics themselves are not manually rewritten or corrected. This is important because the evaluation must reflect the behaviour of the generation pipeline rather than manual editing.
+
+The script also saves outputs incrementally as the run progresses. This reduces the risk of losing completed generations if an experiment is interrupted. In the final experimental setup, each run generated one reconstructed lyric for each of the 50 songs. Across the eight final prompt variants, this produced a total of 400 reconstructed lyrics for evaluation.
+
 \section{Evaluation Pipeline Implementation}
+
+The evaluation stage measures the generated lyrics after each run has completed. This stage is implemented in \texttt{evaluate\_outputs.py}. It reads the generated lyrics from \texttt{generated\_outputs.csv}, compares them with the prepared song information and reference lyrics, and writes both per-song and summary-level evaluation files. The per-song results are saved in \texttt{per\_song\_evaluation.csv}, while the averaged run-level metrics are saved in \texttt{evaluation\_summary.csv}.
+
+The purpose of this stage is not to judge lyric quality using a single score. Lyric reconstruction is a multi-dimensional task, so the evaluation pipeline combines several metric groups. These groups measure whether the output follows the expected structure, uses the supplied vocabulary, resembles the reference lyrics, and avoids excessive repetition. Table~\ref{tab:evaluation_metric_groups} summarises the main evaluation dimensions implemented in the pipeline.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Metric groups implemented in the reconstruction evaluation pipeline.}
+\label{tab:evaluation_metric_groups}
+\begin{tabular}{
+>{\raggedright\arraybackslash}p{0.28\textwidth}
+>{\raggedright\arraybackslash}p{0.54\textwidth}
+}
+\hline
+Metric group & Examples of implemented metrics \\
+\hline
+Structure & Section count, structure score, structure order match. \\
+Lexical adherence & Keyword coverage, top keyword coverage, weighted keyword coverage, weighted top keyword coverage, keyword density, keyword repetition ratio, title token coverage. \\
+Reference similarity & Reference Jaccard similarity, unigram precision, unigram recall, bigram overlap, length ratio against the reference. \\
+Semantic similarity & BERTScore precision, recall, and F1. \\
+Diversity and repetition & Word count, line count, unique n-grams, distinct-1, distinct-2, type-token ratio, repeated line ratio. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
 
 \subsection{Structural and Lexical Evaluation}
 
+The structural evaluation checks whether the generated lyrics contain recognisable song sections. The evaluation script detects section labels such as verses, choruses, bridges, intros, outros, hooks, refrains, and pre-choruses. From this, it computes a section count, a structure score, and a structure order match value. In the implementation, the structure score is based on whether the generated lyric contains the expected section labels: verse 1, chorus, verse 2, and chorus. The structure order match then checks whether these labels appear in the expected order. These metrics are useful because some prompt variants explicitly instruct the model to produce organised song sections, while others provide fewer structural constraints.
+
+The lexical evaluation measures how well the generated lyrics use the vocabulary supplied in the prompt. Keyword coverage measures the proportion of supplied vocabulary words that appear in the generated output. Top keyword coverage focuses on the highest-ranked vocabulary terms, while weighted keyword coverage and weighted top keyword coverage use frequency information where available. The evaluation also includes keyword density and keyword repetition ratio, which help indicate whether the model uses the supplied vocabulary naturally or relies too heavily on repeated keywords. This is important because the reconstruction task is based on generating lyrics from a reduced bag-of-words representation rather than from the full original lyrics.
+
+The evaluation also includes title token coverage. This checks whether tokens from the song title appear in the generated lyric. Since the title is provided in the prompt, this metric gives a simple indication of whether the model uses a key piece of song identity information in the output.
+
 \subsection{Reference Similarity Evaluation}
+
+Reference similarity metrics compare the generated lyrics with the original reference lyrics. These metrics are included because the task is framed as reconstruction: the goal is not only to produce plausible lyrics, but also to recover some lexical and semantic relationship to the source song.
+
+The evaluation pipeline computes reference Jaccard similarity, unigram precision, unigram recall, and bigram overlap. Jaccard similarity measures overlap between the generated and reference vocabularies. Unigram precision indicates how much of the generated word content also appears in the reference, while unigram recall indicates how much of the reference vocabulary is recovered by the generated output. Bigram overlap provides a stricter measure because it requires pairs of adjacent words to match.
+
+The pipeline also computes a length ratio against the reference lyrics. This helps identify whether a prompt variant tends to generate outputs that are much shorter or much longer than the original lyrics. In addition to lexical overlap, BERTScore is used as a semantic similarity measure. BERTScore compares contextual embeddings between the generated and reference lyrics, which provides a softer similarity measure than exact word overlap.
 
 \subsection{Diversity and Repetition Evaluation}
 
+The final group of metrics evaluates diversity and repetition in the generated lyrics. The pipeline records basic length statistics such as word count and line count, as well as the number of unique unigrams, bigrams, and trigrams. It also computes distinct-1 and distinct-2, which measure the proportion of unique unigrams and bigrams relative to the total number of generated tokens.
+
+These diversity metrics are useful because a generated lyric may achieve high keyword coverage by repeatedly reusing the same vocabulary. To account for this, the evaluation also computes type-token ratio and repeated line ratio. The repeated line ratio measures the extent to which identical lines are repeated within the generated lyric. This is especially important in lyric generation, where some repetition is stylistically normal, but excessive repetition may indicate that the model is relying too heavily on repeated phrases rather than producing varied lyric content.
+
+Together, these evaluation metrics provide a broad view of reconstruction performance. The per-song evaluation file allows individual outputs to be inspected in detail, while the summary file supports comparison between prompt variants at the run level.
+
+
 \section{Experimental Configurations}
+
+The final experiments were designed to compare different prompt and vocabulary configurations under a controlled setting. Each configuration used the same fixed 50-song sample, the same language model, and the same evaluation pipeline. The main experimental variable was therefore the way in which song information was represented and presented to the model.
+
+Although the internal run identifiers preserve the development numbering used during implementation, the dissertation reports the experiments as eight final prompt variants. The skipped internal run number does not correspond to a reported experimental condition. Table~\ref{tab:final_experimental_configurations} summarises the eight final configurations used in the dissertation.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\caption{Final experimental configurations used in the lyric reconstruction experiments.}
+\label{tab:final_experimental_configurations}
+\begin{tabular}{
+>{\raggedright\arraybackslash}p{0.08\textwidth}
+>{\raggedright\arraybackslash}p{0.22\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}p{0.33\textwidth}
+}
+\hline
+No. & Variant & Main configuration & Purpose \\
+\hline
+1 & Baseline LyCon-style & Content vocabulary, top 50 words & Provides the baseline reconstruction condition inspired by LyCon-style prompting. \\
+2 & Structured & Content vocabulary, top 50 words, structure required & Tests whether explicit verse and chorus instructions improve formal organisation. \\
+3 & Frequency-aware & Content vocabulary, top 50 words, frequency information, structure required & Tests whether word-frequency cues help prioritise important vocabulary. \\
+4 & Raw vocabulary & Raw vocabulary, top 50 words & Tests whether retaining surface-level words improves reconstruction. \\
+5 & Top-20 vocabulary & Content vocabulary, top 20 words & Tests whether a smaller vocabulary budget produces more focused outputs. \\
+6 & Top-100 vocabulary & Content vocabulary, top 100 words & Tests whether a larger vocabulary budget improves reference similarity. \\
+7 & Minimal control & Content vocabulary, top 50 words, reduced prompt constraints & Tests the effect of giving the model more freedom. \\
+8 & Strong control & Content vocabulary, top 50 words, frequency information, structure required & Tests the most constrained reconstruction setting. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
 
 \subsection{Baseline and Structured Conditions}
 
+The first group of configurations compares the baseline reconstruction setting with structure-based extensions. The baseline LyCon-style configuration uses song metadata, a mood label, and a content vocabulary list. It represents the simplest controlled reconstruction setting used in the final experiments.
+
+The structured configuration keeps the same content vocabulary size but adds explicit structural requirements. This allows the experiment to test whether prompting the model to organise the lyric into recognisable sections improves the formal structure of the output. The frequency-aware configuration extends this further by providing frequency-ranked vocabulary information, allowing the model to distinguish between more and less important vocabulary cues.
+
 \subsection{Vocabulary Representation and Size Conditions}
+
+The second group of configurations investigates the effect of vocabulary representation and vocabulary size. The raw vocabulary condition uses a less filtered vocabulary representation, retaining surface-level words that are removed from the content vocabulary. This tests whether function words and shorter tokens provide useful reconstruction information.
+
+The Top-20 and Top-100 configurations vary the size of the content vocabulary. The Top-20 condition provides a compact vocabulary signal, while the Top-100 condition provides a much larger lexical signal. These configurations test whether reconstruction quality is improved by giving the model more vocabulary information, or whether a smaller vocabulary encourages more focused generation.
 
 \subsection{Minimal and Strong Control Conditions}
 
+The final group compares two opposite levels of prompting control. The minimal control condition provides reduced guidance, allowing the model more freedom in how it uses the supplied song information. This is useful for testing whether looser prompting produces more natural or varied lyrics, but it may also reduce adherence to the input vocabulary.
+
+The strong control condition combines multiple forms of guidance, including content vocabulary, frequency information, and structural requirements. This configuration represents the most constrained reconstruction setting in the final experiments. Comparing the minimal and strong control variants helps evaluate the trade-off between creative freedom and reconstruction control.
+
+
 \section{Mood Preservation Experiments}
+
+In addition to the main reconstruction evaluation, auxiliary experiments were implemented to explore mood preservation. The main evaluation metrics described in Section 4.6 measure structure, vocabulary use, reference similarity, semantic similarity, and repetition, but they do not directly evaluate whether the reconstructed lyrics preserve the affective character of the source song. Since mood information is included in the prompt, a separate mood preservation analysis was added to examine this aspect of the task.
+
+These experiments are treated as auxiliary rather than as the primary evaluation of reconstruction quality. This is because the mood labels used in the project are derived from Music4All valence and energy metadata, where energy is used as an arousal-related feature. These values describe song-level affective characteristics and may reflect audio properties as well as lyrical content. As a result, predicting them from lyrics alone is an imperfect task. The mood preservation experiments were therefore implemented to provide additional evidence, while recognising the limitations of the available labels.
+
+Table~\ref{tab:mood_preservation_methods} summarises the main mood preservation methods explored in the project.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Auxiliary methods used to investigate mood preservation.}
+\label{tab:mood_preservation_methods}
+\begin{tabular}{
+>{\raggedright\arraybackslash}p{0.26\textwidth}
+>{\raggedright\arraybackslash}p{0.30\textwidth}
+>{\raggedright\arraybackslash}p{0.28\textwidth}
+}
+\hline
+Method & Purpose & Main limitation \\
+\hline
+12-mood classifier & Tests fine-grained mood prediction using the valence-arousal sector labels. & Labels are fine-grained and difficult to predict from lyrics alone. \\
+4-mood quadrant classifier & Tests broader mood preservation using valence-arousal quadrants. & Still affected by imbalance and metadata-label mismatch. \\
+Binary valence and arousal classifiers & Separately predicts valence direction and arousal direction. & More stable than 12-way prediction, but still indirect. \\
+Lyric-derived affect analysis & Compares generated and reference lyrics using word-level affect ratings. & Lexicon-based and does not capture full lyrical meaning. \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
 
 \subsection{Classifier-Based Mood Prediction}
 
+The first approach to mood preservation used supervised lyric classifiers. A separate classifier dataset was prepared from Music4All, excluding the 50 songs used in the reconstruction experiments. This prevented the mood classifiers from being trained on the same songs later used for generated lyric evaluation. The remaining songs were split into repeated train and test sets using multiple random seeds, allowing the classifier performance to be tested across several splits rather than relying on a single partition.
+
+The initial classifier formulation used the same 12 mood labels as the prompt construction process. These labels are produced by mapping valence and arousal values onto the 12-sector mood representation described in Chapter 3. A lyric classifier was then trained to predict the mood label from lyric text. This was intended to test whether reconstructed lyrics could be assigned the same mood label as the original song.
+
+However, the 12-mood formulation is challenging because the labels are fine-grained and unevenly distributed. Several moods occupy neighbouring regions of the valence-arousal space, and songs near a sector boundary may receive different labels despite having similar lyrical content. In addition, the original valence and arousal values are song-level metadata rather than lyric-only annotations. This creates a mismatch between the label source and the classifier input, since the classifier only observes text.
+
+For this reason, broader classifier formulations were also implemented. A 4-mood quadrant classifier was used to predict whether a lyric belonged to a positive-high, positive-low, negative-high, or negative-low affective quadrant. Binary classifiers were also implemented for valence and arousal separately, where valence was treated as positive or negative and arousal was treated as high or low. These broader formulations reduce the granularity of the prediction task and provide a more cautious way to analyse whether generated lyrics preserve broad affective direction.
+
+The classifier-based outputs were saved under the mood classifier experiment directories, with split-level metrics, aggregate metrics, and confusion matrices. When applied to generated lyrics, the preservation scripts produced per-song and run-level mood preservation summaries. These results are discussed in Chapter 5, where they are interpreted as exploratory evidence rather than definitive mood evaluation.
+
 \subsection{Lyric-Derived Affect Analysis}
+
+Because the classifier-based approach depends on song-level metadata labels, a second auxiliary method was implemented using lyric-derived affect scores. This analysis uses word-level affect ratings from the Warriner lexicon to estimate the average valence and arousal of a lyric based on the words it contains. Unlike the classifier approach, this method is directly based on lyric text.
+
+For each generated lyric and its corresponding reference lyric, the analysis computes the average valence and arousal of words found in the affect lexicon. It also records the proportion of lyric tokens covered by the lexicon. The generated lyric is then compared with the reference lyric by measuring the absolute valence error, absolute arousal error, and the combined valence-arousal distance. This produces a text-based estimate of how close the generated lyric is to the reference lyric in affective space.
+
+This method is still approximate. It is based on individual word ratings and therefore cannot fully capture context, irony, narrative meaning, or musical delivery. However, it is useful as an auxiliary measure because it compares lyrics using text-derived affective information rather than relying only on song-level metadata. The resulting per-song and summary files provide an additional perspective on whether different prompt variants preserve the affective character of the original lyrics.
+
 
 \section{Reproducibility and Output Management}
 
+The implementation was designed so that each experiment could be inspected and reproduced from its saved files. Each final run is stored in a dedicated directory under \texttt{outputs/runs/}. The directory name includes the run identifier, and the final reconstruction runs use identifiers ending in \texttt{-final}. This makes it possible to distinguish the final experiments from earlier development runs.
+
+Each run directory stores the main files produced by the pipeline. The \texttt{prompt\_dataset.csv} file records the exact prompts generated for the run, while \texttt{generated\_outputs.csv} stores the generated lyrics and associated metadata. The evaluation stage then produces \texttt{per\_song\_evaluation.csv} and \texttt{evaluation\_summary.csv}. The per-song file allows individual outputs to be inspected, while the summary file provides the averaged metrics used to compare prompt variants.
+
+The pipeline also stores configuration information alongside the run outputs. Each final run directory contains a configuration snapshot and prompt variant metadata. This is important because the experiments depend not only on the Python code, but also on the selected prompt template, vocabulary strategy, model settings, and evaluation options. Saving this information with the outputs provides a record of how each run was produced.
+
+This output structure supports reproducibility in two ways. First, the same run can be inspected after generation without needing to regenerate the lyrics. Second, the saved configuration and prompt files make it possible to understand which settings produced a particular output. This was especially useful in the dissertation because the same 50-song sample was used across all final prompt variants, allowing direct comparison between runs.
+
 \section{Chapter Summary}
+
+This chapter described the implementation of the experimental pipeline used in the dissertation. It began by explaining the modular structure of the Python implementation, where dataset preparation, prompt generation, lyric generation, and evaluation are separated into reusable components. It then described how the Music4All data was prepared, how prompt templates were rendered, and how reconstructed lyrics were generated using \texttt{gpt-4o-mini}.
+
+The chapter also described the evaluation pipeline used to measure reconstruction performance. The implemented metrics cover structure, lexical adherence, reference similarity, semantic similarity, diversity, and repetition. In addition to the main reconstruction evaluation, auxiliary mood preservation experiments were implemented using classifier-based methods and lyric-derived affect analysis.
+
+Finally, the chapter outlined the eight final experimental configurations and explained how outputs were stored to support inspection and reproducibility. The next chapter uses these generated outputs and evaluation files to analyse the results of the final experiments.
+

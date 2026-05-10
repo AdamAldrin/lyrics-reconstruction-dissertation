@@ -1,41 +1,227 @@
-\chapter{Literature Review}
+\chapter{Background and Related Work}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. \cite{Reference2} Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. 
-\begin{equation}
-M = \frac{1}{T}\sum_{t=1}^{T} e(t) / \max_{t}[e(t)]
-\end{equation}
-Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+\section{Introduction}
 
-\section{A Section that Contains a Figure}
+Song lyrics are an important object of study within natural language processing and music information retrieval because they combine linguistic, musical, structural, and emotional information. Unlike many other text domains, lyrics are often short, repetitive, highly stylised, and organised through conventions such as verses, choruses, hooks, rhyme, and recurring phrases. They are also strongly connected to genre, artist identity, and affective tone, making them relevant to both lyric generation and music emotion research \cite{zhang2020youling,delbouys2018musicmood}. These properties make lyrics a useful but challenging domain for computational text generation and evaluation.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim \cite{Reference1}. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. 
-\begin{figure}[ht]
-\includegraphics[width=15cm]{figures/figure1.png}
-\caption{A simple figure in \LaTeX. Reproduced from http://tinyurl.com/nqtrlj5 with the permission of the copyright owner.}
-\label{fig:graph}
-\end{figure}
-Porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. See Figure \ref{fig:graph}. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+A further challenge is that most song lyrics are copyrighted. As a result, full-text lyric datasets are difficult to share openly, and researchers often rely on reduced or derived representations of lyrics rather than the original text. Bag-of-words representations are one example of this approach: they preserve information about which words appear in a lyric, while removing the original word order and line structure, as seen in the musiXmatch lyric data linked to the Million Song Dataset \cite{bertinmahieux2011million,musixmatch2011dataset}. This creates a tension that motivates lyric reconstruction research. Reduced representations are useful for copyright-aware research, but they also remove many of the qualities that make lyrics recognisably lyrical \cite{kim2024lycon}.
 
-\section{A Section that Contains a Table}
+This chapter reviews background work relevant to lyric reconstruction from reduced song representations. It first discusses lyric generation and the distinction between generation and reconstruction. It then considers lyrics as structured and affective text, before reviewing bag-of-words representations, controlled text generation, LyCon as the main reconstruction framework informing this project, datasets for lyric reconstruction, and evaluation methods for generated lyrics. The chapter concludes by identifying the research gap addressed by this dissertation.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, \cite{Reference3} pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, 
+\section{Lyric Generation and Lyric Reconstruction}
 
-\begin{table}[ht]
-\center
-\begin{tabular}{cc|c}
-A & B & A XOR B\\
-\hline
-0 & 0 & 0\\
-0 & 1 & 1\\
-1 & 0 & 1\\
-1 & 1 & 0\\
-\end{tabular}
-\caption{A simple table in \LaTeX.}
-\label{tab:xor}
-\end{table}
+\subsection{Automatic Lyric Generation}
 
-porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. See Table \ref{tab:xor}. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+Automatic lyric generation has been explored through several generations of natural language generation methods. Earlier systems often relied on rule-based approaches, Markov chains, recurrent neural networks, or long short-term memory models. These methods aimed to generate lyric-like text by learning patterns from lyric corpora, such as word choice, local phrasing, and stylistic regularities. For example, Potash et al.'s GhostWriter system demonstrated that an LSTM-based model could generate rap lyrics that imitate aspects of an artist's style \cite{potash2015ghostwriter}.
 
-\section{Summary}
+More recent work has increasingly used transformer-based language models and large language models. Transformer models made it possible to model long-range dependencies more effectively than earlier recurrent approaches \cite{vaswani2017attention}, while large language models have shown strong few-shot generation capabilities from natural-language instructions \cite{brown2020language}. In lyric generation, this allows models to produce longer and more coherent outputs while also responding to conditioning information such as genre, topic, artist, mood, or keywords.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+A particularly relevant trend is the move towards controlled lyric generation. Systems such as Youling allow users to guide lyric generation using content and format attributes, including style, emotion, theme, keywords, rhyme, sentence count, and word count \cite{zhang2020youling}. Similarly, AI-Lyricist investigates lyric generation under vocabulary constraints, showing that supplied vocabulary can act as an explicit control signal during generation \cite{ma2021ailyricist}. More recent work such as XAI-Lyricist also shows that lyric generation can be conditioned by musical prosody and evaluated in terms of singability \cite{liang2024xailyricist}.
+
+This prior work shows that language models can generate lyric-like text under different forms of control. However, most lyric generation work focuses on producing new lyrics, assisting songwriting, or aligning lyrics with musical constraints. By contrast, this dissertation focuses on lyric reconstruction: generating lyrics from a reduced representation of an existing song. This distinction is important because reconstruction requires the generated output to remain connected to source-song evidence, rather than only sounding plausible as a lyric.
+
+\subsection{From Lyric Generation to Lyric Reconstruction}
+
+Lyric reconstruction differs from general lyric generation because the goal is not simply to create plausible new lyrics. Instead, the model is given partial evidence about a source song and is asked to generate lyrics that preserve some properties of that source. In this setting, the input may include metadata such as title, artist, genre, mood, and a vocabulary list derived from the original lyrics. LyCon frames this as a reconstruction problem, where bag-of-words lyric data and metadata are used to generate copyright-aware lyric text that preserves useful properties of the source song \cite{kim2024lycon}. The reconstruction task therefore sits between creative text generation and information recovery: the output should be lyric-like, but it should also remain connected to the source representation.
+
+This distinction is important for evaluation. A freely generated lyric may be judged mainly by fluency, creativity, or style. A reconstructed lyric must also be assessed in terms of how well it preserves information from the original song representation, such as vocabulary, structure, mood, or semantic similarity. This motivates the use of multiple evaluation dimensions rather than a single quality score \cite{kim2024lycon}.
+
+\subsection{Copyright Constraints in Lyric Research}
+
+Research on song lyrics is constrained by copyright because the underlying text is usually protected. Large open lyric corpora are therefore less common than open datasets in many other NLP domains, and even when lyrics are used for research, they may not be redistributed as full text. This creates difficulties for reproducibility, comparison, and evaluation, because researchers cannot always publish the exact lyric data used in their experiments.
+
+Bag-of-words representations provide one way to work within these constraints. Instead of releasing the original lyric sequence, a dataset may release word counts or other derived features. The musiXmatch dataset, for example, provides lyrics for Million Song Dataset tracks in bag-of-words form rather than as full lyric text \cite{bertinmahieux2011million,musixmatch2011dataset}. This allows researchers to study lexical patterns while reducing the need to redistribute original lyric sequences. However, it also removes word order, line breaks, rhyme, and structural information.
+
+Lyric reconstruction from bag-of-words can therefore be understood as a response to this limitation. LyCon explicitly motivates reconstruction as a way to produce copyright-aware lyric text from reduced bag-of-words data and metadata \cite{kim2024lycon}. In this dissertation, the same motivation is important: the aim is to investigate how lyric-like text can be generated from reduced lexical evidence, while avoiding direct reproduction of the original lyrics.
+
+\section{Lyrics as Structured and Affective Text}
+
+\subsection{Lyric Structure and Repetition}
+
+Lyrics differ from ordinary prose because they are often organised into repeated sections such as verses, choruses, bridges, and hooks. Repetition is not necessarily a flaw in lyrics; it is a common artistic feature that supports memorability, musical form, and audience recognition. Existing lyric generation systems reflect this by treating lyrics as a constrained creative form rather than as ordinary prose. For example, Youling includes controllable format attributes such as rhyme, sentence count, and word count \cite{zhang2020youling}, while XAI-Lyricist considers singability and prosody as important aspects of generated lyrics \cite{liang2024xailyricist}.
+
+However, in generated lyrics, repetition can also become excessive or formulaic. A model may repeat lines because it is imitating chorus-like behaviour, or because it has failed to develop varied content. For lyric reconstruction, structure is therefore an important dimension of evaluation. A reconstructed lyric should not only contain relevant words, but should also resemble a lyric in form. At the same time, structural success must be interpreted alongside repetition and diversity, because a model can satisfy a structural instruction by repeating similar lines rather than producing a varied lyric.
+
+\subsection{Style, Genre, and Artist Cues}
+
+Genre and artist information are important in lyric generation and reconstruction. Different genres often use different vocabulary, themes, line lengths, and emotional tones. Similarly, artist names can act as shorthand for stylistic expectations, although this does not guarantee that generated text will accurately reproduce an artist's style. Prior lyric generation systems have used genre, artist, or stylistic labels as conditioning information to steer generation \cite{potash2015ghostwriter,cai2024genre}.
+
+These cues are also important in lyric reconstruction. LyCon uses metadata such as artist name, title, genre, and mood alongside bag-of-words vocabulary when constructing prompts for lyric reconstruction \cite{kim2024lycon}. This suggests that metadata can help frame a reduced lexical representation within a broader musical and stylistic context. A vocabulary list alone may not indicate whether a song should sound like pop, rock, rap, metal, or soul, so genre and artist cues provide additional context for the language model.
+
+\subsection{Affective Information in Lyrics}
+
+Lyrics are also strongly associated with emotion and mood. A song may be described as happy, sad, calm, angry, energetic, or relaxed, and such affective descriptions may be reflected in both the lyrics and the sound of the music. Previous music emotion recognition work has used mood, sentiment, or valence-arousal representations to describe affective properties of songs \cite{delbouys2018musicmood}. However, affective descriptions of songs may be influenced by audio features such as tempo, instrumentation, and production, as well as by the lyric text itself.
+
+For reconstruction, affective information can be used as an additional conditioning signal. A model that receives only a title and vocabulary list may not know the intended emotional direction of the output. LyCon incorporates a mood label derived from valence-arousal information as part of its reconstruction prompt \cite{kim2024lycon}. Similarly, this dissertation treats mood as a compact cue about the desired emotional tone of the reconstructed lyric, while recognising that song-level mood labels may not perfectly correspond to lyric-only emotion.
+
+\section{Bag-of-Words and Lexical Representations}
+
+\subsection{Bag-of-Words Representation}
+
+The bag-of-words model is a common way to represent text in natural language processing and information retrieval. In this representation, a document is treated as a collection of terms, usually recorded as word counts or term frequencies, rather than as an ordered sequence \cite{manning2008ir}. The order of the words is ignored. For a song lyric, this means that the representation may preserve which words appear and how often they occur, but it does not preserve line order, syntax, rhyme, or section structure.
+
+Constructing a bag-of-words representation typically involves preprocessing steps such as lowercasing, punctuation removal, tokenisation, and sometimes stop-word removal or stemming. These choices affect what kind of lexical evidence is preserved. For example, a representation that removes function words may focus more strongly on semantically meaningful content words, while a raw representation may retain more surface-level information about the lyric. This distinction is relevant to this dissertation because different prompt variants compare content vocabulary against raw vocabulary representations.
+
+\subsection{Bag-of-Words in Lyric Datasets}
+
+Bag-of-words representations are especially relevant in lyric research because of copyright restrictions. The musiXmatch extension of the Million Song Dataset is a well-known example: it provides lyric information as bag-of-words vectors rather than full lyric text \cite{bertinmahieux2011million,musixmatch2011dataset}. Each song is represented through counts over a fixed vocabulary, allowing large-scale lyric analysis without distributing the original lyric sequences.
+
+This approach supports tasks such as genre classification, mood prediction, and lexical analysis. However, it is less suitable for research questions that depend on line structure, word order, rhyme, or narrative progression. Lyric reconstruction research attempts to address this gap by using the bag-of-words representation as input to a generative model, producing a new lyric-like text that recovers some of the information lost in the reduced representation. LyCon is the most direct example of this approach, using bag-of-words lyric data and metadata as input to a large language model for reconstruction \cite{kim2024lycon}.
+
+\subsection{Strengths and Limitations of Reduced Lexical Representations}
+
+Reduced lexical representations have two main strengths. First, they allow researchers to work with lyric-derived information while reducing the need to distribute original lyric sequences, as seen in the musiXmatch bag-of-words dataset \cite{musixmatch2011dataset}. Second, they preserve useful lexical signals such as topic words, emotional vocabulary, genre-specific terms, and repeated keywords. These signals can be sufficient for some analysis tasks and can also provide useful input for controlled generation. For example, vocabulary-constrained lyric generation treats supplied words as explicit control signals during generation \cite{ma2021ailyricist}.
+
+Their main limitation is that they discard sequence information. A bag-of-words representation does not show which words appear together, which lines are repeated, where choruses occur, or how the lyric develops over time. This makes reconstruction difficult. LyCon addresses this limitation by using a language model to infer lyric-like text from bag-of-words data and metadata \cite{kim2024lycon}. The challenge is therefore not only to use the supplied vocabulary, but to arrange it into coherent lyric-like text with plausible structure and style.
+
+\section{Controlled Text Generation with Language Models}
+
+\subsection{Language Models for Creative Text Generation}
+
+Language models are widely used for creative text generation because they can produce fluent sequences of text from a given context. Earlier neural lyric generation systems used recurrent models such as LSTMs to learn stylistic and sequential patterns from lyric corpora \cite{potash2015ghostwriter}. More recent transformer-based models are able to condition on longer contexts and respond more flexibly to prompts, making them suitable for creative generation tasks where the desired output is specified through natural language instructions \cite{vaswani2017attention}.
+
+In lyric generation, this capability is useful because the input can include both creative instructions and concrete constraints. A model can be asked to generate lyrics in a particular genre, style, topic, or mood, while also being given keywords or structural requirements. This makes language models suitable for lyric reconstruction from reduced representations: the prompt can provide partial evidence about the source song, and the model can use its learned language knowledge to produce a coherent lyric-like output.
+
+However, this flexibility also creates a challenge. A language model may generate fluent text that is only loosely connected to the supplied input. For reconstruction, fluency alone is not sufficient; the generated lyric must also preserve source-song information such as vocabulary, structure, and affective cues. This motivates the use of controlled prompting, where the prompt is designed to guide the model towards specific reconstruction objectives.
+
+\subsection{Prompt-Based Control}
+
+Prompt-based control refers to guiding a language model through the information and instructions provided in the input prompt, rather than by changing the model architecture or fine-tuning the model. Prompting has become an important method for adapting pre-trained language models to different tasks without task-specific model training \cite{liu2023pretrain}. This is especially useful for creative generation tasks because the same model can be used under different conditions simply by changing the prompt. In lyric generation, prompts can specify high-level attributes such as genre, style, emotion, topic, or artist, as well as more concrete constraints such as keywords, rhyme, length, or structure.
+
+Previous lyric generation systems demonstrate the importance of control signals. Youling allows users to guide lyric generation using content and format attributes such as style, emotion, theme, keywords, rhyme, sentence count, and word count \cite{zhang2020youling}. AI-Lyricist similarly treats vocabulary as a constraint, generating lyrics that are guided by supplied words \cite{ma2021ailyricist}. LyCon applies this idea to lyric reconstruction by inserting metadata, mood, and bag-of-words vocabulary into a prompt for a large language model \cite{kim2024lycon}.
+
+This literature motivates the experimental design of this dissertation. Rather than training separate models, the project keeps the language model and song sample fixed while varying the prompt design. This makes it possible to investigate how different forms of prompt-based control affect reconstruction quality, including structural organisation, lexical adherence, reference similarity, repetition, and mood preservation.
+
+\subsection{Lexical, Structural, and Affective Control Signals}
+
+Control signals in lyric generation can operate at different levels. Lexical control constrains the words or concepts that should appear in the generated lyric. This is particularly relevant to bag-of-words reconstruction, because the supplied vocabulary is the main evidence available from the original lyric. Previous work on vocabulary-constrained lyric generation shows that supplied words can be used as explicit generation constraints \cite{ma2021ailyricist}, while LyCon uses bag-of-words vocabulary as the central lexical input for reconstruction \cite{kim2024lycon}.
+
+Structural control concerns the organisation of the generated lyric. Lyrics often contain repeated sections such as verses and choruses, and prompt instructions can ask the model to follow a particular section layout. This type of control is useful because a bag-of-words representation does not preserve lyric structure. If structure is desired in the reconstructed output, it must either be inferred by the model or specified through the prompt.
+
+Affective control concerns the intended emotional tone of the lyric. In LyCon, mood is derived from valence-arousal information and inserted into the prompt as a conditioning cue \cite{kim2024lycon}. Similar affective cues are used in music emotion research, where valence and arousal provide a compact representation of song mood \cite{delbouys2018musicmood}. Together, lexical, structural, and affective control signals provide a way to guide lyric generation using different types of source-song information.
+
+\section{LyCon and Lyric Reconstruction from Song Representations}
+
+\subsection{LyCon's Reconstruction Task}
+
+LyCon is the closest related work to this dissertation because it directly addresses lyric reconstruction from bag-of-words representations using large language models \cite{kim2024lycon}. Its motivation is that many lyric datasets provide only reduced representations for copyright reasons, limiting the kinds of lyric analysis that can be performed. LyCon proposes using a language model to reconstruct lyric-like text from these reduced inputs, producing copyright-aware synthetic lyrics that preserve useful properties of the original songs without publishing the original lyrics.
+
+The reconstruction task in LyCon is therefore different from exact lyric recovery. The aim is not to reproduce the original lyric sequence word for word, but to generate a substitute lyric that reflects the original song's vocabulary, topic, genre, style, and mood. These reconstructed lyrics can then be used as stand-ins for original lyrics in downstream analysis, where access to the full copyrighted text may not be possible.
+
+This makes LyCon highly relevant to the present dissertation. The current project also investigates whether lyric-derived vocabulary and metadata can be used to guide reconstruction, but focuses specifically on how different prompt-control strategies affect reconstruction quality.
+
+\subsection{LyCon's Use of Metadata, Vocabulary, and Mood}
+
+LyCon combines bag-of-words vocabulary with song metadata to construct prompts for a language model \cite{kim2024lycon}. Its reconstruction inputs are assembled from several aligned music datasets, including bag-of-words lyric information, song identity metadata, genre or style labels, and affective information. The metadata includes information such as title, artist, genre or style labels, and a mood label derived from valence-arousal values. The vocabulary list is obtained from the bag-of-words representation and provides the main lexical evidence used to guide reconstruction.
+
+The prompt used in LyCon asks the language model to compose lyrics in a given genre, in a style reminiscent of the artist, under a given title and mood, while using the supplied vocabulary. This makes LyCon a prompt-based reconstruction method rather than a separately trained lyric generation model. The language model is used as a black-box generator, and the reconstruction behaviour is controlled through the information provided in the prompt.
+
+\subsection{Limitations of LyCon and Relevance to This Dissertation}
+
+LyCon provides an important demonstration that lyrics can be reconstructed from bag-of-words representations and metadata. However, several limitations remain relevant to this dissertation. First, LyCon uses a fixed prompt strategy, leaving open the question of how different prompt designs might affect reconstruction quality. Second, its evaluation focuses mainly on aggregate comparisons between original and reconstructed lyrics, rather than a controlled comparison of alternative prompt variants. Third, because the original copyrighted lyrics are not released, later researchers cannot easily use the released LyCon outputs for direct reference-based evaluation against the original lyrics.
+
+This dissertation builds on LyCon's central idea but investigates it in a more controlled experimental setting. Instead of treating prompt design as fixed, the dissertation compares multiple prompt variants that differ in structural control, vocabulary type, vocabulary size, frequency information, and prompt strictness. The project also uses a dataset that allows reference lyrics to be used internally for evaluation, making it possible to compare generated outputs against source lyrics across several automatic metrics. This allows the study to examine which forms of control improve different aspects of reconstruction quality.
+
+\section{Datasets for Lyric Reconstruction}
+
+\subsection{The Million Song Dataset and musiXmatch}
+
+The Million Song Dataset is a large-scale music information retrieval resource containing metadata and audio-related features for a large collection of tracks \cite{bertinmahieux2011million}. Although it does not itself provide full lyrics, it is linked to the musiXmatch dataset, which provides lyric information in bag-of-words form \cite{musixmatch2011dataset}. This combination has been widely used in lyric-related research because it allows song-level metadata to be combined with reduced lyric information.
+
+The musiXmatch bag-of-words representation is useful because it provides large-scale lyric-derived features without distributing original lyrics. However, this same property limits its usefulness for reconstruction evaluation. Since the full original lyric sequence is not available, researchers cannot easily compare generated lyrics against the original reference text at the line or phrase level. This limitation is important for lyric reconstruction research, because systems such as LyCon are motivated by the availability of bag-of-words lyric data but are also constrained by the absence of publicly available reference lyrics \cite{kim2024lycon}.
+
+\subsection{Music4All}
+
+Music4All is a music information retrieval dataset designed to support research using multiple types of music-related information. It contains metadata, tags, genre information, and audio-related attributes for a large collection of songs \cite{domingues2020music4all}. This makes it relevant to lyric reconstruction because it provides several of the information types required to construct song representations, including song identity, genre-related information, and affective metadata.
+
+Music4All has also been extended by Music4All-Onion, a large-scale multi-faceted dataset that adds further content-centric representations, including lyric embeddings and lyric emotion features \cite{moscati2022music4allonion}. This wider dataset context is useful because it shows that Music4All has been used as a basis for combining audio, metadata, tags, and lyric-derived representations in music information retrieval research.
+
+For this dissertation, Music4All is useful because it supports the construction of LyCon-inspired reconstruction inputs while also enabling reference-based evaluation in the project dataset. Unlike datasets that only provide bag-of-words lyric vectors, the version used in this project allows lyric-derived vocabulary to be extracted and generated outputs to be compared against reference lyrics within the experimental pipeline. This makes it suitable for investigating how different prompt-control strategies affect lyric reconstruction quality.
+
+\subsection{Dataset Choice in This Dissertation}
+
+The dataset choice in this dissertation is shaped by the need to combine LyCon-inspired reconstruction inputs with reference-based evaluation. Although LyCon provides the main methodological reference point, its released data provides reconstructed lyrics rather than the original copyrighted lyric texts \cite{kim2024lycon}. Using those reconstructed lyrics as reference originals would make the evaluation less reliable, because new outputs would be compared against another generated reconstruction rather than against the source lyric text.
+
+Music4All was therefore selected because it provides the metadata needed to construct LyCon-inspired song representations while also supporting comparison with reference lyrics in the project dataset \cite{domingues2020music4all}. In particular, the dataset provides song identity information, genre or tag information, and affective metadata that can be mapped into mood cues. The lyric text available in the experimental dataset is then used to extract reduced vocabulary representations and to evaluate the generated outputs against the source lyrics.
+
+This choice allows the dissertation to investigate lyric reconstruction as a controlled comparison of prompt-control strategies. The same fixed sample of songs is used across all final prompt variants, so differences in the generated outputs can be attributed mainly to the prompt design and vocabulary representation rather than to changes in the input songs. The exact sampling, preprocessing, and vocabulary extraction procedure is described in Chapter 3.
+
+\section{Evaluation of Generated and Reconstructed Lyrics}
+
+\subsection{Reference-Based Similarity Metrics}
+
+Reference-based similarity metrics compare a generated output with an existing reference text. Traditional metrics such as BLEU and ROUGE were developed for tasks such as machine translation and summarisation, where generated text can be compared against reference outputs \cite{papineni2002bleu,lin2004rouge}. In lyric reconstruction, reference-based comparison is useful because the task is not completely open-ended: the generated lyric is intended to preserve information from a specific source song. Comparing the reconstructed lyric with the reference lyric can therefore indicate how much lexical or semantic information has been retained.
+
+However, reference-based evaluation is limited in creative generation tasks. A generated lyric may use different wording from the reference while still preserving the same theme, mood, or style. Conversely, a lyric may have high surface overlap with the reference but still be repetitive, awkward, or poorly structured. For this reason, reference similarity should not be interpreted as a complete measure of lyric quality.
+
+In this dissertation, reference-based metrics are used as one part of a broader evaluation framework. Lexical overlap measures, such as unigram precision, unigram recall, Jaccard similarity, and bigram overlap, are used to measure surface-level similarity between generated and reference lyrics. BERTScore is also used to provide a more semantic comparison, since it compares contextual word representations rather than exact word matches \cite{zhang2020bertscore}. These metrics help evaluate whether the generated lyrics remain connected to the original song, but they are interpreted alongside vocabulary coverage, structure, diversity, repetition, and mood-related analysis.
+
+\subsection{Lexical Coverage and Bag-of-Words Adherence}
+
+For reconstruction from bag-of-words representations, lexical coverage is especially important. The generated lyric should not merely be fluent or lyric-like; it should also make use of the vocabulary supplied in the input representation. Keyword coverage therefore measures whether the model incorporates the lexical cues that define the source song representation.
+
+This is distinct from general reference similarity. A model might produce a plausible lyric that matches the requested genre or mood but ignores much of the supplied vocabulary. In that case, the output may be acceptable as free lyric generation, but it would be weaker as a reconstruction. Conversely, a model might use many supplied words while still failing to organise them into coherent lines or recognisable lyric structure. Lexical adherence must therefore be interpreted alongside structure, diversity, repetition, and reference similarity.
+
+In this dissertation, lexical adherence is evaluated using both unweighted and weighted keyword coverage. Unweighted keyword coverage measures how many supplied vocabulary items appear in the generated lyric. Weighted keyword coverage gives greater importance to vocabulary items that are more frequent in the source representation. This is useful because not all words contribute equally to the identity of a song: frequently occurring words are more likely to reflect central themes, hooks, or repeated phrases. These metrics therefore help assess whether different prompt variants preserve the lexical evidence provided by the bag-of-words input.
+
+\subsection{Diversity, Repetition, and Structure Metrics}
+
+Lyric generation also requires attention to diversity and repetition. Some repetition is expected in lyrics, especially in choruses, hooks, and refrains. Repetition can therefore be a legitimate structural feature rather than simply an error. However, excessive repetition can indicate that the model is relying too heavily on repeated phrases instead of developing a varied reconstruction.
+
+Diversity metrics help identify whether the generated lyrics use a broad range of language or repeatedly reuse the same words and phrases. Distinct n-gram measures are commonly used for this purpose, since they estimate the proportion of unique unigrams, bigrams, or trigrams in the generated output \cite{li2016diversity}. In the context of lyric reconstruction, these metrics are useful because a prompt variant may achieve high keyword coverage while still producing repetitive or formulaic text.
+
+Structure is another important dimension because lyrics are typically organised into recognisable sections such as verses, choruses, bridges, and hooks. A generated output may contain relevant vocabulary but still fail to resemble a lyric if it lacks section organisation. For this reason, this dissertation evaluates structure using section count, structure score, and structure order match. These measures help determine whether prompt variants that explicitly request lyric sections produce more formally organised outputs than less constrained prompts.
+
+Together, diversity, repetition, and structure metrics provide a more complete view of reconstruction quality. They make it possible to distinguish between outputs that are lexically faithful but repetitive, outputs that are structurally organised but less similar to the reference, and outputs that balance vocabulary use with lyric-like form.
+
+\subsection{Limits of Automatic Evaluation}
+
+Automatic metrics are useful because they allow generated outputs to be compared consistently across many songs and prompt variants. They are especially practical in this dissertation because the experiments produce 400 reconstructed lyrics, making manual evaluation alone difficult within the scope of the project. Automatic metrics also make it possible to compare specific dimensions of reconstruction quality, such as vocabulary coverage, reference overlap, structure, diversity, and repetition.
+
+However, automatic evaluation cannot fully capture lyric quality. Qualities such as originality, emotional impact, coherence, singability, genre fit, and artistic value are difficult to measure using lexical or statistical metrics alone. This limitation is widely recognised in natural language generation evaluation, where automatic metrics may fail to align with human judgements of text quality \cite{reiter2018bleu,vanDerLee2019human}.
+
+This limitation is particularly relevant for lyric reconstruction. A generated lyric may score well on keyword coverage because it uses many supplied vocabulary items, but still sound unnatural or lack lyrical coherence. Similarly, a lyric may have lower reference overlap while still being plausible, stylistically appropriate, or emotionally consistent. The results in this dissertation should therefore be interpreted as evidence about measurable aspects of reconstruction rather than as complete judgments of artistic success.
+
+\section{Mood and Emotion Evaluation in Lyrics}
+
+\subsection{Valence-Arousal Models of Emotion}
+
+Valence-arousal models represent emotion using two continuous dimensions. Valence describes how positive or negative an emotional state is, while arousal describes its level of energy or activation. This two-dimensional view is commonly associated with Russell's circumplex model of affect \cite{russell1980circumplex}. For example, a song with high valence and high arousal may be associated with an excited or happy mood, while a song with low valence and low arousal may be associated with a sad or calm mood.
+
+This representation is widely used in music emotion research because it provides a compact way to describe affective differences between songs \cite{delbouys2018musicmood}. Rather than treating mood as a fixed list of unrelated labels, valence and arousal allow affective states to be positioned in a continuous two-dimensional space. Discrete mood labels can then be derived by dividing this space into regions.
+
+LyCon uses valence and arousal to derive mood labels for prompt conditioning \cite{kim2024lycon}. This is relevant to lyric reconstruction because mood can provide an additional signal beyond vocabulary and metadata. A vocabulary list may indicate what words appear in a song, but a mood label can suggest the intended emotional tone of the reconstruction. In this dissertation, the valence-arousal representation is therefore used as part of the song representation supplied to the reconstruction prompts.
+
+\subsection{Mood Classification from Lyrics}
+
+Mood classification from lyrics aims to predict the emotional category or affective state of a song using its lyric text. This is related to sentiment analysis, but it is more difficult because song mood is not always expressed directly through words. Lyrics may be metaphorical, ironic, repetitive, ambiguous, or emotionally mixed. A song can also combine sad lyrics with energetic music, or positive words with a darker overall tone.
+
+This difficulty is especially important when mood labels are derived from song-level metadata rather than from lyric-only human annotation. In music emotion datasets, affective labels may reflect the complete listening experience, including audio features such as tempo, rhythm, instrumentation, vocal delivery, and production. A classifier trained only on lyric text may therefore be asked to predict a label that is partly determined by non-lyrical information. This creates a mismatch between the input available to the classifier and the source of the target label.
+
+Previous work on music mood classification has shown that lyrics can provide useful affective information, but they are only one part of the overall mood signal \cite{laurier2008multimodal,hu2009lyric,delbouys2018musicmood}. For this reason, mood classification is used cautiously in this dissertation. It is explored as an auxiliary way to examine whether reconstructed lyrics preserve affective information, but the results are interpreted as indicative rather than definitive.
+
+\subsection{Lyric-Derived Affect Lexicons}
+
+An alternative to training a mood classifier is to estimate affect directly from the words used in a lyric. Affective lexicons assign emotional scores to individual words, such as valence, arousal, or dominance values. For example, a word may be associated with high valence if it is generally positive, or high arousal if it is generally energetic or intense. These word-level ratings can then be aggregated across a lyric to estimate the affective profile of the text.
+
+The Warriner et al. affective norms provide valence, arousal, and dominance ratings for a large set of English words \cite{warriner2013norms}. Such lexicons are useful for lyric analysis because they provide a text-based estimate of affect without requiring a supervised classifier trained on song-level labels. This is particularly relevant when the available dataset labels may reflect the full song, including audio features, rather than the lyric text alone.
+
+Lexicon-based analysis also has limitations. It treats affect as a property of individual words and may miss context, negation, metaphor, irony, and the way emotion develops across lines. However, it can still provide a useful complementary perspective on mood preservation. In this dissertation, lyric-derived affect analysis is therefore treated as an auxiliary method for comparing the emotional direction of reconstructed lyrics with the reference lyrics, rather than as a complete measure of musical mood.
+
+\section{Research Gap and Positioning of This Dissertation}
+
+The literature reviewed in this chapter shows that automatic lyric generation has developed from earlier neural generation systems towards more controllable language-model-based approaches. Prior work has explored stylistic conditioning, keyword constraints, emotional control, and lyric-specific properties such as structure, repetition, and singability. At the same time, lyric research remains constrained by copyright, which makes reduced lyric representations such as bag-of-words especially relevant.
+
+The closest point of comparison is LyCon, which frames lyric reconstruction as the generation of lyric-like text from song metadata, mood information, and bag-of-words vocabulary \cite{kim2024lycon}. However, LyCon primarily demonstrates a reconstruction method using a fixed prompting strategy. This leaves open the question of how different forms of prompt control affect reconstruction quality. In particular, it is not yet clear whether reconstruction is improved more by stronger structural instructions, larger vocabulary inputs, frequency-aware lexical cues, raw vocabulary, or stricter output constraints.
+
+This dissertation addresses that gap by treating lyric reconstruction as a controlled experimental comparison of prompt variants. A single language model is held constant, while the prompt design and vocabulary representation are varied across eight final experimental conditions. The study evaluates each condition using multiple dimensions, including lexical adherence, reference similarity, structure, diversity, repetition, semantic similarity, and auxiliary mood preservation analysis.
+
+The contribution of this dissertation is therefore not the creation of a new language model, but an empirical investigation of how different prompt-control strategies affect lyric reconstruction from reduced song representations. This positions the project between lyric generation, copyright-aware lyric representation, and evaluation of controlled language-model outputs.
+
+\section{Chapter Summary}
+
+This chapter reviewed the background and related work relevant to lyric reconstruction from reduced song representations. It first distinguished general lyric generation from lyric reconstruction, showing that reconstruction requires generated lyrics to remain connected to a specific source song rather than simply producing plausible new lyrics. It then discussed lyrics as structured and affective text, highlighting the importance of repetition, genre, artist style, and mood.
+
+The chapter also reviewed bag-of-words representations and their relevance to copyright-aware lyric research. LyCon was identified as the main related reconstruction framework because it reconstructs lyric-like text from metadata, mood labels, and bag-of-words vocabulary. However, the review also identified a gap around the effect of different prompt-control strategies on reconstruction quality.
+
+Finally, the chapter discussed evaluation methods for generated and reconstructed lyrics, including reference similarity, lexical coverage, diversity, structure, repetition, and mood-related analysis. These ideas motivate the approach developed in the next chapter, which describes how this dissertation constructs song representations, designs prompt variants, generates reconstructed lyrics, and evaluates the resulting outputs.
