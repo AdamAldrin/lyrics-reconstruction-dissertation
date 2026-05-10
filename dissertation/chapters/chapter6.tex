@@ -1,3 +1,55 @@
-\chapter{Conclusions}
+\chapter{Conclusions and Future Work}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.
+This dissertation investigated lyric reconstruction from reduced song representations using a large language model. The project was motivated by the problem that lyric research is often constrained by copyright, meaning that datasets may provide reduced representations such as bag-of-words rather than full lyric text. Building on the idea behind LyCon, the dissertation explored whether song metadata, mood information, and lyric-derived vocabulary can be used to guide the reconstruction of lyric-like text.
+
+The main aim was not to train a new language model or to recover original lyrics exactly. Instead, the dissertation examined how different prompt-control strategies affect reconstruction quality. A fixed set of 50 songs was used across eight final prompt variants, producing 400 reconstructed lyrics in total. The outputs were evaluated using multiple automatic metrics, including structural organisation, keyword coverage, weighted keyword coverage, reference overlap, BERTScore, diversity, repetition, and auxiliary mood-related analysis.
+
+\section{Summary of Findings}
+
+The results show that prompt design has a clear effect on lyric reconstruction quality. The Strong control variant provided the best overall balance across the main evaluation dimensions. It achieved perfect structural performance, the highest keyword coverage, the highest weighted keyword coverage, and the lowest lyric-derived valence-arousal distance from the reference lyrics. This suggests that combining structural instructions, vocabulary guidance, and frequency-aware constraints gives the model the clearest reconstruction signal.
+
+However, the results also show that no single prompt variant is best for every objective. The Top-100 vocabulary variant achieved the highest reference Jaccard similarity and the highest BERTScore F1, indicating that a larger vocabulary budget helps the model stay closer to the reference lyrics. This supports the idea that richer lexical evidence improves reference similarity, even if it does not necessarily produce the strongest structural control.
+
+The experiments also showed that explicit structural prompting is highly effective. The Structured, Frequency-aware, and Strong control variants all achieved maximum structure scores and order matches. This means that the model reliably followed verse and chorus instructions when they were stated clearly in the prompt. At the same time, these structured variants also tended to produce higher repeated-line ratios, showing a trade-off between formal control and diversity.
+
+Lexical adherence was another important finding. Strong control and Top-20 vocabulary achieved the highest keyword coverage, while Minimal control achieved the weakest lexical adherence. This indicates that when reconstructing from bag-of-words style inputs, the language model benefits from explicit instructions to use the supplied vocabulary. Without sufficient control, the model may produce plausible lyrics, but the output becomes less tied to the source song representation.
+
+The mood preservation analysis was more limited. Classifier-based mood prediction was not reliable enough for strong conclusions, especially for the fine-grained 12-mood formulation. This was mainly because the available valence and arousal values are song-level metadata and may reflect audio characteristics as well as lyric content. The lyric-derived Warriner analysis provided a more useful auxiliary text-based measure, and again suggested that Strong control best preserved the affective vocabulary profile of the reference lyrics. However, this should be interpreted as supporting evidence rather than a complete measure of musical mood.
+
+\section{Contributions}
+
+The main contribution of this dissertation is a controlled experimental comparison of prompt strategies for lyric reconstruction from reduced song representations. Rather than evaluating a single prompt, the project compared variants that differed in structure, vocabulary type, vocabulary size, frequency information, and prompt strictness. This made it possible to identify which forms of control improved particular aspects of reconstruction quality.
+
+The project also developed an end-to-end experimental pipeline for preparing song representations, rendering prompts, generating reconstructed lyrics, and evaluating the outputs. The pipeline stores prompt datasets, generated lyrics, configuration snapshots, and evaluation summaries for each run, supporting reproducibility and direct comparison across prompt variants.
+
+A further contribution is the evaluation framework. The dissertation did not rely on a single score, but compared outputs across lexical adherence, structure, repetition, diversity, reference similarity, semantic similarity, and auxiliary mood preservation. This is important because lyric reconstruction is a multi-objective task: a good output should not only contain relevant words, but should also resemble a lyric and remain connected to the source song.
+
+\section{Limitations}
+
+Several limitations should be acknowledged. First, the experiment used a sample of 50 songs. This was sufficient for a controlled undergraduate dissertation experiment, but it is too small to support broad claims about all lyric reconstruction settings, genres, or artists. A larger sample would make the findings more robust.
+
+Second, the evaluation relied mainly on automatic metrics. These metrics are useful for consistent comparison, but they cannot fully capture lyric quality, creativity, coherence, singability, or human preference. Human evaluation would be needed to judge whether the reconstructed lyrics are convincing as lyrics, rather than only strong according to measurable reconstruction signals.
+
+Third, the project used one language model, GPT-4o mini. This kept the experiments focused on prompt design, but the findings may not transfer directly to other models. Different language models may respond differently to structure, vocabulary size, and prompt strictness.
+
+Fourth, mood preservation remains difficult to evaluate. The classifier-based experiments showed that predicting song-level mood from lyrics alone is unreliable when the target labels may partly reflect audio features. The Warriner analysis provided a more text-aligned alternative, but it is still limited because word-level affect ratings cannot capture context, irony, metaphor, or musical delivery.
+
+Finally, copyright constraints limited the amount of original lyric text that could be shown qualitatively in the dissertation. This made the project more dependent on automatic metrics and short illustrative examples.
+
+\section{Future Work}
+
+Future work could extend this project in several directions. The most immediate improvement would be to evaluate the prompt variants on a larger and more diverse song sample. This would make it possible to test whether the same patterns hold across genres, artists, and different lyrical styles.
+
+Another important direction is human evaluation. Human judges could assess fluency, lyric-likeness, coherence, style fit, emotional tone, and overall preference. This would complement the automatic metrics and help determine whether outputs that perform well numerically are also convincing to readers.
+
+Future work could also explore hybrid prompt designs. The results suggest that Strong control is best overall, while Top-100 vocabulary is strongest for reference similarity. A promising next step would be to combine the strong structural and frequency-aware instructions with a larger vocabulary budget, then test whether this improves reference similarity without losing formal control.
+
+Mood preservation could also be improved by using lyric-specific affect annotations or text-derived affect datasets. This would avoid the mismatch between audio-influenced song-level metadata and lyric-only classifiers. More advanced affect models could also be explored, including contextual embedding methods or regression models trained specifically on lyric emotion annotations.
+
+Finally, future research could compare multiple language models or fine-tuned lyric generation systems. This would help separate the effect of prompt design from the behaviour of a particular model. It could also show whether smaller or specialised models can reconstruct lyrics from reduced representations as effectively as general-purpose large language models.
+
+\section{Final Remarks}
+
+Overall, this dissertation shows that lyric reconstruction from reduced song representations is feasible, but strongly dependent on how the reconstruction prompt is designed. Stronger prompt control improves structure and lexical adherence, while larger vocabulary inputs improve reference similarity. The best reconstruction strategy therefore depends on the desired balance between control, similarity, diversity, and flexibility.
+
+The findings support the broader idea that large language models can be used for copyright-aware lyric reconstruction, but they also show that fluent generation alone is not enough. For reconstruction, the model must be guided to treat metadata, mood cues, and vocabulary as evidence from a source song. Prompt design is therefore not a minor implementation detail, but a central part of the reconstruction method.
