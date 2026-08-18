@@ -6,6 +6,8 @@ __pycache__/
 venv/
 .venv/
 .env
+.DS_Store
+dissertation/build/
 
 # Jupyter
 .ipynb_checkpoints/

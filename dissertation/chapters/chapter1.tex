@@ -1,0 +1,55 @@
+\chapter{Introduction}
+
+Song lyrics are a distinctive form of text. They are linguistic artefacts, but they are also shaped by music, performance, repetition, genre, mood, and artist identity. A lyric can be meaningful because of the words it contains, but also because of how those words are arranged into verses, choruses, hooks, and repeated phrases. This makes lyrics an interesting domain for natural language processing and music information retrieval, but also a difficult one: a generated lyric should not only be fluent, but should also feel structurally and stylistically like a lyric \cite{zhang2020youling,liang2024xailyricist}.
+
+Lyric research is further complicated by copyright. Many datasets cannot redistribute full lyric text, so researchers often work with reduced lyric representations instead. One common form is a bag-of-words representation, where the words from a lyric are stored without their original order, line breaks, or section structure. This preserves some lexical information, but removes much of what makes lyrics recognisably lyrical. The musiXmatch dataset linked to the Million Song Dataset is a well-known example of this approach, providing lyric information as bag-of-words data rather than full lyric text \cite{bertinmahieux2011million,musixmatch2011dataset}. The reconstruction problem begins from this tension: if only reduced song information is available, can a language model generate lyric-like text that preserves useful properties of the original song?
+
+This dissertation investigates lyric reconstruction using large language models. The project is inspired by LyCon, which reconstructs lyrics from bag-of-words vocabulary and song metadata using large language models \cite{kim2024lycon}. Rather than attempting to reproduce LyCon directly, this dissertation focuses on a controlled experimental question: how do different prompt-control strategies affect the quality of reconstructed lyrics? The study uses a fixed sample of 50 songs from a Music4All-based experimental dataset \cite{domingues2020music4all}. For each song, multiple prompt variants are used to generate reconstructed lyrics from song metadata, mood information, and lyric-derived vocabulary. This produces 400 reconstructed lyrics across eight final experimental conditions.
+
+The central problem investigated in this dissertation is therefore not whether a language model can write lyrics in general. Transformer-based language models and large language models have already shown strong capability in producing fluent text from prompts \cite{vaswani2017attention,brown2020language}. Instead, the problem is whether generated lyrics can remain connected to a reduced representation of a specific source song. This requires balancing several competing goals. A good reconstruction should use the supplied vocabulary, resemble a lyric structurally, avoid excessive repetition, remain reasonably close to the reference lyric, and preserve some affective direction where possible. No single metric can capture all of these qualities, so the project evaluates reconstruction quality across several complementary dimensions.
+
+\section{Aim and Objectives}
+
+The aim of this dissertation is to investigate how prompt design affects lyric reconstruction from reduced song representations using a large language model. The project treats prompt design as the main experimental variable while keeping the language model, song sample, and evaluation pipeline fixed.
+
+The objectives of the project are:
+
+\begin{itemize}
+    \item to construct song-level input representations from metadata, mood information, and lyric-derived vocabulary;
+    \item to design multiple prompt variants that differ in vocabulary type, vocabulary size, structural control, frequency information, and prompt strictness;
+    \item to generate reconstructed lyrics for the same fixed set of songs across all final prompt variants;
+    \item to evaluate the outputs using automatic metrics for lexical adherence, reference similarity, structure, diversity, repetition, and semantic similarity;
+    \item to explore whether reconstructed lyrics preserve affective information using auxiliary mood-related analysis;
+    \item to identify which forms of prompt control are most useful for lyric reconstruction from reduced song representations.
+\end{itemize}
+
+\section{Research Questions}
+
+The project is guided by the following research questions:
+
+\begin{enumerate}
+    \item How does prompt design affect the quality of lyrics reconstructed from reduced song representations?
+    \item Do stronger structural and lexical constraints improve reconstruction quality compared with looser prompts?
+    \item How do different vocabulary representations, such as content vocabulary, raw vocabulary, top-20 vocabulary, and top-100 vocabulary, affect lexical adherence and reference similarity?
+    \item To what extent can mood preservation be evaluated from reconstructed lyric text, given that song-level mood metadata may not be purely lyric-derived?
+\end{enumerate}
+
+These questions reflect the experimental nature of the dissertation. The project does not aim to build a new language model or to recover original copyrighted lyrics exactly. Instead, it studies how different prompt-control decisions influence measurable aspects of reconstruction quality.
+
+\section{Project Scope}
+
+The scope of the project is limited to automatic reconstruction and evaluation. The experiments use GPT-4o mini as the generation model and compare eight final prompt variants over the same 50-song sample. This keeps the comparison focused: differences in results can be interpreted mainly as effects of prompt design and vocabulary representation, rather than changes in model choice or dataset composition.
+
+The evaluation is also deliberately limited to automatic and auxiliary analyses. Metrics such as keyword coverage, reference overlap, BERTScore, distinct n-grams, repeated-line ratio, and structure scores provide a systematic way to compare outputs across runs. However, automatic metrics cannot fully measure artistic quality, singability, originality, or human preference \cite{reiter2018bleu,vanDerLee2019human}. Mood preservation is treated especially cautiously, because the available valence and arousal metadata may reflect the whole song, including audio characteristics, rather than the lyric text alone \cite{laurier2008multimodal,delbouys2018musicmood}. For this reason, mood-related analysis is used as a supplementary perspective rather than as the main success criterion.
+
+\section{Overview of the Report}
+
+Chapter 2 reviews background and related work. It discusses lyric generation, lyric reconstruction, bag-of-words representations, controlled text generation, LyCon, relevant datasets, automatic evaluation methods, and mood-related analysis. It also identifies the research gap addressed by this dissertation: the need to compare prompt-control strategies for lyric reconstruction from reduced song representations.
+
+Chapter 3 describes the approach. It explains how the song representations are constructed, how vocabulary and mood cues are derived, how prompt variants are designed, and how the reconstruction and evaluation pipeline is organised at a methodological level.
+
+Chapter 4 presents the experimental setup. It describes the implementation, dataset preparation, prompt templates, generation process, final experimental runs, and evaluation procedures used to produce and assess the reconstructed lyrics.
+
+Chapter 5 presents and discusses the results. It compares the final prompt variants across lexical adherence, structure, reference similarity, diversity, repetition, semantic similarity, and mood-related analysis. It also discusses the main trade-offs observed between strong control, vocabulary size, and output flexibility.
+
+Chapter 6 concludes the dissertation. It summarises the main findings, reflects on the limitations of the project, and suggests future work, including larger-scale evaluation, human assessment, improved mood modelling, and further exploration of copyright-aware lyric reconstruction.

@@ -1,119 +1,191 @@
-# src/build_prompt_dataset.py
+from __future__ import annotations
 
+import argparse
 import math
-import pandas as pd
 from pathlib import Path
 
-INPUT_FILE = Path("data/samples/lycon_sample_with_prompt_inputs.csv")
-OUTPUT_FILE = Path("data/processed/prompt_dataset.csv")
+import pandas as pd
+
+from experiment_utils import (
+    clean_text,
+    get_prompt_variants,
+    get_run_dir,
+    get_run_id,
+    load_config,
+    load_template,
+    render_template,
+    resolve_path,
+    write_json,
+)
+
+
+def center_if_unit_scale(value: float) -> float:
+    if pd.isna(value):
+        return float("nan")
+    if 0.0 <= value <= 1.0:
+        return (value * 2.0) - 1.0
+    return value
+
+
+def compute_theta(valence: float, arousal: float) -> float:
+    x = center_if_unit_scale(valence)
+    y = center_if_unit_scale(arousal)
+    theta = math.atan2(y, x)
+    if theta < 0:
+        theta += 2 * math.pi
+    return theta
 
 
 def mood_from_valence_arousal(valence: float, arousal: float) -> str:
-    """
-    Map valence/arousal to a mood label using the angle theta in [0, 2pi).
+    theta = compute_theta(valence, arousal)
+    signed_theta = theta if theta < math.pi else theta - (2 * math.pi)
 
-    Note:
-    The LyCon paper defines mood categories from valence-arousal angle ranges.
-    This implementation uses four angle sectors. If you want exact replication,
-    align the boundaries with Figure 1 from the paper. :contentReference[oaicite:1]{index=1}
-    """
-    theta = math.atan2(arousal, valence)
-    if theta < 0:
-        theta += 2 * math.pi
+    # LyCon maps the valence-arousal angle into 12 mood sectors.
+    if 0 <= signed_theta < 0.17 * math.pi:
+        return "pleased"
+    if 0.17 * math.pi <= signed_theta < 0.33 * math.pi:
+        return "happy"
+    if 0.33 * math.pi <= signed_theta < 0.50 * math.pi:
+        return "excited"
+    if 0.50 * math.pi <= signed_theta < 0.67 * math.pi:
+        return "annoying"
+    if 0.67 * math.pi <= signed_theta < 0.83 * math.pi:
+        return "angry"
+    if 0.83 * math.pi <= signed_theta <= math.pi:
+        return "nervous"
+    if -math.pi <= signed_theta < -0.83 * math.pi:
+        return "sad"
+    if -0.83 * math.pi <= signed_theta < -0.67 * math.pi:
+        return "bored"
+    if -0.67 * math.pi <= signed_theta < -0.50 * math.pi:
+        return "sleepy"
+    if -0.50 * math.pi <= signed_theta < -0.33 * math.pi:
+        return "calm"
+    if -0.33 * math.pi <= signed_theta < -0.17 * math.pi:
+        return "peaceful"
+    return "relaxed"
 
-    if 0 <= theta < math.pi / 2:
-        return "positive and energetic"
-    elif math.pi / 2 <= theta < math.pi:
-        return "tense and emotional"
-    elif math.pi <= theta < 3 * math.pi / 2:
-        return "sad and reflective"
-    else:
-        return "positive and calm"
 
-
-def normalize_bow_keywords(value) -> str:
-    """
-    Ensure the vocabulary field becomes a clean string.
-
-    Assumes the input column already contains keywords sorted by descending
-    frequency upstream, which is what the paper describes for the vocabulary
-    list. Verify this in your dataset construction. :contentReference[oaicite:2]{index=2}
-    """
-    if pd.isna(value):
+def build_frequency_block(vocab_freq: str) -> str:
+    vocab_freq = clean_text(vocab_freq)
+    if not vocab_freq:
         return ""
-    return str(value).strip()
+    return f"\n\nPrioritize words roughly according to these frequencies:\n{vocab_freq}"
 
 
-def build_reproduction_prompt(row: pd.Series) -> str:
-    """
-    Prompt close to the LyCon paper formulation.
-    """
-    mood = mood_from_valence_arousal(row["valence"], row["arousal"])
-    vocab = normalize_bow_keywords(row["bow_keywords"])
+def build_prompt_dataset(config: dict, run_id: str) -> tuple[pd.DataFrame, Path]:
+    input_file = resolve_path(config["dataset"]["output_file"])
+    output_file = resolve_path(config["prompt_dataset"]["output_file"])
+    run_dir = get_run_dir(run_id)
 
-    return (
-        f'Compose {row["genre"]} lyrics, in a style reminiscent of {row["artist"]} '
-        f'which represents a {mood} mood under the title of "{row["title"]}" '
-        f'using the following vocabulary: {vocab}.'
-    ).strip()
+    df = pd.read_csv(input_file).copy()
 
-
-def build_extension_prompt(row: pd.Series) -> str:
-    """
-    Your extension prompt: adds structure and stricter constraints.
-    """
-    mood = mood_from_valence_arousal(row["valence"], row["arousal"])
-    vocab = normalize_bow_keywords(row["bow_keywords"])
-
-    return f"""Write original song lyrics with the following requirements.
-
-Title: "{row['title']}"
-Artist style inspiration: {row['artist']}
-Genre: {row['genre']}
-Mood: {mood}
-
-Constraints:
-1. Use the provided vocabulary naturally and make sure the important words appear clearly.
-2. Keep the lyrics coherent and emotionally consistent.
-3. Structure the lyrics into:
-   - Verse 1
-   - Chorus
-   - Verse 2
-   - Chorus
-4. Make the chorus memorable and central to the song's emotion.
-5. Keep the style consistent with the genre and artist inspiration.
-6. Do not output explanations or notes, only the lyrics.
-
-Vocabulary:
-{vocab}""".strip()
-
-
-def main():
-    df = pd.read_csv(INPUT_FILE).copy()
-
-    required_columns = ["title", "artist", "genre", "valence", "arousal", "bow_keywords"]
-    missing = [col for col in required_columns if col not in df.columns]
+    required_columns = ["song_id", "title", "artist", "genre", "valence", "arousal", "vocab_words", "vocab_freq"]
+    missing = [column for column in required_columns if column not in df.columns]
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
-    df["bow_keywords"] = df["bow_keywords"].apply(normalize_bow_keywords)
-    df["mood_label"] = df.apply(
-        lambda row: mood_from_valence_arousal(row["valence"], row["arousal"]),
-        axis=1,
-    )
+    for column in ["song_id", "title", "artist", "genre", "reference_lyrics", "tags", "release", "vocab_words", "vocab_freq"]:
+        if column not in df.columns:
+            df[column] = ""
+        df[column] = df[column].apply(clean_text)
 
-    df["reproduction_prompt"] = df.apply(build_reproduction_prompt, axis=1)
-    df["extension_prompt"] = df.apply(build_extension_prompt, axis=1)
+    df["valence"] = pd.to_numeric(df["valence"], errors="coerce")
+    df["arousal"] = pd.to_numeric(df["arousal"], errors="coerce")
+    df = df.dropna(subset=["valence", "arousal"]).copy()
 
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUTPUT_FILE, index=False)
+    df["theta"] = df.apply(lambda row: compute_theta(row["valence"], row["arousal"]), axis=1)
+    df["mood_label"] = df.apply(lambda row: mood_from_valence_arousal(row["valence"], row["arousal"]), axis=1)
 
-    print(f"Saved prompt dataset to: {OUTPUT_FILE}")
-    print("\nColumns:")
-    print(df.columns.tolist())
+    prompt_variants = get_prompt_variants(config)
+    prompt_metadata = []
+
+    for variant in prompt_variants:
+        name = clean_text(variant["name"])
+        template_file = variant["template_file"]
+        vocab_words_column = clean_text(variant.get("vocab_words_column", "vocab_words")) or "vocab_words"
+        vocab_freq_column = clean_text(variant.get("vocab_freq_column", ""))
+        template_text = load_template(template_file)
+        prompt_col = f"{name}_prompt"
+        template_version = Path(template_file).stem
+
+        if vocab_words_column not in df.columns:
+            raise ValueError(f"Prompt variant '{name}' expects missing column '{vocab_words_column}'.")
+        if vocab_freq_column and vocab_freq_column not in df.columns:
+            raise ValueError(f"Prompt variant '{name}' expects missing column '{vocab_freq_column}'.")
+
+        def render_row(row: pd.Series) -> str:
+            vocab_words = clean_text(row.get(vocab_words_column, ""))
+            vocab_freq = clean_text(row.get(vocab_freq_column, "")) if vocab_freq_column else ""
+            mapping = {
+                "song_id": clean_text(row.get("song_id", "")),
+                "title": clean_text(row.get("title", "")),
+                "artist": clean_text(row.get("artist", "")),
+                "genre": clean_text(row.get("genre", "")),
+                "valence": row.get("valence", ""),
+                "arousal": row.get("arousal", ""),
+                "theta": row.get("theta", ""),
+                "mood_label": clean_text(row.get("mood_label", "")),
+                "tags": clean_text(row.get("tags", "")),
+                "release": clean_text(row.get("release", "")),
+                "vocab_words": vocab_words,
+                "vocab_freq": vocab_freq,
+                "vocab_frequency_block": build_frequency_block(vocab_freq),
+            }
+            return render_template(template_text, mapping)
+
+        df[prompt_col] = df.apply(render_row, axis=1)
+        prompt_metadata.append(
+            {
+                "name": name,
+                "template_file": template_file,
+                "template_version": template_version,
+                "vocab_words_column": vocab_words_column,
+                "vocab_freq_column": vocab_freq_column,
+                "requires_structure": bool(variant.get("requires_structure", False)),
+            }
+        )
+
+    df["run_id"] = run_id
+
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(output_file, index=False)
+    run_output_file = run_dir / "prompt_dataset.csv"
+    df.to_csv(run_output_file, index=False)
+
+    write_json(run_dir / "prompt_variants.json", {"prompt_variants": prompt_metadata})
+    write_json(run_dir / "config_snapshot.json", config)
+
+    return df, run_output_file
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Build prompt dataset from prepared song metadata.")
+    parser.add_argument("--config", default=None, help="Path to experiment JSON config.")
+    parser.add_argument("--run-id", default=None, help="Reusable run identifier for saving outputs.")
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    config = load_config(args.config)
+    run_id = get_run_id(config, args.run_id)
+    df, run_output_file = build_prompt_dataset(config, run_id)
+
+    print(f"Saved prompt dataset to: {run_output_file}")
+    print(f"Run ID: {run_id}")
+    print("\nMood distribution:")
+    print(df["mood_label"].value_counts(dropna=False).to_string())
+
+    preview_cols = ["song_id", "title", "artist", "genre", "valence", "arousal", "theta", "mood_label"]
     print("\nSample preview:")
-    preview_cols = ["title", "artist", "genre", "valence", "arousal", "mood_label"]
-    print(df[preview_cols].head().to_string(index=False))
+    print(df[preview_cols].head(10).to_string(index=False))
+
+    for variant in get_prompt_variants(config):
+        prompt_col = f"{clean_text(variant['name'])}_prompt"
+        if len(df) > 0 and prompt_col in df.columns:
+            print(f"\nSample {variant['name']} prompt:")
+            print(df.iloc[0][prompt_col])
 
 
 if __name__ == "__main__":

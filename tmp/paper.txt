@@ -1,0 +1,64 @@
+
+
+=== PAGE 1 ===
+
+LyCon: LYRICS RECONSTRUCTION FROM THE BAG-OF-WORDS USING LARGE LANGUAGE MODELS
+Haven Kim
+University of California San Diego
+ABSTRACT
+This paper addresses the unique challenge of conducting research in lyric studies, where direct use of lyrics is of- ten restricted due to copyright concerns. Unlike typical data, internet-sourced lyrics are frequently protected under copyright law, necessitating alternative approaches. Our study introduces a novel method for generating copyright- free lyrics from publicly available Bag-of-Words (BoW) datasets, which contain the vocabulary of lyrics but not the lyrics themselves. Utilizing metadata associated with BoW datasets and large language models, we successfully recon- structed lyrics. We have compiled and made available a dataset of reconstructed lyrics, LyCon, aligned with meta- data from renowned sources including the Million Song Dataset, Deezer Mood Detection Dataset, and AllMusic Genre Dataset, available for public access. We believe that the integration of metadata such as mood annotations or genres enables a variety of academic experiments on lyrics, such as conditional lyric generation.
+1. INTRODUCTION
+One of the distinct challenges in lyric research is the con- straints on directly using internet-sourced lyrics due to copyright issues. As a consequence, publicly available lyric datasets often resort to indirect methods of providing access to lyrics. These methods include offering code [1] or instructions [2] for web scraping commercial lyrics. An alternative strategy involves presenting a Bag-of-Words format, which includes the vocabulary of the lyrics along with its frequency but not the complete text. A notable example is the musiXmatch dataset [3], which provides the Bag-of-Words for lyrics of 237,662 songs. Despite lacking the full lyrical content, this dataset has been sig- nificantly instrumental owing to its alignment with the Million Song Dataset (MSD) [3], as the Bag-of-Words are paired with extensive metadata from various subsets of the MSD [4, 5] or other datasets correlated with the MSD’s metadata [6]. Therefore, it has enhanced various lyric-based studies, including genre classification [7–9], emotion recognition [10], cover song detection [11], and psychology-based feature extraction [12]. While the align- ment with extensive metadata is beneficial, the absence of
+© Haven Kim and Kahyun Choi. Licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0). Attribu- tion: Haven Kim and Kahyun Choi, “LyCon: Lyrics Reconstruction from the Bag-of-Words Using Large Language Models”
+Kahyun Choi
+University of Illinois at Urbana-Champaign
+Figure 1. Table illustrating the relationship between θ val- ues and [MOOD] categories. The valence levels (x-axis) and arousal levels (y-axis) determine θ.
+complete lyric content limits its applicability in areas that demand full text analysis, such as lyric generation, struc- tural analysis, or in-depth lyric examination. For instance, while extracting unigrams using Bag-of-Words is feasible, generating n-grams (for n > 1) remains unattainable, al- though we have identified several lyric studies that require n-gram-based analysis (for n > 1) [13, 14].
+To address this challenge, we introduce a straightfor- ward yet effective approach for reconstructing lyrics from the Bag-of-Words format, utilizing large language models. This method mitigates copyright concerns for academic use while preserving the substantial benefits derived from the extensive metadata associated with the original tracks. In the subsequent sections, we detail our lyric reconstruc- tion methodology, present our dataset, LyCon, compiled using this approach and made accessible for academic pur- poses, highlight the potential applications of our suggested methods and dataset.
+2. RECONSTRUCTIONMETHODOLOGY
+Our primary objective is to reconstruct lyrics using large language models in a way that preserves their original vocabulary, topic, stylistic nuances, and mood. We ac- cessed the vocabulary list for each song from the Bag-of- Words provided by the musiXmatch dataset, a subset of the MSD [3]. To indirectly infer the topic, we used the title and artist information corresponding to each track. This approach is based on the premise that an artist’s identity influences not just the style but also the thematic content of a song [15]. Recognizing the correlation between a song’s genre and its lyrical style, as extensively suggested
+     arXiv:2408.14750v1 [cs.CL] 27 Aug 2024
+ 
+
+=== PAGE 2 ===
+
+     Item
+Total Count of Lyrics Sets Average Word Count per Set Average Line Count per Set Average Section Count per Set Total Count of Unique Unigrams Total Count of Unique Bigrams Total Count of Unique Trigrams Abstract Words Ratio
+Concrete Words Ratio
+LyCon Original
+7,863 7,863 319.42 248.42 42.58 38.62 9.97 9.86 18,921 36,222 269,139 287,049 689,852 593,959 3.37 2.82 2.92 3.12
+   Figure 2. ’Time Is Running Out’ by Muse (MSD Track ID: TRSEKGD128F42B654D) as a prompting example, clas- sified as the Experimental genre [4], with the annotated emotional attributes of Valence -1.05 and Arousal 0.34 [6] (thus, θ = 0.90π).
+in previous studies, we obtained the genre for each track from the Allmusic Genre Dataset [4], another subset of the MSD. For mood annotations, we utilized the Deezer Mood Detection Dataset [6], which offers emotional valence and arousal levels for musical tracks with its metadata aligned with the MSD. Utilizing this collected data, we direct a largelanguagemodel1 togeneratelyricsthatfitsthespe- cific genre, reflect the mood, emulate the style of the corre- sponding artist under the song’s title and employ the given Bag-of-Words, by prompting as below.
+“Compose [GENRE] lyrics, in a style rem- iniscent of [ARTIST] which represents a [MOOD] mood under the title of [TITLE] using the following vocabulary [VOCABU- LARY].”
+In this study, the [GENRE] is determined by concate- nating the genres listed in the Allmusic Style Dataset. The [ARTIST] and [TITLE] are directly taken as the artist’s name and track title, respectively, from the MSD. The [VOCABULARY] is defined as a concatenation of vo- cabulary list from the Bag-of-Words, sorted in descend- ing order of frequency. For [MOOD], we utilize the va- lence and arousal values from the Deezer Mood Detection Dataset. Following the 2D valence-arousal emotion space theory [16], which has been adopted in music domain [17], we represent valence as x and arousal as y. The [MOOD] is then defined based on the angle in radians (θ) between
+1 We used the OpenAI’s ChatGPT-4o.
+Table 1. Statistical comparison between the reconstructed lyrics (LyCon) and original lyrics for the same list of songs.
+the positive x-axis and the point (x, y). The correlation be- tween the range of θ values and their respective [MOOD] categories is illustrated in Figure 1. The example of the prompt and output is provided in Figure 2.
+Using this methodology, we reconstruct lyrics against every songs that have associated metadata from all of the three datasets [3, 4, 6] exploited for our prompt. This comprehensive list resulted in reconstructed lyrics for 7,863 songs. The reconstructed lyrics are downlodable at https://github.com/havenpersona/lycon where each item is mapped to the MSD song ID.
+3. ANALYSIS
+In Table 1, we compare the statistics of the reconstructed lyrics with those of the original lyrics for the selected songs. They exhibit statistical similarities in terms of aver- age word, line, and section count, as well as the total count of unique bigrams and trigrams. Here, a gram is defined as a single word after simple whitespace separation, with- out considering capitalization. However, the total count of unique unigrams in LyCon is significantly lower than in the original lyrics, indicating a limited usage of diverse words. Finally, we compare the abstract and concrete words ratios, as defined in [18], which suggests that aesthetically pleas- ing poetry is more likely to use concrete words over ab- stract words. As expected, LyCon shows a slightly higher abstract words ratio and a slightly lower concrete words ratio than the original lyrics. However, the small gap in- dicates that LyCon achieved an lesser yet similar aesthetic level to the original lyrics.
+4. CONCLUSIONS
+In this study, we presented a straightforward yet novel ap- proach for reconstructing lyrics using the publicly avail- able Bag-of-Words. This method offers a viable solu- tion for research requiring complete lyrics without risk- ing copyright infringement. Moreover, our publicly ac- cessible compilation of reconstructed lyrics, enriched with metadata from three prominent datasets, is poised to ad- vance lyric-based academic research, including mood and genre-conditioned lyric generation and music categoriza- tion based on lyrics.
+ 
+
+=== PAGE 3 ===
+
+5. REFERENCES
+[1] H. Kim, J. Jung, D. Jeong, and J. Nam, “K-pop lyric translation: Dataset, analysis, and neural-modelling,” in Proceedings of the 2024 Joint International Con- ference on Computational Linguistics, Language Re- sources and Evaluation (LREC-COLING 2024), May 2024, pp. 9974–9987.
+[2] M. Buffa, E. Cabrio, M. Fell, F. Gandon, A. Gi- boin, R. Hennequin, F. Michel, J. Pauwels, G. Pellerin, M. Tikat et al., “The wasabi dataset: cultural, lyrics and audio analysis metadata about 2 million popular com- mercially released songs,” in The Semantic Web: 18th International Conference, ESWC 2021, Virtual Event, June 6–10, 2021, Proceedings 18. Springer, 2021, pp. 515–531.
+[3] T. Bertin-Mahieux, D. P. Ellis, B. Whitman, and P. Lamere, “The million song dataset,” in 12th Inter- national Society for Music Information Retrieval Con- ference, 2011, pp. 591–596.
+[4] A. Schindler, R. Mayer, and A. Rauber, “Facilitating comprehensive benchmarking experiments on the mil- lion song dataset.” in ISMIR, 2012, pp. 469–474.
+[5] F. Korzeniowski, O. Nieto, M. McCallum, M. Won, S. Oramas, and E. Schmidt, “Mood classification us- ing listening data,” arXiv preprint arXiv:2010.11512, 2020.
+[6] R. Delbouys, R. Hennequin, F. Piccoli, J. Royo- Letelier, and M. Moussallam, “Music mood detection based on audio and lyrics with deep neural net,” arXiv preprint arXiv:1809.07276, 2018.
+[7] D. Liang, H. Gu, and B. O’Connor, “Music genre classification with the million song dataset,” Machine Learning Department, CMU, 2011.
+[8] J.Yang,“Lyric-basedmusicgenreclassifcation,”2018.
+[9] L. Wadhwa and P. Mukherjee, “Music genre classifica- tion using multi-modal deep learning based fusion,” in 2021GraceHopperCelebrationIndia(GHCI). IEEE, 2021, pp. 1–5.
+[10] C. Nanayakkara and H. Caldera, “Music emotion recognition with audio and lyrics features,” Interna- tional Journal of Digital Information and Wireless Communications, vol. 6, no. 4, pp. 260–273, 2016.
+[11] A. A. Correya, R. Hennequin, and M. Arcos, “Large- scale cover song detection in digital music libraries us- ing metadata, lyrics and audio features,” arXiv preprint arXiv:1808.10351, 2018.
+[12] J. Kim, A. M. Demetriou, S. Manolios, M. S. Tavella, and C. C. Liem, “Butter lyrics over hominy grit: Com- paring audio and psychology-based text features in mir tasks.” in ISMIR, 2020, pp. 861–868.
+[13] K. Watanabe and M. Goto, “Text-to-lyrics generation with image-based semantics and reduced risk of pla- giarism,” in Ismir 2023 Hybrid Conference, 2023.
+[14] H. Kim, K. Watanabe, M. Goto, and J. Nam, “A computational evaluation framework for singable lyric translation,” in Ismir 2023 Hybrid Conference, 2023.
+[15] K. Tsukuda, K. Ishida, and M. Goto, “Lyric jumper: A lyrics-based music exploratory web service by mod- eling lyrics generative process.” in ISMIR, 2017, pp. 544–551.
+[16] J. A. Russell, “A circumplex model of affect.” Journal of personality and social psychology, vol. 39, no. 6, p. 1161, 1980.
+[17] Y.-H. Yang and H. H. Chen, “Machine recognition of music emotion: A review,” ACM Transactions on In- telligent Systems and Technology (TIST), vol. 3, no. 3, pp. 1–30, 2012.
+[18] J. Kao and D. Jurafsky, “A computational analysis of style, affect, and imagery in contemporary poetry,” in Proceedings of the NAACL-HLT 2012 Workshop on Computational Linguistics for Literature, 2012, pp. 8– 17.
